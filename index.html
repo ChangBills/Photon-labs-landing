@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A01744124 · Dimensionamiento solar para Photon Labs</title>
+  <meta name="description" content="Solución a la situación problema TE1020: simulador web para dimensionar y cotizar un sistema fotovoltaico para un aula escolar.">
+  <meta name="theme-color" content="#0B2A5B">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="barra">
+  <div class="contenedor">
+    <a href="#inicio" aria-label="Ir al inicio"><img src="assets/logo-horizontal.svg" alt="Logo A01744124"></a>
+    <nav aria-label="Principal">
+      <a href="#reto">El reto</a>
+      <a href="#solucion">La solución</a>
+      <a href="#ejemplo">Ejemplo del aula</a>
+      <a href="#ruta">Ruta</a>
+      <a href="#reporte">Reporte PDF</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+
+  <!-- ================= HERO ================= -->
+  <div class="hero">
+    <div class="contenedor">
+      <div>
+        <span class="etiqueta" style="color:var(--azul-cielo)">TE1020 · Análisis de circuitos eléctricos</span>
+        <h1>De estudiante de ingeniería a <span>consultor en energía solar</span></h1>
+        <p class="sub">Una herramienta web que convierte el consumo de un cliente en una propuesta técnica y económica clara, confiable y lista para presentarse. Caso inicial: un salón de clases.</p>
+        <ul class="chips" aria-label="Etapas del proyecto">
+          <li>Modelar</li><li>Dimensionar</li><li>Seleccionar</li><li>Cotizar</li><li>Validar</li><li>Convencer</li>
+        </ul>
+        <div class="botones">
+          <a class="btn btn-primario" href="#solucion">Ver la solución</a>
+          <a class="btn btn-secundario" href="#ejemplo">Ver ejemplo calculado</a>
+        </div>
+      </div>
+      <aside class="tarjeta-id" aria-label="Identificación del alumno">
+        <img src="assets/logo-vertical.svg" alt="Logo con la matrícula A01744124">
+        <p><strong>Proyecto individual</strong><br>Gpo 301 · Matrícula A01744124</p>
+      </aside>
+    </div>
+  </div>
+
+  <!-- ================= EL RETO ================= -->
+  <section id="reto">
+    <div class="contenedor">
+      <span class="etiqueta">El reto</span>
+      <h2>Pasar de las ideas a las propuestas de venta</h2>
+      <p class="intro">Photon Labs S.A. de C.V. es una empresa de ingeniería enfocada en soluciones fotovoltaicas que quiere ofrecer proyectos a escuelas, hogares y negocios. Le falta una herramienta propia para dimensionar sistemas y preparar cotizaciones.</p>
+      <blockquote class="cita">
+        Un vendedor debe poder registrar cuánto consume un cliente, elegir paneles, inversores y baterías que realmente existan en el mercado, consultar sus precios y explicar cuál sería la inversión, el ahorro estimado y el periodo de recuperación.
+      </blockquote>
+      <div class="rejilla c3">
+        <div class="tarjeta"><h3>Mi misión</h3><p>Desarrollar de forma individual una aplicación web que dimensione y cotice un sistema fotovoltaico, empezando por un aula escolar.</p></div>
+        <div class="tarjeta"><h3>Mi responsabilidad</h3><p>El modelo físico-matemático, la compatibilidad eléctrica de los equipos, la verificación de resultados y la comunicación de la propuesta.</p></div>
+        <div class="tarjeta"><h3>La pregunta guía</h3><p>¿Cómo convertir un análisis de circuitos eléctricos en una herramienta confiable para cotizar proyectos y comunicar su valor?</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= LA SOLUCIÓN ================= -->
+  <section id="solucion" class="alt">
+    <div class="contenedor">
+      <span class="etiqueta">La solución</span>
+      <h2>Un simulador con siete módulos</h2>
+      <p class="intro">La aplicación es autocontenida: sin base de datos, con catálogos locales y todos los cálculos ejecutándose en el navegador. Se publica en GitHub Pages.</p>
+
+      <div class="flujo" aria-label="Flujo del sistema fotovoltaico">
+        <div class="paso"><strong>Paneles</strong><small>generan en CC</small></div>
+        <span class="flecha" aria-hidden="true">→</span>
+        <div class="paso"><strong>Inversor</strong><small>convierte CC a CA</small></div>
+        <span class="flecha" aria-hidden="true">→</span>
+        <div class="paso"><strong>Baterías</strong><small>almacenan energía</small></div>
+        <span class="flecha" aria-hidden="true">→</span>
+        <div class="paso"><strong>Cargas del aula</strong><small>consumen en CA</small></div>
+      </div>
+
+      <div class="rejilla c4">
+        <div class="tarjeta"><span class="num">1</span><h3>Consumo del aula</h3><p>Registra equipos, cantidad, potencia y tiempo de uso. Estima la demanda (W) y la energía consumida (kWh).</p></div>
+        <div class="tarjeta"><span class="num">2</span><h3>Paneles solares</h3><p>Calcula cantidad y potencia según la demanda y las horas solares pico, con configuración serie/paralelo.</p></div>
+        <div class="tarjeta"><span class="num">3</span><h3>Inversor</h3><p>Selecciona un equipo real y verifica potencia, tensiones, corrientes y compatibilidad con el arreglo.</p></div>
+        <div class="tarjeta"><span class="num">4</span><h3>Baterías</h3><p>Estima capacidad, configuración y autonomía, indicando supuestos y límites del cálculo.</p></div>
+        <div class="tarjeta"><span class="num">5</span><h3>Catálogo comercial</h3><p>Productos reales con marca, modelo, especificaciones, precio, proveedor, enlace y fecha de consulta.</p></div>
+        <div class="tarjeta"><span class="num">6</span><h3>Evaluación económica</h3><p>Inversión, ahorro estimado y retorno. El usuario captura el costo de la electricidad en MXN/kWh.</p></div>
+        <div class="tarjeta"><span class="num">7</span><h3>Reporte PDF</h3><p>Propuesta técnico-comercial legible y profesional, pensada para un cliente que no es especialista.</p></div>
+        <div class="tarjeta" style="background:var(--azul-marino);border-color:var(--azul-marino)">
+          <h3 style="color:var(--cian)">Alcance</h3>
+          <p style="color:var(--azul-hielo)">El resultado es un dimensionamiento y una cotización <strong>preliminares</strong>, no un proyecto ejecutivo autorizado para construcción.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= EJEMPLO ================= -->
+  <section id="ejemplo">
+    <div class="contenedor">
+      <span class="etiqueta">Ejemplo calculado</span>
+      <h2>Así se dimensiona un salón de clases</h2>
+      <p class="intro">Un recorrido de punta a punta con el método que usará la aplicación: de las cargas del aula al arreglo fotovoltaico y la batería.</p>
+      <p class="aviso"><strong>Ejemplo ilustrativo.</strong> Las cargas y los valores de panel, inversor y batería son supuestos genéricos para mostrar el método, no productos ni precios reales. En la aplicación se reemplazan por fichas técnicas verificables.</p>
+
+      <h3 style="margin-top:36px">1 · Consumo del aula</h3>
+      <div class="tabla-envoltura">
+        <table>
+          <thead><tr><th>Equipo</th><th class="n">Cantidad</th><th class="n">Potencia c/u (W)</th><th class="n">Horas/día</th><th class="n">Potencia (W)</th><th class="n">Energía (kWh/día)</th></tr></thead>
+          <tbody>
+            <tr><td>Luminarias LED</td><td class="n">12</td><td class="n">36</td><td class="n">6</td><td class="n">432</td><td class="n">2.592</td></tr>
+            <tr><td>Ventiladores de techo</td><td class="n">4</td><td class="n">60</td><td class="n">6</td><td class="n">240</td><td class="n">1.440</td></tr>
+            <tr><td>Proyector</td><td class="n">1</td><td class="n">250</td><td class="n">4</td><td class="n">250</td><td class="n">1.000</td></tr>
+            <tr><td>Computadora del docente</td><td class="n">1</td><td class="n">90</td><td class="n">6</td><td class="n">90</td><td class="n">0.540</td></tr>
+          </tbody>
+          <tfoot><tr><td colspan="4">Total del aula</td><td class="n">1,012 W</td><td class="n">5.572 kWh/día</td></tr></tfoot>
+        </table>
+      </div>
+      <p style="margin-top:12px;color:var(--gris);font-size:.95rem">La potencia (kW) es qué tan rápido se consume la energía; la energía (kWh) es cuánto se consume en total. El tamaño del inversor depende de la primera y la generación y las baterías, de la segunda.</p>
+
+      <div class="rejilla c3">
+        <div class="tarjeta calculo">
+          <h3>2 · Paneles</h3>
+          <p>Supuestos: 5.5 horas solares pico y 20 % de pérdidas (factor 0.80).</p>
+          <div class="formula">P<sub>FV</sub> = E / (HSP × FR)<br>= 5.572 / (5.5 × 0.80) = 1.266 kWp</div>
+          <p>Con paneles genéricos de 550 Wp: 1,266 / 550 = 2.3, que se redondea a <strong>3 paneles</strong>.</p>
+          <p class="resultado">1.65 kWp <small>generan ≈ 7.26 kWh/día</small></p>
+        </div>
+        <div class="tarjeta calculo">
+          <h3>3 · Conexión e inversor</h3>
+          <p>Panel genérico: V<sub>mp</sub> = 41.8 V, I<sub>mp</sub> = 13.2 A, V<sub>oc</sub> = 49.9 V.</p>
+          <div class="formula">3 en serie (3S1P)<br>V<sub>mp</sub> = 3 × 41.8 = 125.4 V<br>V<sub>oc</sub> = 3 × 49.9 = 149.7 V<br>I = 13.2 A</div>
+          <p>Carga pico 1,012 W × 1.25 de margen = 1,265 W.</p>
+          <p class="resultado">Inversor ≥ 1.5 kW <small>con ventana MPPT que incluya 125–150 V</small></p>
+        </div>
+        <div class="tarjeta calculo">
+          <h3>4 · Baterías</h3>
+          <p>Supuestos: autonomía de 0.5 día, profundidad de descarga 80 % y eficiencia 95 %.</p>
+          <div class="formula">C = E × días / (DoD × η)<br>= 5.572 × 0.5 / (0.80 × 0.95) = 3.67 kWh</div>
+          <p>Una batería genérica de 51.2 V y 100 Ah almacena 5.12 kWh, suficiente.</p>
+          <p class="resultado">1 × 5.12 kWh <small>(51.2 V · 100 Ah)</small></p>
+        </div>
+      </div>
+
+      <div class="tarjeta calculo" style="margin-top:20px">
+        <h3>5 · Evaluación económica</h3>
+        <p>Con el consumo del aula en 200 días de clase al año, la energía que se deja de comprar es 5.572 × 200 ≈ <strong>1,114 kWh/año</strong>. El precio de la electricidad lo introduce el usuario.</p>
+        <div class="formula">Ahorro anual (MXN) = 1,114 kWh/año × tarifa (MXN/kWh)<br>Recuperación (años) = inversión total / ahorro anual</div>
+        <p style="margin-bottom:0;color:var(--gris);font-size:.95rem">Al cambiar la tarifa, el ahorro y el periodo de recuperación se recalculan. La propuesta presenta supuestos y rangos, no ahorros garantizados.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= RUTA ================= -->
+  <section id="ruta" class="alt">
+    <div class="contenedor">
+      <span class="etiqueta">Ruta de trabajo</span>
+      <h2>Cinco semanas, cinco evidencias</h2>
+      <ol class="ruta">
+        <li data-s="1"><h3>Ingreso a Photon Labs</h3><div class="fecha">2–6 nov</div><p>Configurar herramientas, repositorio, interfaz inicial y GitHub Pages.</p><span class="evidencia">Primera versión publicada</span></li>
+        <li data-s="2"><h3>Conocer al cliente</h3><div class="fecha">9–13 nov</div><p>Inventario de cargas del aula, potencia, horas de operación y consumo energético.</p><span class="evidencia">Módulo de consumo calculable</span></li>
+        <li data-s="3"><h3>Diseñar con componentes reales</h3><div class="fecha">16–20 nov</div><p>Paneles, conexiones, catálogo y fichas técnicas con precios verificables.</p><span class="evidencia">Dimensionamiento fotovoltaico</span></li>
+        <li data-s="4"><h3>Preparar la cotización</h3><div class="fecha">23–27 nov</div><p>Inversor, baterías, compatibilidad eléctrica, costos, ahorros y recuperación.</p><span class="evidencia">Propuesta calculada</span></li>
+        <li data-s="5"><h3>Presentar al director</h3><div class="fecha">30 nov–4 dic</div><p>Validación, pruebas finales y PDF diseñado para el cliente.</p><span class="evidencia">App final + PDF</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ================= REPORTE ================= -->
+  <section id="reporte">
+    <div class="contenedor">
+      <span class="etiqueta">Entregable final</span>
+      <h2>Un documento que ayude a vender</h2>
+      <p class="intro">El cliente debe entender qué se instalaría, cuánto costaría, cuánto podría ahorrar y por qué confiar en los resultados. La app genera automáticamente un PDF con:</p>
+      <div class="rejilla c2">
+        <div class="tarjeta">
+          <ul class="checks">
+            <li>Portada</li>
+            <li>Resumen ejecutivo</li>
+            <li>Análisis del consumo</li>
+            <li>Sistema recomendado</li>
+          </ul>
+        </div>
+        <div class="tarjeta">
+          <ul class="checks">
+            <li>Componentes reales con fuente y fecha</li>
+            <li>Presupuesto, ahorro y retorno de inversión</li>
+            <li>Gráficas</li>
+            <li>Anexos técnicos, hipótesis y limitaciones</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="rejilla c3" style="margin-top:40px">
+        <div class="tarjeta"><h3>Transparencia</h3><p>Una propuesta convincente no exagera beneficios ni promete ahorros garantizados: muestra sus supuestos y sus límites.</p></div>
+        <div class="tarjeta"><h3>IA con criterio</h3><p>La IA acelera el desarrollo, pero las fórmulas, las especificaciones, los precios y los casos de prueba se verifican a mano.</p></div>
+        <div class="tarjeta"><h3>Contexto sostenible</h3><p>El proyecto se alinea con el ODS 7 (energía asequible y no contaminante) y el ODS 12 (producción y consumo responsables).</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="contenedor">
+    <img src="assets/logo-horizontal-claro.svg" alt="Logo A01744124">
+    <div>
+      <p><strong style="color:#fff">TE1020 · Análisis de circuitos eléctricos · Gpo 301</strong></p>
+      <p>Situación problema: De estudiante de ingeniería a consultor en energía solar.</p>
+    </div>
+    <p class="aparte">Photon Labs S.A. de C.V. es un personaje empresarial de un escenario académico simulado. Esta página es una presentación estática de la solución; los valores del ejemplo son ilustrativos y no constituyen una oferta ni un proyecto ejecutivo.</p>
+  </div>
+  <!-- Agrega aquí las URL del repositorio y de GitHub Pages cuando las tengas. -->
+</footer>
+
+</body>
+</html>
