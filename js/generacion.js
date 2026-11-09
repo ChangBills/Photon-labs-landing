@@ -45,7 +45,10 @@
   const LETRA = { nuclear: 'N', carbon: 'C', hidro: 'H', otras: 'G', termica: 'V', cc: 'CC' };
   const COMB = { Oil: 'petróleo: combustóleo o diésel', Gas: 'gas natural', Coal: 'carbón', Hydro: 'agua', Nuclear: 'uranio', Geothermal: 'vapor geotérmico' };
 
-  const st = { alc: 'nac', anio: 2024, tecs: new Set(G.map((x) => x.id)) };
+  const st = { alc: 'nac', anio: 2024, tecs: new Set(G.map((x) => x.id)), uni: 'pct' };
+  const PCT = () => st.uni === 'pct';
+  const ANGOSTO = () => innerWidth < 600;
+  const sg = (x) => (x > 0 ? '+' : '');
   let D, P, C;   // datos completos, Plan y CFE
   const charts = {};
 
@@ -79,6 +82,7 @@
     });
     document.querySelectorAll('[data-alc]').forEach((b) => b.addEventListener('click', () => { st.alc = b.dataset.alc; todo(); }));
     document.querySelectorAll('[data-anio]').forEach((b) => b.addEventListener('click', () => { st.anio = +b.dataset.anio; todo(); }));
+    document.querySelectorAll('[data-uni]').forEach((b) => b.addEventListener('click', () => { st.uni = b.dataset.uni; todo(); }));
     document.querySelectorAll('[data-tabla]').forEach((bt) => bt.addEventListener('click', () => {
       const t = document.getElementById(bt.dataset.tabla); const ab = t.hidden; t.hidden = !ab; bt.setAttribute('aria-expanded', String(ab)); bt.textContent = ab ? 'Ocultar tabla' : 'Ver tabla'; }));
     crearGraficas(); mapa(); todo(); revelar();
@@ -87,6 +91,7 @@
   function todo() {
     document.querySelectorAll('[data-alc]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.alc === st.alc)));
     document.querySelectorAll('[data-anio]').forEach((b) => b.setAttribute('aria-pressed', String(+b.dataset.anio === st.anio)));
+    document.querySelectorAll('[data-uni]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.uni === st.uni)));
     $('[data-todas]').setAttribute('aria-pressed', String(st.tecs.size === G.length));
     document.querySelectorAll('[data-g]').forEach((b) => b.setAttribute('aria-pressed', String(st.tecs.size !== G.length && st.tecs.has(b.dataset.g))));
     heroStats(); explorador(); actualizarMapa(); graficaAnual(); graficaVar(); graficaPart(); graficaLimp(); duelo(); graficaHist();
@@ -219,35 +224,37 @@
     charts.anual = new Chart($('#g-anual'), { type: 'bar', data: { labels: anios.map(String), datasets: [
       { label: 'Nacional', data: anios.map((a) => nacional(a).total), backgroundColor: '#2a78d6', borderRadius: { topLeft: 4, topRight: 4 }, borderSkipped: false, maxBarThickness: 46 },
       { label: 'CFE', data: anios.map((a) => cfe(a).total), backgroundColor: '#eb6834', borderRadius: { topLeft: 4, topRight: 4 }, borderSkipped: false, maxBarThickness: 46 }] },
-      options: { responsive: true, maintainAspectRatio: false, scales: { x: ejeX, y: { ...ejeY((x) => fmt(x / 1000) + ' TWh'), beginAtZero: true } },
-        plugins: { legend: { display: false }, tooltip: { ...TIP, callbacks: { label: (c) => ` ${c.dataset.label}: ${fmt(c.raw)} GWh` } } } } });
+      options: { responsive: true, maintainAspectRatio: false, scales: { x: ejeX, y: { ...ejeY((x) => (PCT() ? fmt(x, 1) + ' %' : fmt(x / 1000) + ' TWh')), beginAtZero: true } },
+        plugins: { legend: { display: false }, tooltip: { ...TIP, callbacks: { label: (c) => (c.raw == null ? ` ${c.dataset.label}: Dato no disponible` : PCT() ? ` ${c.dataset.label}: ${sg(c.raw)}${fmt(c.raw, 1)} % contra el año anterior` : ` ${c.dataset.label}: ${fmt(c.raw)} GWh`) } } } } });
     $('#tabla-anual').innerHTML = `<table><thead><tr><th>Año</th><th class="n">Nacional, neta (GWh)</th><th class="n">CFE, bruta (GWh)</th></tr></thead><tbody>${anios.map((a) => `<tr><td>${a}</td><td class="n">${fmt(nacional(a).total)}</td><td class="n">${fmt(cfe(a).total)}</td></tr>`).join('')}</tbody></table>`;
 
     const etiquetas = (fn) => ({ id: 'et', afterDatasetsDraw(ch) { const ctx = ch.ctx; ctx.save(); ctx.font = '600 11px Inter, sans-serif'; ctx.fillStyle = '#101828'; ctx.textBaseline = 'middle'; fn(ch, ctx); ctx.restore(); } });
     charts.var = new Chart($('#g-var'), { type: 'bar', data: { labels: [], datasets: [{ data: [], backgroundColor: [], borderRadius: 4, borderSkipped: false, maxBarThickness: 20 }] },
-      options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', scales: { x: { grid: { color: (c) => (c.tick.value === 0 ? '#5B6B85' : '#EEF3FB') }, border: { display: false }, ticks: { callback: (x) => x + ' %' } }, y: { grid: { display: false }, border: { display: false }, ticks: { color: '#101828', font: { size: 11 } } } },
-        plugins: { legend: { display: false }, tooltip: { ...TIP, callbacks: { label: (c) => { const r = charts.var._d[c.dataIndex]; return ` ${c.raw > 0 ? '+' : ''}${fmt(c.raw, 1)} % · ${fmt(r.a)} → ${fmt(r.b)} GWh`; } } } } },
-      plugins: [etiquetas((ch, ctx) => ch.getDatasetMeta(0).data.forEach((b, i) => { const val = ch.data.datasets[0].data[i]; ctx.textAlign = val >= 0 ? 'left' : 'right'; ctx.fillText(`${val > 0 ? '+' : ''}${fmt(val, 1)} %`, b.x + (val >= 0 ? 6 : -6), b.y); }))] });
+      options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', scales: { x: { grid: { color: (c) => (c.tick.value === 0 ? '#5B6B85' : '#EEF3FB') }, border: { display: false }, ticks: { maxTicksLimit: 5, maxRotation: 0, callback: (x) => (PCT() ? x + ' %' : fmt(x / 1000) + ' TWh') } }, y: { grid: { display: false }, border: { display: false }, ticks: { color: '#101828', font: { size: 11 } } } },
+        plugins: { legend: { display: false }, tooltip: { ...TIP, callbacks: { label: (c) => { const r = charts.var._d[c.dataIndex]; return PCT() ? ` ${sg(c.raw)}${fmt(c.raw, 1)} % · ${fmt(r.a)} → ${fmt(r.b)} GWh` : ` ${sg(c.raw)}${fmt(c.raw)} GWh · ${fmt(r.a)} → ${fmt(r.b)} GWh (${sg(r.v)}${fmt(r.v, 1)} %)`; } } } } },
+      plugins: [etiquetas((ch, ctx) => ch.getDatasetMeta(0).data.forEach((b, i) => { const val = ch.data.datasets[0].data[i]; ctx.textAlign = val >= 0 ? 'left' : 'right'; ctx.fillText(PCT() ? `${sg(val)}${fmt(val, 1)} %` : `${sg(val)}${fmt(val)}`, b.x + (val >= 0 ? 6 : -6), b.y); }))] });
 
     charts.part = new Chart($('#g-part'), { type: 'bar', data: { labels: [], datasets: [{ data: [], backgroundColor: [], borderRadius: { topRight: 4, bottomRight: 4 }, borderSkipped: false, maxBarThickness: 18 }] },
-      options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', scales: { x: { grid: { color: '#EEF3FB' }, border: { display: false }, ticks: { callback: (x) => x + ' %' } }, y: { grid: { display: false }, border: { display: false }, ticks: { color: '#101828', font: { size: 11 } } } },
-        plugins: { legend: { display: false }, tooltip: { ...TIP, callbacks: { label: (c) => { const r = charts.part._d[c.dataIndex]; return ` ${fmt(r.p, 1)} % · ${fmt(r.v)} GWh`; } } } } },
-      plugins: [etiquetas((ch, ctx) => ch.getDatasetMeta(0).data.forEach((b, i) => { ctx.textAlign = 'left'; ctx.fillText(fmt(ch.data.datasets[0].data[i], 1) + ' %', b.x + 6, b.y); }))] });
+      options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', scales: { x: { grid: { color: '#EEF3FB' }, border: { display: false }, ticks: { maxTicksLimit: 5, maxRotation: 0, callback: (x) => (PCT() ? x + ' %' : fmt(x / 1000) + ' TWh') } }, y: { grid: { display: false }, border: { display: false }, ticks: { color: '#101828', font: { size: 11 } } } },
+        layout: { padding: { right: 24 } },
+        plugins: { legend: { display: false }, tooltip: { ...TIP, callbacks: { label: (c) => { const r = charts.part._d[c.dataIndex]; return ` ${fmt(r.v)} GWh · ${fmt(r.p, 1)} %`; } } } } },
+      plugins: [etiquetas((ch, ctx) => ch.getDatasetMeta(0).data.forEach((b, i) => { const x = ch.data.datasets[0].data[i]; ctx.textAlign = 'left'; const t = PCT() ? fmt(x, 1) + ' %' : fmt(x) + (ANGOSTO() ? '' : ' GWh'), w = ctx.measureText(t).width;
+        if (b.x + 6 + w > ch.width - 2) { ctx.textAlign = 'right'; ctx.fillStyle = '#fff'; ctx.fillText(t, b.x - 6, b.y); ctx.fillStyle = '#101828'; } else ctx.fillText(t, b.x + 6, b.y); }))] });
 
     charts.limp = new Chart($('#g-limp'), { type: 'bar', data: { labels: ['Nacional 2022', 'Nacional 2023', 'Nacional 2024', 'CFE 2022', 'CFE 2023', 'CFE 2024'], datasets: [
       { label: 'No limpia (fósil)', data: [], backgroundColor: [], borderColor: '#fff', borderWidth: { right: 2 }, borderSkipped: false, maxBarThickness: 34 },
       { label: 'Limpia', data: [], backgroundColor: [], borderColor: '#fff', borderWidth: { right: 2 }, borderSkipped: false, maxBarThickness: 34 }] },
-      options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', scales: { x: { stacked: true, max: 100, grid: { color: '#EEF3FB' }, border: { display: false }, ticks: { callback: (x) => x + ' %' } }, y: { stacked: true, grid: { display: false }, border: { display: false }, ticks: { color: '#0B2A5B', font: { weight: 600 } } } },
-        plugins: { legend: { display: false }, tooltip: { ...TIP, callbacks: { label: (c) => ` ${c.dataset.label}: ${fmt(c.raw, 1)} %` } } } },
-      plugins: [etiquetas((ch, ctx) => { ctx.fillStyle = '#fff'; ctx.textAlign = 'center'; ch.data.datasets.forEach((ds, k) => ch.getDatasetMeta(k).data.forEach((b, i) => { const w = Math.abs(b.x - b.base); if (w > 46) ctx.fillText(fmt(ds.data[i], 1) + ' %', b.base + (b.x - b.base) / 2, b.y); })); })] });
+      options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', scales: { x: { stacked: true, max: 100, grid: { color: '#EEF3FB' }, border: { display: false }, ticks: { maxTicksLimit: 5, maxRotation: 0, callback: (x) => (PCT() ? x + ' %' : fmt(x / 1000) + ' TWh') } }, y: { stacked: true, grid: { display: false }, border: { display: false }, ticks: { color: '#0B2A5B', font: { weight: 600 } } } },
+        plugins: { legend: { display: false }, tooltip: { ...TIP, callbacks: { label: (c) => { const r = charts.limp._d[c.datasetIndex][c.dataIndex]; return ` ${c.dataset.label}: ${fmt(r.pct, 1)} % · ${fmt(r.gwh)} GWh${c.dataIndex >= 3 ? ' (GWh: cálculo)' : ''}`; } } } } },
+      plugins: [etiquetas((ch, ctx) => { ctx.fillStyle = '#fff'; ctx.textAlign = 'center'; ch.data.datasets.forEach((ds, k) => ch.getDatasetMeta(k).data.forEach((b, i) => { const w = Math.abs(b.x - b.base), t = PCT() ? fmt(ds.data[i], 1) + ' %' : fmt(ds.data[i]); if (w > ctx.measureText(t).width + 12) ctx.fillText(t, b.base + (b.x - b.base) / 2, b.y); })); })] });
 
     const hist = P.anios.map(String);
     charts.hist = new Chart($('#g-hist'), { type: 'line', data: { labels: hist, datasets: [
       { label: 'Ciclo combinado', data: P.datos['Ciclo combinado'], borderColor: GI.cc.c, backgroundColor: GI.cc.c, borderWidth: 2.5, pointRadius: 0, pointHoverRadius: 6 },
       { label: 'Vapor convencional (térmica convencional)', data: P.datos['Térmica convencional'], borderColor: GI.termica.c, backgroundColor: GI.termica.c, borderWidth: 2.5, pointRadius: 0, pointHoverRadius: 6 }] },
       options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false }, layout: { padding: { right: 150 } },
-        scales: { x: { grid: { display: false }, border: { display: false }, ticks: { maxTicksLimit: 8 } }, y: { beginAtZero: true, grid: { color: '#EEF3FB' }, border: { display: false }, ticks: { callback: (x) => fmt(x / 1000) + ' TWh' } } },
-        plugins: { legend: { display: false }, tooltip: { ...TIP, callbacks: { label: (c) => ` ${c.dataset.label}: ${fmt(c.raw)} GWh` } } } },
+        scales: { x: { grid: { display: false }, border: { display: false }, ticks: { maxTicksLimit: 8 } }, y: { beginAtZero: true, grid: { color: '#EEF3FB' }, border: { display: false }, ticks: { callback: (x) => (PCT() ? x + ' %' : fmt(x / 1000) + ' TWh') } } },
+        plugins: { legend: { display: false }, tooltip: { ...TIP, callbacks: { label: (c) => { const i = c.dataIndex, g = P.datos[c.datasetIndex ? 'Térmica convencional' : 'Ciclo combinado'][i]; return ` ${c.dataset.label}: ${fmt(g)} GWh · ${fmt((100 * g) / P.total[i], 1)} % del total`; } } } } },
       plugins: [{ id: 'fin', afterDatasetsDraw(ch) { const ctx = ch.ctx; ctx.save(); ctx.font = '600 12px Inter, sans-serif'; ctx.textBaseline = 'middle';
         ch.data.datasets.forEach((ds, k) => { const p = ch.getDatasetMeta(k).data.at(-1); ctx.fillStyle = '#101828'; ctx.fillText(k ? 'Vapor convencional' : 'Ciclo combinado', p.x + 10, p.y); });
         const i = hist.indexOf(String(st.anio)), x = ch.scales.x.getPixelForValue(i); ctx.strokeStyle = '#FFC22E'; ctx.lineWidth = 2; ctx.setLineDash([4, 4]); ctx.beginPath(); ctx.moveTo(x, ch.chartArea.top); ctx.lineTo(x, ch.chartArea.bottom); ctx.stroke(); ctx.restore(); } }] });
@@ -256,34 +263,44 @@
   function graficaAnual() {
     const sel = anios.indexOf(st.anio);
     charts.anual.data.datasets.forEach((ds, k) => (ds.backgroundColor = anios.map((a, i) => alfa(k ? '#eb6834' : '#2a78d6', i === sel ? 1 : 0.35))));
+    if (PCT()) {
+      charts.anual.data.datasets[0].data = anios.map((a) => 100 * (nacional(a).total / nacional(a - 1).total - 1));
+      charts.anual.data.datasets[1].data = anios.map((a) => (a === 2022 ? null : 100 * (cfe(a).total / cfe(a - 1).total - 1)));
+      charts.anual.options.scales.y.beginAtZero = true;
+      $('#desc-anual').innerHTML = 'Variación contra el año anterior (cálculo). CFE 2022: <span class="sello nd">Dato no disponible</span> (no hay total de 2021 en los documentos).';
+    } else {
+      charts.anual.data.datasets[0].data = anios.map((a) => nacional(a).total);
+      charts.anual.data.datasets[1].data = anios.map((a) => cfe(a).total);
+      $('#desc-anual').textContent = 'GWh. Nacional: generación neta inyectada. CFE: generación bruta de sus centrales.';
+    }
     charts.anual.update();
   }
   function graficaVar() {
     const cv = $('#g-var').parentElement, nd = $('#nd-var');
     let a, b, fuente;
-    if (st.alc === 'nac') { a = porGrupo(nacional(st.anio - 1).tec, PLAN_G); b = porGrupo(nacional(st.anio).tec, PLAN_G); fuente = '<span class="alcance">Nacional</span> Plan, Tabla 2.2, p. 20 (incluye 2021 para calcular 2022). Variación = (año ÷ año anterior − 1) × 100.'; }
-    else if (st.anio === 2024) { a = porGrupo(cfe(2023).tec, CFE_G); b = porGrupo(cfe(2024).tec, CFE_G); fuente = '<span class="alcance">CFE</span> Informe Anual 2024, p. 26. Variación = (2024 ÷ 2023 − 1) × 100.'; }
-    $('#desc-var').textContent = `${st.anio} contra ${st.anio - 1}, ${st.alc === 'nac' ? 'nacional' : 'CFE'}. Azul: creció. Naranja: bajó.`;
+    if (st.alc === 'nac') { a = porGrupo(nacional(st.anio - 1).tec, PLAN_G); b = porGrupo(nacional(st.anio).tec, PLAN_G); fuente = '<span class="alcance">Nacional</span> Plan, Tabla 2.2, p. 20 (incluye 2021 para calcular 2022). Variación % = (año ÷ año anterior − 1) × 100; en GWh = año − año anterior.'; }
+    else if (st.anio === 2024) { a = porGrupo(cfe(2023).tec, CFE_G); b = porGrupo(cfe(2024).tec, CFE_G); fuente = '<span class="alcance">CFE</span> Informe Anual 2024, p. 26. Variación % = (2024 ÷ 2023 − 1) × 100; en GWh = 2024 − 2023.'; }
+    $('#desc-var').textContent = `${st.anio} contra ${st.anio - 1}, ${st.alc === 'nac' ? 'nacional' : 'CFE'}, ${PCT() ? 'en porcentaje' : 'en GWh ganados o perdidos'}. Azul: creció. Naranja: bajó.`;
     if (!a) { cv.hidden = true; nd.hidden = false; nd.innerHTML = `<div class="nodisp"><strong>Variación por tecnología de la CFE ${st.anio} contra ${st.anio - 1}</strong>${ND}<span>El desglose por tecnología de la CFE solo existe para 2023 y 2024. Total CFE: ${st.anio === 2023 ? '+6.5 % (150,461 contra 141,342 GWh; Informe 2023, p. 15)' : 'sin dato de 2021 en los documentos'}.</span></div>`; $('#fuente-var').innerHTML = ''; return; }
     cv.hidden = false; nd.hidden = true;
-    const filas = G.filter((x) => a[x.id] > 0).map((x) => ({ g: x, a: a[x.id], b: b[x.id], v: 100 * (b[x.id] / a[x.id] - 1) })).sort((p, q) => q.v - p.v);
+    const filas = G.filter((x) => a[x.id] > 0).map((x) => ({ g: x, a: a[x.id], b: b[x.id], v: 100 * (b[x.id] / a[x.id] - 1), d: b[x.id] - a[x.id] })).sort((p, q) => (PCT() ? q.v - p.v : q.d - p.d));
     charts.var._d = filas;
     charts.var.data.labels = filas.map((f) => f.g.n.replace(', turbogás y combustión interna', ' y otras').replace(' y otras limpias', ''));
-    charts.var.data.datasets[0].data = filas.map((f) => f.v);
-    charts.var.data.datasets[0].backgroundColor = filas.map((f) => alfa(f.v >= 0 ? '#2a78d6' : '#eb6834', st.tecs.has(f.g.id) ? 1 : 0.25));
+    charts.var.data.datasets[0].data = filas.map((f) => (PCT() ? f.v : f.d));
+    charts.var.data.datasets[0].backgroundColor = filas.map((f) => alfa(f.d >= 0 ? '#2a78d6' : '#eb6834', st.tecs.has(f.g.id) ? 1 : 0.25));
     charts.var.update();
     $('#fuente-var').innerHTML = fuente;
   }
   function graficaPart() {
     const a = actual(), cv = $('#g-part').parentElement, nd = $('#nd-part');
-    $('#desc-part').textContent = `${st.alc === 'nac' ? 'Nacional, generación neta inyectada' : 'CFE, generación bruta'} · ${st.anio}. Las tecnologías fuera del filtro se ven tenues.`;
+    $('#desc-part').textContent = `${st.alc === 'nac' ? 'Nacional, generación neta inyectada' : 'CFE, generación bruta'} · ${st.anio}, ${PCT() ? 'porcentaje del total' : 'en GWh'}. Las tecnologías fuera del filtro se ven tenues.`;
     if (!a.tec) { cv.hidden = true; nd.hidden = false; nd.innerHTML = `<div class="nodisp"><strong>Participación por tecnología de la CFE en 2022</strong>${ND}<span>El Informe Anual 2022 no incluye el desglose. Total: 141,342 GWh (Informe 2023, p. 15).</span></div>`; $('#fuente-part').innerHTML = ''; return; }
     cv.hidden = false; nd.hidden = true;
     const m = mapaAlc();
     const filas = Object.keys(a.tec).map((k) => ({ k, v: a.tec[k], p: (100 * a.tec[k]) / a.total, g: m[k] })).sort((x, y) => y.v - x.v);
     charts.part._d = filas;
     charts.part.data.labels = filas.map((f) => f.k);
-    charts.part.data.datasets[0].data = filas.map((f) => f.p);
+    charts.part.data.datasets[0].data = filas.map((f) => (PCT() ? f.p : f.v));
     charts.part.data.datasets[0].backgroundColor = filas.map((f) => alfa(GI[f.g].c, st.tecs.has(f.g) ? 1 : 0.22));
     charts.part.update();
     $('#fuente-part').innerHTML = st.alc === 'nac' ? '<span class="alcance">Nacional</span> Plan, Tabla 2.2, p. 20. Porcentajes: cálculo propio.' : '<span class="alcance">CFE</span> Informe Anual 2024, p. 26. Porcentajes: cálculo propio.';
@@ -292,13 +309,25 @@
     const nl = anios.map((a) => { const n = nacional(a); return (100 * n.limpias) / n.total; });
     const cl = anios.map((a) => limpiaCFE(a).valor);
     const limp = [...nl, ...cl], fos = limp.map((x) => 100 - x);
+    const tot = [...anios.map((a) => nacional(a).total), ...anios.map((a) => cfe(a).total)];
+    const gl = limp.map((p, i) => (i < 3 ? nacional(anios[i]).limpias : (p / 100) * tot[i])), gf = gl.map((x, i) => tot[i] - x);
+    charts.limp._d = [fos.map((p, i) => ({ pct: p, gwh: gf[i] })), limp.map((p, i) => ({ pct: p, gwh: gl[i] }))];
     const resalta = (i) => anios[i % 3] === st.anio;
-    charts.limp.data.datasets[0].data = fos; charts.limp.data.datasets[1].data = limp;
+    charts.limp.data.datasets[0].data = PCT() ? fos : gf; charts.limp.data.datasets[1].data = PCT() ? limp : gl;
+    charts.limp.options.scales.x.max = PCT() ? 100 : undefined;
+    $('#desc-limp').textContent = PCT() ? 'Porcentaje de la generación de cada año.' : 'GWh. Nacional: generación neta; CFE: generación bruta. Las barras no suman lo mismo porque miden cosas distintas.';
+    $('#nota-limp').hidden = PCT();
     charts.limp.data.datasets[0].backgroundColor = fos.map((_, i) => alfa('#eb6834', resalta(i) ? 1 : 0.35));
     charts.limp.data.datasets[1].backgroundColor = limp.map((_, i) => alfa('#1baf7a', resalta(i) ? 1 : 0.35));
     charts.limp.update();
   }
-  function graficaHist() { charts.hist.update('none'); }
+  function graficaHist() {
+    const k = ['Ciclo combinado', 'Térmica convencional'];
+    charts.hist.data.datasets.forEach((ds, j) => (ds.data = PCT() ? P.datos[k[j]].map((g, i) => (100 * g) / P.total[i]) : P.datos[k[j]]));
+    $('#desc-hist').textContent = PCT() ? 'Porcentaje de la generación nacional de cada año. El ciclo combinado desplazó al vapor convencional en 15 años.' : 'GWh. El ciclo combinado desplazó al vapor convencional en 15 años.';
+    $('#nota-hist').hidden = !PCT();
+    charts.hist.update(PCT() === charts.hist._u ? 'none' : undefined); charts.hist._u = PCT();
+  }
 
   /* ---------- Ciclo combinado contra vapor ---------- */
   function duelo() {

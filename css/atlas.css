@@ -828,3 +828,8 @@ body:has(.filtros-globales) section[id] { scroll-margin-top: 150px; }
   .jg-carta.entra, .jg-retro, .jg-fin, .jg-bote.pulso-ok, .jg-bote.pulso-mal { animation: none; }
   .jg-carta.vuela, .jg-carta.regresa, .jg-bote, .jg-bote svg { transition: none; }
 }
+
+/* Generación · selector de unidad (% / GWh) */
+.cab-acc { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.segmentado.chico button { min-height: 32px; padding: 4px 12px; font-size: .8rem; }
+.segmentado.chico button[data-uni="pct"] { min-width: 40px; }
