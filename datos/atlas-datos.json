@@ -1,0 +1,2167 @@
+{
+ "_meta": {
+  "proyecto": "Atlas Eléctrico de México — A01744124",
+  "etapa": "2 · Extracción y validación",
+  "generado": "2026-11-08",
+  "regla": "Todo valor lleva fuente y página. Lo que no está en los documentos se muestra como «Dato no disponible». Los campos “calculos” son operaciones sobre datos oficiales, no datos oficiales."
+ },
+ "fuentes": {
+  "CFE24": {
+   "institucion": "CFE",
+   "documento": "Informe Anual 2024 (versión del 7 de julio de 2025)",
+   "anio": 2024,
+   "archivo": "Tarea PDFS/Informe Anual 2024.pdf"
+  },
+  "CFE23": {
+   "institucion": "CFE",
+   "documento": "Informe Anual 2023 (publicado en el Diario de los Debates de la Cámara de Diputados, 30/04/2024)",
+   "anio": 2023,
+   "archivo": "Tarea PDFS/240430-3.pdf",
+   "nota_pagina": "Página interna del informe (“N de 326”)"
+  },
+  "CFE22": {
+   "institucion": "CFE",
+   "documento": "Informe Anual 2022 (27 de abril de 2023)",
+   "anio": 2022,
+   "archivo": "Tarea PDFS/SEGOB_Informe_Anual_CFE_2022.pdf",
+   "nota_pagina": "Página “N de 297”"
+  },
+  "PLAN": {
+   "institucion": "SENER",
+   "documento": "Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF, 17/10/2025)",
+   "anio": 2025,
+   "archivo": "DO9711.pdf",
+   "nota_pagina": "Página del PDF (el DOF no imprime número en esta copia)"
+  },
+  "PRODESEN": {
+   "institucion": "SENER",
+   "documento": "PRODESEN 2023-2037, Capítulo 4",
+   "anio": 2023,
+   "archivo": "Tarea PDFS/Capitulo4.pdf"
+  },
+  "IPCC": {
+   "institucion": "IPCC",
+   "documento": "AR5 WG III, Anexo III, Tabla A.III.2 (2014)",
+   "anio": 2014,
+   "archivo": "ipcc_wg3_ar5_annex-iii.pdf"
+  },
+  "NACEI": {
+   "institucion": "SENER / CRE (NACEI), datos CFE-CENACE; formato Global Power Plant Database",
+   "documento": "Centrales_Mexico.csv",
+   "anio": 2016,
+   "archivo": "Centrales_Mexico.csv (adjunto del usuario)"
+  },
+  "DOF2013": {
+   "institucion": "DOF",
+   "documento": "Decreto de reforma constitucional en materia de energía (20/12/2013)",
+   "anio": 2013,
+   "archivo": "Tarea PDFS/DOF - Diario Oficial de la Federación.pdf"
+  },
+  "LIE2014": {
+   "institucion": "DOF",
+   "documento": "Ley de la Industria Eléctrica (11/08/2014)",
+   "anio": 2014,
+   "archivo": "110727LEY_INDUSTRIA_ELECTRICA_11_08_2014.pdf"
+  },
+  "LCFE2014": {
+   "institucion": "DOF",
+   "documento": "Ley de la Comisión Federal de Electricidad (11/08/2014)",
+   "anio": 2014,
+   "archivo": "Mexico_CFEL_110814.pdf"
+  },
+  "DOF2025": {
+   "institucion": "DOF",
+   "documento": "Decreto que expide la Ley de la Empresa Pública del Estado CFE, la Ley del Sector Eléctrico y otras (18/03/2025)",
+   "anio": 2025,
+   "archivo": "Tarea PDFS/LPTE_orig_18mar25.pdf",
+   "nota_pagina": "Página impresa del DOF"
+  }
+ },
+ "generacion": {
+  "cfe_generacion_bruta_gwh": {
+   "fuente": "CFE24",
+   "pagina": 26,
+   "alcance": "CFE (excluye PIE de Generación V)",
+   "anios": [
+    2023,
+    2024
+   ],
+   "datos": {
+    "Ciclo combinado": [
+     58234,
+     61490
+    ],
+    "Diésel (combustión interna)": [
+     2657,
+     2851
+    ],
+    "Turbogás": [
+     8168,
+     8379
+    ],
+    "Vapor convencional": [
+     29336,
+     28135
+    ],
+    "Turbojet": [
+     124,
+     209
+    ],
+    "Carboeléctrica": [
+     15307,
+     14012
+    ],
+    "Geotermoeléctrica": [
+     4321,
+     3692
+    ],
+    "Nucleoeléctrica": [
+     12386,
+     12307
+    ],
+    "Hidroeléctrica": [
+     19568,
+     22354
+    ],
+    "Eoloeléctrica": [
+     86,
+     75
+    ],
+    "Solar fotovoltaica": [
+     274,
+     555
+    ]
+   },
+   "total": {
+    "2023": 150462,
+    "2024": 154059
+   },
+   "nota": "El desglose por tecnología de 2022 está en un anexo estadístico que no viene en el documento: Dato no disponible. Total 2022 = 141,342 GWh (CFE23 p.15)."
+  },
+  "cfe_total_2022_gwh": {
+   "valor": 141342,
+   "fuente": "CFE23",
+   "pagina": 15,
+   "nota": "CFE23 p.17 da 141,343 GWh (diferencia de 1 GWh por redondeo)"
+  },
+  "cfe_capacidad_mw": {
+   "fuente": "CFE24",
+   "pagina": 21,
+   "anios": [
+    2023,
+    2024
+   ],
+   "datos": {
+    "Hidroeléctrica": [
+     12143.6,
+     12155.6
+    ],
+    "Vapor convencional": [
+     9747.6,
+     9697.6
+    ],
+    "Ciclo combinado": [
+     10912.4,
+     10912.4
+    ],
+    "Carboeléctrica": [
+     5463.5,
+     5463.5
+    ],
+    "Turbogás": [
+     2942.0,
+     2940.9
+    ],
+    "Nucleoeléctrica": [
+     1608.0,
+     1608.0
+    ],
+    "Geotermoeléctrica": [
+     808.1,
+     808.1
+    ],
+    "Combustión interna": [
+     1009.3,
+     1011.9
+    ],
+    "Eoloeléctrica": [
+     85.7,
+     85.7
+    ],
+    "Solar fotovoltaica": [
+     126.0,
+     433.0
+    ]
+   },
+   "subtotal": {
+    "2023": 44846.2,
+    "2024": 45116.7
+   },
+   "generacion_v": {
+    "Ciclo combinado (PIE, CFE Generación V)": [
+     15990.5,
+     15990.5
+    ],
+    "Eoloeléctrica (PIE, CFE Generación V)": [
+     612.9,
+     612.9
+    ]
+   },
+   "total": {
+    "2023": 61449.6,
+    "2024": 61720.1
+   }
+  },
+  "cfe_capacidad_2022_mw": {
+   "fuente": "CFE23",
+   "pagina": 16,
+   "anios": [
+    2022,
+    2023
+   ],
+   "datos": {
+    "Hidroeléctrica": [
+     12125.36,
+     12443.6
+    ],
+    "Vapor convencional": [
+     9747.6,
+     9747.6
+    ],
+    "Ciclo combinado": [
+     10912.38,
+     10912.38
+    ],
+    "Carboeléctrica": [
+     5463.45,
+     5463.45
+    ],
+    "Turbogás": [
+     2953.33,
+     2942.0
+    ],
+    "Geotermoeléctrica": [
+     808.08,
+     808.08
+    ],
+    "Combustión interna": [
+     362.44,
+     1009.3
+    ],
+    "Eoloeléctrica": [
+     85.7,
+     85.7
+    ],
+    "Solar fotovoltaica": [
+     6.0,
+     126.0
+    ],
+    "Nucleoeléctrica": [
+     1608,
+     1608
+    ]
+   },
+   "total": {
+    "2022": 44073.34,
+    "2023": 44846.1
+   },
+   "nota": "Errata en CFE23 p.16: hidroeléctrica 2023 impresa como 12,443.6 MW. Con 12,143.6 la tabla suma su total impreso (44,846.1) y coincide con CFE24 p.21; además el aumento 2022-2023 (+18 MW) es congruente con las repotenciaciones de ~23 MW descritas en CFE23 p.16. Se usa 12,143.6. Total 2022: la suma da 44,072.34 vs 44,073.34 impreso (diferencia de 1 MW en el documento). Ciclo combinado PEE 2023: 16,050.94 MW en CFE23 vs 15,990.5 MW en CFE24 (se usa el informe más reciente)."
+  },
+  "nacional_generacion_neta_gwh": {
+   "fuente": "PLAN",
+   "pagina": 20,
+   "alcance": "SEN nacional, generación neta inyectada (no incluye GD ni autoabasto local)",
+   "anios": [
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+   ],
+   "datos": {
+    "Carboeléctrica": [
+     35371,
+     35631,
+     35019,
+     34642,
+     33613,
+     33599,
+     34208,
+     28665,
+     27347,
+     21611,
+     12525,
+     8704,
+     14194,
+     14230,
+     12968
+    ],
+    "Térmica convencional": [
+     47376,
+     51640,
+     58402,
+     53770,
+     37682,
+     39713,
+     40795,
+     42884,
+     39345,
+     38020,
+     22405,
+     22196,
+     20001,
+     30358,
+     28228
+    ],
+    "Combustión interna": [
+     1364,
+     1404,
+     1541,
+     1677,
+     1499,
+     1740,
+     1915,
+     2306,
+     2589,
+     3187,
+     2841,
+     2121,
+     1834,
+     3621,
+     3847
+    ],
+    "Turbogás": [
+     2217,
+     2123,
+     3168,
+     2611,
+     3422,
+     6301,
+     8183,
+     8435,
+     9508,
+     10904,
+     8664,
+     11150,
+     10471,
+     12336,
+     12017
+    ],
+    "Ciclo combinado": [
+     130269,
+     129577,
+     130741,
+     140777,
+     139350,
+     144624,
+     150597,
+     159163,
+     163877,
+     175506,
+     185638,
+     186715,
+     198355,
+     205598,
+     212819
+    ],
+    "Nucleoeléctrica": [
+     6019,
+     9640,
+     8193,
+     11389,
+     9677,
+     11577,
+     10567,
+     10572,
+     13200,
+     10881,
+     10864,
+     11606,
+     10539,
+     12043,
+     11978
+    ],
+    "Cogeneración eficiente": [
+     1926,
+     1924,
+     1928,
+     1921,
+     2634,
+     3519,
+     4310,
+     2054,
+     2310,
+     3259,
+     4188,
+     3349,
+     1376,
+     4136,
+     3912
+    ],
+    "Hidroeléctrica": [
+     38684,
+     37639,
+     32835,
+     28869,
+     38875,
+     30858,
+     30847,
+     31664,
+     32234,
+     23602,
+     26817,
+     34717,
+     35561,
+     20609,
+     23800
+    ],
+    "Geotérmica": [
+     6934,
+     6615,
+     5887,
+     6152,
+     6000,
+     6331,
+     6150,
+     5747,
+     5065,
+     5061,
+     4575,
+     4243,
+     4412,
+     4161,
+     3576
+    ],
+    "Eólica": [
+     1298,
+     1675,
+     3688,
+     4243,
+     7189,
+     8991,
+     10295,
+     10456,
+     12435,
+     16727,
+     19703,
+     21075,
+     20314,
+     20700,
+     19987
+    ],
+    "Solar fotovoltaica": [
+     0,
+     0,
+     3,
+     20,
+     83,
+     45,
+     151,
+     349,
+     2176,
+     8394,
+     13528,
+     17069,
+     16290,
+     18210,
+     18640
+    ],
+    "Bioenergía": [
+     25,
+     26,
+     140,
+     147,
+     341,
+     362,
+     408,
+     585,
+     600,
+     669,
+     600,
+     582,
+     617,
+     499,
+     533
+    ]
+   },
+   "limpias": [
+    54886,
+    57519,
+    52673,
+    52742,
+    64799,
+    61683,
+    62728,
+    61427,
+    68020,
+    68593,
+    80275,
+    92641,
+    89109,
+    80358,
+    82426
+   ],
+   "total": [
+    271483,
+    277894,
+    281544,
+    286219,
+    280365,
+    287660,
+    298426,
+    302880,
+    310686,
+    317821,
+    312348,
+    323527,
+    333964,
+    346501,
+    352305
+   ]
+  },
+  "nacional_capacidad_mw": {
+   "fuente": "PLAN",
+   "pagina": 19,
+   "anios": [
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+   ],
+   "datos": {
+    "Carboeléctrica": [
+     5393,
+     5393,
+     5419,
+     5419,
+     5463,
+     5463,
+     5378,
+     5463,
+     5463,
+     5463,
+     5463,
+     5463,
+     5463,
+     5463,
+     5463
+    ],
+    "Térmica convencional": [
+     12876,
+     12560,
+     11923,
+     11923,
+     12665,
+     12665,
+     13174,
+     12665,
+     12315,
+     11831,
+     11809,
+     11793,
+     11343,
+     11300,
+     11300
+    ],
+    "Combustión interna": [
+     241,
+     238,
+     281,
+     290,
+     540,
+     540,
+     1453,
+     739,
+     880,
+     891,
+     850,
+     701,
+     728,
+     729,
+     717
+    ],
+    "Turbogás": [
+     2914,
+     2873,
+     3355,
+     2510,
+     2399,
+     2849,
+     5052,
+     2960,
+     2960,
+     2960,
+     3545,
+     3744,
+     3815,
+     3888,
+     3953
+    ],
+    "Ciclo combinado": [
+     19283,
+     19290,
+     19424,
+     21755,
+     22699,
+     22949,
+     27274,
+     25340,
+     27393,
+     30402,
+     31948,
+     33640,
+     34413,
+     35178,
+     35669
+    ],
+    "Nucleoeléctrica": [
+     1365,
+     1365,
+     1610,
+     1400,
+     1400,
+     1510,
+     1608,
+     1608,
+     1608,
+     1608,
+     1608,
+     1608,
+     1608,
+     1608,
+     1608
+    ],
+    "Cogeneración eficiente": [
+     null,
+     null,
+     null,
+     null,
+     819,
+     943,
+     1036,
+     1322,
+     1709,
+     1710,
+     2305,
+     2305,
+     2308,
+     2322,
+     2293
+    ],
+    "Hidroeléctrica": [
+     11586,
+     11582,
+     11685,
+     11762,
+     12552,
+     12560,
+     12589,
+     12612,
+     12612,
+     12612,
+     12612,
+     12614,
+     12613,
+     12612,
+     12612
+    ],
+    "Geotérmica": [
+     965,
+     887,
+     812,
+     823,
+     874,
+     899,
+     909,
+     899,
+     899,
+     899,
+     951,
+     976,
+     976,
+     976,
+     976
+    ],
+    "Eólica": [
+     449,
+     450,
+     1097,
+     1431,
+     2660,
+     2877,
+     3735,
+     3898,
+     4866,
+     6050,
+     6504,
+     6977,
+     6921,
+     7055,
+     7512
+    ],
+    "Solar fotovoltaica": [
+     null,
+     null,
+     1,
+     11,
+     55,
+     57,
+     145,
+     171,
+     1878,
+     3646,
+     5149,
+     5955,
+     6515,
+     7437,
+     7961
+    ],
+    "Híbrido FV + baterías": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     20,
+     32,
+     92
+    ],
+    "Bioenergía": [
+     18,
+     18,
+     85,
+     89,
+     233,
+     233,
+     889,
+     374,
+     375,
+     375,
+     378,
+     378,
+     408,
+     407,
+     387
+    ]
+   },
+   "limpias": [
+    14383,
+    14302,
+    15290,
+    15516,
+    18593,
+    19079,
+    20911,
+    20884,
+    23947,
+    26900,
+    29507,
+    30813,
+    31369,
+    32449,
+    33441
+   ],
+   "total": [
+    55090,
+    54656,
+    55692,
+    57413,
+    62359,
+    63545,
+    73242,
+    68051,
+    72958,
+    78447,
+    83122,
+    86154,
+    87131,
+    89007,
+    90543
+   ]
+  },
+  "prodesen_2022": {
+   "generacion_total_gwh": 340713,
+   "limpia_pct": 31.2,
+   "fosil_pct": 68.8,
+   "fuente": "PRODESEN",
+   "pagina": 59,
+   "nota": "Generación total (no neta inyectada) con metodología CRE A/018/2023; no es comparable con PLAN T2.2"
+  },
+  "cfe_hitos": [
+   {
+    "id": "cfe22_part_sen",
+    "nombre": "Participación de CFE en la energía inyectada al SEN 2022",
+    "valor": 41,
+    "unidad": "% (137.2 TWh)",
+    "fuente": "CFE22",
+    "pagina": 34,
+    "alcance": "CFE",
+    "anio": 2022,
+    "nota": ""
+   },
+   {
+    "id": "cfe22_limpia",
+    "nombre": "Energía limpia en la generación de CFE 2022",
+    "valor": 35,
+    "unidad": "%",
+    "fuente": "CFE22",
+    "pagina": 34,
+    "alcance": "CFE",
+    "anio": 2022,
+    "nota": ""
+   },
+   {
+    "id": "cfe23_limpia",
+    "nombre": "Energía limpia en la generación de CFE 2023",
+    "valor": 24.7,
+    "unidad": "%",
+    "fuente": "CFE23",
+    "pagina": 18,
+    "alcance": "CFE",
+    "anio": 2023,
+    "nota": "Privados: 19.7 % de su generación. El mismo párrafo da 35,824 GWh limpios inyectados a la red; 35,824/150,461 (generación bruta) = 23.8 %, no 24.7 %: el informe no aclara la base del porcentaje, por lo que se muestran ambos valores tal como están impresos y no se recalcula."
+   },
+   {
+    "id": "cfe23_limpia_gwh",
+    "nombre": "Energía limpia inyectada por CFE 2023",
+    "valor": 35824,
+    "unidad": "GWh (13,755 GWh menos que 2022, por estiaje)",
+    "fuente": "CFE23",
+    "pagina": 18,
+    "alcance": "CFE",
+    "anio": 2023,
+    "nota": ""
+   },
+   {
+    "id": "cfe24_limpia",
+    "nombre": "Energía limpia en la generación bruta de CFE 2024",
+    "valor": 25.3,
+    "unidad": "% (38,983 de 154,059 GWh)",
+    "fuente": "CFE24",
+    "pagina": 27,
+    "alcance": "CFE",
+    "anio": 2024,
+    "nota": "El informe dice «del total de la generación eléctrica del país», pero el cociente es sobre la generación de la CFE."
+   },
+   {
+    "id": "cfe24_neta_var",
+    "nombre": "Crecimiento de la generación neta de CFE 2024 vs 2023",
+    "valor": 2.5,
+    "unidad": "% (limpia: +4.8 %)",
+    "fuente": "CFE24",
+    "pagina": 27,
+    "alcance": "CFE",
+    "anio": 2024,
+    "nota": ""
+   },
+   {
+    "id": "ipcc_eta_cc",
+    "nombre": "Eficiencia de planta, ciclo combinado de gas (mín/mediana/máx)",
+    "valor": "41/55/60",
+    "unidad": "%",
+    "fuente": "IPCC",
+    "pagina": 1333,
+    "alcance": "Global",
+    "anio": 2014,
+    "nota": ""
+   },
+   {
+    "id": "ipcc_eta_carbon",
+    "nombre": "Eficiencia de planta, carbón pulverizado (ciclo de vapor) (mín/mediana/máx)",
+    "valor": "33/39/48",
+    "unidad": "%",
+    "fuente": "IPCC",
+    "pagina": 1333,
+    "alcance": "Global",
+    "anio": 2014,
+    "nota": ""
+   },
+   {
+    "id": "gd_2024",
+    "nombre": "Capacidad de Generación Distribuida FV",
+    "valor": 4423,
+    "unidad": "MW (más de 405 mil contratos; 6,777 GWh)",
+    "fuente": "PLAN",
+    "pagina": 21,
+    "alcance": "Nacional",
+    "anio": 2024,
+    "nota": ""
+   }
+  ]
+ },
+ "centrales": [
+  {
+   "nombre": "Laguna Verde",
+   "tecnologia": "Nucleoeléctrica",
+   "estado": "Veracruz",
+   "lat": 19.7208,
+   "lon": -96.4064,
+   "combustible_csv": "Nuclear",
+   "capacidad_2016_mw": 1510.0,
+   "capacidad_documental_mw": 1608.0,
+   "fuente_capacidad": "CFE24 p.21",
+   "generacion_2024_gwh": 12307,
+   "fuente_generacion": "CFE24 p.26 (generación bruta; única central nuclear del país)",
+   "fuente_ubicacion": "NACEI (SENER/CRE) vía Centrales_Mexico.csv, North American Cooperation on Energy Information and Comisión Reguladora de Energía"
+  },
+  {
+   "nombre": "Plutarco Elías Calles (Petacalco)",
+   "tecnologia": "Carboeléctrica",
+   "estado": "Guerrero",
+   "lat": 17.9837,
+   "lon": -102.1154,
+   "combustible_csv": "Coal",
+   "capacidad_2016_mw": 2778.4,
+   "capacidad_documental_mw": null,
+   "fuente_capacidad": "Dato no disponible en informes CFE; se muestra capacidad 2016 (NACEI)",
+   "generacion_2024_gwh": null,
+   "fuente_generacion": "Dato no disponible",
+   "fuente_ubicacion": "NACEI (SENER/CRE) vía Centrales_Mexico.csv, North American Cooperation on Energy Information and Comisión Reguladora de Energía"
+  },
+  {
+   "nombre": "Carbón II",
+   "tecnologia": "Carboeléctrica",
+   "estado": "Coahuila",
+   "lat": 28.4682,
+   "lon": -100.7003,
+   "combustible_csv": "Coal",
+   "capacidad_2016_mw": 1400.0,
+   "capacidad_documental_mw": null,
+   "fuente_capacidad": "Dato no disponible en informes CFE; se muestra capacidad 2016 (NACEI)",
+   "generacion_2024_gwh": null,
+   "fuente_generacion": "Dato no disponible",
+   "fuente_ubicacion": "NACEI (SENER/CRE) vía Centrales_Mexico.csv, North American Cooperation on Energy Information and Comisión Reguladora de Energía"
+  },
+  {
+   "nombre": "José López Portillo (Río Escondido)",
+   "tecnologia": "Carboeléctrica",
+   "estado": "Coahuila",
+   "lat": 28.4844,
+   "lon": -100.6897,
+   "combustible_csv": "Coal",
+   "capacidad_2016_mw": 1200.0,
+   "capacidad_documental_mw": null,
+   "fuente_capacidad": "Dato no disponible en informes CFE; se muestra capacidad 2016 (NACEI)",
+   "generacion_2024_gwh": null,
+   "fuente_generacion": "Dato no disponible",
+   "fuente_ubicacion": "NACEI (SENER/CRE) vía Centrales_Mexico.csv, North American Cooperation on Energy Information and Comisión Reguladora de Energía"
+  },
+  {
+   "nombre": "Manuel Moreno Torres (Chicoasén)",
+   "tecnologia": "Hidroeléctrica",
+   "estado": "Chiapas",
+   "lat": 16.9428,
+   "lon": -93.1012,
+   "combustible_csv": "Hydro",
+   "capacidad_2016_mw": 2400.0,
+   "capacidad_documental_mw": null,
+   "fuente_capacidad": "Dato no disponible en informes CFE; se muestra capacidad 2016 (NACEI)",
+   "generacion_2024_gwh": 3337.8,
+   "fuente_generacion": "CFE24 p.60 (generación neta)",
+   "fuente_ubicacion": "NACEI (SENER/CRE) vía Centrales_Mexico.csv, North American Cooperation on Energy Information and Comisión Reguladora de Energía"
+  },
+  {
+   "nombre": "Malpaso",
+   "tecnologia": "Hidroeléctrica",
+   "estado": "Chiapas",
+   "lat": 17.1806,
+   "lon": -93.5973,
+   "combustible_csv": "Hydro",
+   "capacidad_2016_mw": 1080.0,
+   "capacidad_documental_mw": 1080,
+   "fuente_capacidad": "CFE24 p.24",
+   "generacion_2024_gwh": 2182.5,
+   "fuente_generacion": "CFE24 p.60 (generación neta)",
+   "fuente_ubicacion": "NACEI (SENER/CRE) vía Centrales_Mexico.csv, North American Cooperation on Energy Information and Comisión Reguladora de Energía"
+  },
+  {
+   "nombre": "Belisario Domínguez (Angostura)",
+   "tecnologia": "Hidroeléctrica",
+   "estado": "Chiapas",
+   "lat": 16.4018,
+   "lon": -92.7784,
+   "combustible_csv": "Hydro",
+   "capacidad_2016_mw": 900.0,
+   "capacidad_documental_mw": 900,
+   "fuente_capacidad": "CFE24 p.24",
+   "generacion_2024_gwh": 1315.1,
+   "fuente_generacion": "CFE24 p.60 (generación neta)",
+   "fuente_ubicacion": "NACEI (SENER/CRE) vía Centrales_Mexico.csv, North American Cooperation on Energy Information and Comisión Reguladora de Energía"
+  },
+  {
+   "nombre": "Infiernillo",
+   "tecnologia": "Hidroeléctrica",
+   "estado": "Guerrero / Michoacán (límite estatal)",
+   "lat": 18.2711,
+   "lon": -101.8939,
+   "combustible_csv": "Hydro",
+   "capacidad_2016_mw": 1200.0,
+   "capacidad_documental_mw": 1200,
+   "fuente_capacidad": "CFE24 p.24",
+   "generacion_2024_gwh": 2902.7,
+   "fuente_generacion": "CFE24 p.32 (generación neta)",
+   "fuente_ubicacion": "NACEI (SENER/CRE) vía Centrales_Mexico.csv, North American Cooperation on Energy Information and Comisión Reguladora de Energía"
+  },
+  {
+   "nombre": "Cerro Prieto",
+   "tecnologia": "Geotermoeléctrica",
+   "estado": "Baja California",
+   "lat": 32.3916,
+   "lon": -115.2252,
+   "combustible_csv": "Geothermal",
+   "capacidad_2016_mw": 570.0,
+   "capacidad_documental_mw": null,
+   "fuente_capacidad": "Dato no disponible en informes CFE; se muestra capacidad 2016 (NACEI)",
+   "generacion_2024_gwh": 1801.3,
+   "fuente_generacion": "CFE24 p.41 (generación neta)",
+   "fuente_ubicacion": "NACEI (SENER/CRE) vía Centrales_Mexico.csv, North American Cooperation on Energy Information and Comisión Reguladora de Energía"
+  },
+  {
+   "nombre": "Los Azufres",
+   "tecnologia": "Geotermoeléctrica",
+   "estado": "Michoacán",
+   "lat": 19.791,
+   "lon": -100.6669,
+   "combustible_csv": "Geothermal",
+   "capacidad_2016_mw": 225.0,
+   "capacidad_documental_mw": 242,
+   "fuente_capacidad": "CFE23 p.16",
+   "generacion_2024_gwh": 1393.2,
+   "fuente_generacion": "CFE24 p.37 (generación neta)",
+   "fuente_ubicacion": "NACEI (SENER/CRE) vía Centrales_Mexico.csv, North American Cooperation on Energy Information and Comisión Reguladora de Energía"
+  },
+  {
+   "nombre": "Francisco Pérez Ríos (Tula)",
+   "tecnologia": "Vapor convencional",
+   "estado": "Hidalgo",
+   "lat": 20.0545,
+   "lon": -99.2764,
+   "combustible_csv": "Oil",
+   "capacidad_2016_mw": 1605.6,
+   "capacidad_documental_mw": null,
+   "fuente_capacidad": "Dato no disponible en informes CFE; se muestra capacidad 2016 (NACEI)",
+   "generacion_2024_gwh": null,
+   "fuente_generacion": "Dato no disponible",
+   "fuente_ubicacion": "NACEI (SENER/CRE) vía Centrales_Mexico.csv, North American Cooperation on Energy Information and Comisión Reguladora de Energía"
+  },
+  {
+   "nombre": "Adolfo López Mateos (Tuxpan)",
+   "tecnologia": "Vapor convencional",
+   "estado": "Veracruz",
+   "lat": 21.0151,
+   "lon": -97.3334,
+   "combustible_csv": "Oil",
+   "capacidad_2016_mw": 2100.0,
+   "capacidad_documental_mw": null,
+   "fuente_capacidad": "Dato no disponible en informes CFE; se muestra capacidad 2016 (NACEI)",
+   "generacion_2024_gwh": null,
+   "fuente_generacion": "Dato no disponible",
+   "fuente_ubicacion": "NACEI (SENER/CRE) vía Centrales_Mexico.csv, North American Cooperation on Energy Information and Comisión Reguladora de Energía"
+  },
+  {
+   "nombre": "Manuel Álvarez Moreno (Manzanillo)",
+   "tecnologia": "Vapor convencional",
+   "estado": "Colima",
+   "lat": 19.0278,
+   "lon": -104.3192,
+   "combustible_csv": "Oil",
+   "capacidad_2016_mw": 1300.0,
+   "capacidad_documental_mw": null,
+   "fuente_capacidad": "Dato no disponible en informes CFE; se muestra capacidad 2016 (NACEI)",
+   "generacion_2024_gwh": null,
+   "fuente_generacion": "Dato no disponible",
+   "fuente_ubicacion": "NACEI (SENER/CRE) vía Centrales_Mexico.csv, North American Cooperation on Energy Information and Comisión Reguladora de Energía"
+  },
+  {
+   "nombre": "Presidente Juárez (Rosarito) (CC)",
+   "tecnologia": "Ciclo combinado",
+   "estado": "Baja California",
+   "lat": 32.3698,
+   "lon": -117.0685,
+   "combustible_csv": "Gas",
+   "capacidad_2016_mw": 773.0,
+   "capacidad_documental_mw": null,
+   "fuente_capacidad": "Dato no disponible en informes CFE; se muestra capacidad 2016 (NACEI)",
+   "generacion_2024_gwh": null,
+   "fuente_generacion": "Dato no disponible",
+   "fuente_ubicacion": "NACEI (SENER/CRE) vía Centrales_Mexico.csv, North American Cooperation on Energy Information and Comisión Reguladora de Energía"
+  },
+  {
+   "nombre": "Tula",
+   "tecnologia": "Ciclo combinado",
+   "estado": "Hidalgo",
+   "lat": 20.0596,
+   "lon": -99.2774,
+   "combustible_csv": "Gas",
+   "capacidad_2016_mw": 489.0,
+   "capacidad_documental_mw": null,
+   "fuente_capacidad": "Dato no disponible en informes CFE; se muestra capacidad 2016 (NACEI)",
+   "generacion_2024_gwh": null,
+   "fuente_generacion": "Dato no disponible",
+   "fuente_ubicacion": "NACEI (SENER/CRE) vía Centrales_Mexico.csv, North American Cooperation on Energy Information and Comisión Reguladora de Energía"
+  }
+ ],
+ "transmision": {
+  "km_por_tension": {
+   "fuente": "PLAN",
+   "pagina": 22,
+   "anios": [
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+   ],
+   "datos": {
+    "400 kV": [
+     22272,
+     22880,
+     24018,
+     24026,
+     24031,
+     24697,
+     24714,
+     24746,
+     25455,
+     25921,
+     26097,
+     26098,
+     26125,
+     26135,
+     26451
+    ],
+    "230 kV": [
+     27317,
+     26867,
+     27924,
+     28240,
+     28785,
+     28518,
+     28566,
+     29096,
+     29115,
+     29425,
+     29722,
+     29723,
+     29743,
+     29743,
+     29749
+    ],
+    "161 kV": [
+     549,
+     549,
+     549,
+     550,
+     550,
+     522,
+     523,
+     519,
+     519,
+     519,
+     519,
+     521,
+     521,
+     531,
+     520
+    ],
+    "138 kV": [
+     156,
+     156,
+     156,
+     156,
+     156,
+     156,
+     132,
+     1691,
+     1779,
+     1779,
+     1620,
+     1620,
+     1620,
+     1620,
+     1603
+    ],
+    "115 kV": [
+     5472,
+     5467,
+     5464,
+     5396,
+     5533,
+     5596,
+     5644,
+     47853,
+     48009,
+     48994,
+     48456,
+     48496,
+     48584,
+     48725,
+     48717
+    ],
+    "85 kV": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     795,
+     795,
+     795,
+     1747,
+     1756,
+     1757,
+     1757,
+     1764
+    ],
+    "69 kV": [
+     27,
+     27,
+     27,
+     27,
+     27,
+     27,
+     27,
+     2343,
+     2343,
+     2353,
+     2335,
+     2335,
+     2335,
+     2335,
+     2335
+    ]
+   },
+   "total_161_400": [
+    50137,
+    50295,
+    52490,
+    52816,
+    53366,
+    53737,
+    53803,
+    54361,
+    55089,
+    55865,
+    56338,
+    56342,
+    56389,
+    56409,
+    56720
+   ],
+   "total_69_138": [
+    5655,
+    5650,
+    5648,
+    5580,
+    5716,
+    5779,
+    5803,
+    52682,
+    52926,
+    53921,
+    54158,
+    54207,
+    54296,
+    54437,
+    54418
+   ]
+  },
+  "mva": {
+   "fuente": "PLAN",
+   "pagina": 22,
+   "rnt": [
+    154917,
+    156649,
+    159969,
+    161485,
+    163325,
+    166140,
+    169382,
+    109591,
+    113143,
+    114707,
+    114807,
+    114807,
+    116082,
+    113688,
+    116625
+   ],
+   "rgd_mem": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    66613,
+    71749,
+    72662,
+    74007,
+    75192,
+    76331,
+    77056,
+    79812,
+    81504
+   ],
+   "nota": "El texto de la p.21 dice “116,625 bancos de transformación”; la Tabla 2.4 indica que la unidad es MVA. Se usa MVA."
+  },
+  "cfe_transmision": [
+   {
+    "id": "km_lt",
+    "nombre": "Kilómetros de líneas de transmisión (CFE Transmisión)",
+    "valor": [
+     110449,
+     110558,
+     111138
+    ],
+    "unidad": "km (2022, 2023, 2024)",
+    "fuente": "CFE24",
+    "pagina": 76,
+    "alcance": "CFE",
+    "anio": 2024,
+    "nota": ""
+   },
+   {
+    "id": "subest",
+    "nombre": "Subestaciones de transmisión",
+    "valor": [
+     2279,
+     2302,
+     2317
+    ],
+    "unidad": "número (2022-2024)",
+    "fuente": "CFE24",
+    "pagina": 76,
+    "alcance": "CFE",
+    "anio": 2024,
+    "nota": ""
+   },
+   {
+    "id": "mva_t",
+    "nombre": "Capacidad de transformación de transmisión",
+    "valor": [
+     165541,
+     164992,
+     168981
+    ],
+    "unidad": "MVA (2022-2024)",
+    "fuente": "CFE24",
+    "pagina": 76,
+    "alcance": "CFE",
+    "anio": 2024,
+    "nota": ""
+   }
+  ],
+  "sistemas": {
+   "fuente": "PLAN",
+   "pagina": 12,
+   "texto": "8 GCR y 100 regiones de transmisión. GCR Baja California contiene SIBC, SIBCS y SIMUL. CEN, NES, NOR, NTE, OCC, ORI y PEN forman el SIN.",
+   "demanda_max_2024_mwh_h": {
+    "SEN": 55528,
+    "SIN": 52302,
+    "SIBC": 3635,
+    "SIBCS": 689,
+    "SIMUL": 34,
+    "CEN": 8848,
+    "ORI": 9034,
+    "OCC": 11834,
+    "NOR": 5909,
+    "NTE": 5540,
+    "NES": 11109,
+    "PEN": 2969
+   },
+   "demanda_fuente": "PLAN A1.5 p.103"
+  }
+ },
+ "regiones": {
+  "claves": [
+   "CEN",
+   "ORI",
+   "OCC",
+   "NOR",
+   "NTE",
+   "NES",
+   "PEN",
+   "SIBC",
+   "SIBCS",
+   "SIMUL",
+   "SIN",
+   "SEN"
+  ],
+  "consumo_final_gwh": {
+   "2022": [
+    48988,
+    44503,
+    64629,
+    22580,
+    25268,
+    51806,
+    13043,
+    14991,
+    2742,
+    137,
+    270817,
+    288687
+   ],
+   "2023": [
+    49709,
+    46528,
+    66822,
+    24037,
+    25909,
+    53160,
+    14414,
+    14879,
+    2995,
+    146,
+    280579,
+    298599
+   ],
+   "2024": [
+    49411,
+    48022,
+    67732,
+    24651,
+    26592,
+    53876,
+    14934,
+    15565,
+    3079,
+    150,
+    285218,
+    304011
+   ]
+  },
+  "perdidas_gwh": {
+   "2022": [
+    8473,
+    7614,
+    7353,
+    2884,
+    4278,
+    7748,
+    1389,
+    1178,
+    213,
+    9,
+    39738,
+    41138
+   ],
+   "2023": [
+    7956,
+    8103,
+    7764,
+    3219,
+    4602,
+    8044,
+    1323,
+    1091,
+    255,
+    10,
+    41010,
+    42366
+   ],
+   "2024": [
+    7955,
+    8490,
+    7958,
+    3113,
+    4678,
+    8130,
+    1578,
+    1230,
+    246,
+    9,
+    41901,
+    43387
+   ]
+  },
+  "consumo_bruto_gwh": {
+   "2022": [
+    59866,
+    54643,
+    73763,
+    26332,
+    30596,
+    60806,
+    14677,
+    16686,
+    3080,
+    164,
+    320683,
+    340613
+   ],
+   "2023": [
+    60160,
+    56633,
+    76564,
+    28259,
+    31905,
+    62170,
+    16054,
+    16346,
+    3328,
+    165,
+    331744,
+    351584
+   ],
+   "2024": [
+    60059,
+    58547,
+    77541,
+    29126,
+    32711,
+    64080,
+    16930,
+    17218,
+    3425,
+    170,
+    338994,
+    359807
+   ]
+  },
+  "fuente": "PLAN Anexo A1: T A1.1 p.101, A1.2 p.101, A1.4 p.102",
+  "nota": "Regiones de control (GCR) del CENACE, no divisiones de distribución de CFE. Las pérdidas incluyen RNT y RGD."
+ },
+ "distribucion": {
+  "nacional": [
+   {
+    "id": "usuarios",
+    "nombre": "Usuarios de CFE Distribución",
+    "valor": 49.1,
+    "unidad": "millones",
+    "fuente": "CFE24",
+    "pagina": 95,
+    "alcance": "CFE nacional",
+    "anio": 2024,
+    "nota": ""
+   },
+   {
+    "id": "clientes_ssb",
+    "nombre": "Clientes de Suministro Básico",
+    "valor": 49016942,
+    "unidad": "clientes",
+    "fuente": "CFE24",
+    "pagina": 119,
+    "alcance": "CFE nacional",
+    "anio": 2024,
+    "nota": ""
+   },
+   {
+    "id": "km_rgd",
+    "nombre": "Redes Generales de Distribución",
+    "valor": 901,
+    "unidad": "miles de km",
+    "fuente": "CFE24",
+    "pagina": 95,
+    "alcance": "CFE nacional",
+    "anio": 2024,
+    "nota": ""
+   },
+   {
+    "id": "km_mt",
+    "nombre": "Líneas de media tensión",
+    "valor": 555336,
+    "unidad": "km",
+    "fuente": "CFE24",
+    "pagina": 97,
+    "alcance": "CFE nacional",
+    "anio": 2024,
+    "nota": ""
+   },
+   {
+    "id": "km_bt",
+    "nombre": "Líneas de baja tensión",
+    "valor": 345966,
+    "unidad": "km",
+    "fuente": "CFE24",
+    "pagina": 97,
+    "alcance": "CFE nacional",
+    "anio": 2024,
+    "nota": ""
+   },
+   {
+    "id": "km_subt",
+    "nombre": "Líneas de subtransmisión atendidas",
+    "valor": 51567,
+    "unidad": "km",
+    "fuente": "CFE24",
+    "pagina": 97,
+    "alcance": "CFE nacional",
+    "anio": 2024,
+    "nota": ""
+   },
+   {
+    "id": "subest_d",
+    "nombre": "Subestaciones de distribución",
+    "valor": 2157,
+    "unidad": "número",
+    "fuente": "CFE24",
+    "pagina": 97,
+    "alcance": "CFE nacional",
+    "anio": 2024,
+    "nota": ""
+   },
+   {
+    "id": "tr_pot",
+    "nombre": "Transformadores de potencia",
+    "valor": 3335,
+    "unidad": "unidades (81,284 MVA)",
+    "fuente": "CFE24",
+    "pagina": 97,
+    "alcance": "CFE nacional",
+    "anio": 2024,
+    "nota": ""
+   },
+   {
+    "id": "tr_dist",
+    "nombre": "Transformadores de distribución",
+    "valor": 1660977,
+    "unidad": "unidades (60,912 MVA)",
+    "fuente": "CFE24",
+    "pagina": 97,
+    "alcance": "CFE nacional",
+    "anio": 2024,
+    "nota": ""
+   },
+   {
+    "id": "electrif",
+    "nombre": "Electrificación del país",
+    "valor": 99.64,
+    "unidad": "% (99.43 % en 2023)",
+    "fuente": "CFE24",
+    "pagina": 96,
+    "alcance": "Nacional",
+    "anio": 2024,
+    "nota": ""
+   },
+   {
+    "id": "divisiones",
+    "nombre": "Divisiones / zonas de distribución",
+    "valor": 16,
+    "unidad": "divisiones y 150 zonas",
+    "fuente": "CFE24",
+    "pagina": 95,
+    "alcance": "CFE",
+    "anio": 2024,
+    "nota": ""
+   },
+   {
+    "id": "perdidas_sen",
+    "nombre": "Pérdidas totales del SEN",
+    "valor": 12.3,
+    "unidad": "% (12.2 % en 2023)",
+    "fuente": "PLAN",
+    "pagina": 15,
+    "alcance": "SEN nacional",
+    "anio": 2024,
+    "nota": ""
+   },
+   {
+    "id": "usuarios_sen",
+    "nombre": "Personas usuarias finales del SEN",
+    "valor": 49,
+    "unidad": "millones; residencial 89.2 % de usuarios y 27.1 % del consumo; empresa mediana + gran industria 0.9 % de usuarios y 60.6 % del consumo",
+    "fuente": "PLAN",
+    "pagina": 13,
+    "alcance": "SEN nacional",
+    "anio": 2024,
+    "nota": ""
+   }
+  ],
+  "tablero_2022_2024": {
+   "fuente": "CFE24",
+   "pagina": 96,
+   "datos": {
+    "Pérdidas de energía (incluye alta tensión)": [
+     "%",
+     [
+      11.05,
+      10.86,
+      10.69
+     ]
+    ],
+    "Pérdidas de energía (MT+BT)": [
+     "%",
+     [
+      13.22,
+      12.88,
+      12.88
+     ]
+    ],
+    "SAIDI": [
+     "min/usuario",
+     [
+      19.248,
+      17.788,
+      16.708
+     ]
+    ],
+    "SAIFI": [
+     "interrupciones/usuario",
+     [
+      0.411,
+      0.391,
+      0.375
+     ]
+    ]
+   }
+  },
+  "usuarios_por_tarifa_2024": {
+   "fuente": "CFE24",
+   "pagina": "119-120",
+   "datos": {
+    "Doméstico bajo consumo": [
+     43667549,
+     77811
+    ],
+    "Doméstico alto consumo": [
+     61550,
+     487
+    ],
+    "Comercial": [
+     4532876,
+     16224
+    ],
+    "Alumbrado público": [
+     169583,
+     3665
+    ],
+    "Agrícola con subsidio": [
+     69966,
+     13426
+    ],
+    "Agrícola sin subsidio": [
+     61635,
+     1764
+    ],
+    "Mediana industria": [
+     452910,
+     86227
+    ],
+    "Gran industria": [
+     873,
+     25593
+    ],
+    "Último recurso": [
+     7,
+     17
+    ]
+   },
+   "nota": "CORREGIDO: el informe 2024 (p.120) imprime las filas 7 y 8 intercambiadas (Mediana industria 873 usuarios / 25,593 GWh; Gran industria 452,910 / 86,227). El informe 2023 (p. de la misma tabla) da Mediana industria 440,163 usuarios / 84,563 GWh y Gran industria 925 / 27,910, por lo que se asignan los valores 2024 a la etiqueta coherente. Mostrar esta advertencia en la app."
+  },
+  "divisiones_gd_solicitudes": {
+   "fuente": "CFE24",
+   "pagina": "123-124",
+   "anios": [
+    2022,
+    2023,
+    2024
+   ],
+   "datos": {
+    "Baja California": [
+     2014,
+     1890,
+     1890
+    ],
+    "Noroeste": [
+     3885,
+     4585,
+     5919
+    ],
+    "Norte": [
+     7568,
+     9105,
+     12061
+    ],
+    "Golfo Norte": [
+     9994,
+     11815,
+     20952
+    ],
+    "Centro Occidente": [
+     5562,
+     7537,
+     9966
+    ],
+    "Centro Sur": [
+     2070,
+     2491,
+     2379
+    ],
+    "Oriente": [
+     1743,
+     2279,
+     3147
+    ],
+    "Sureste": [
+     1157,
+     1426,
+     2052
+    ],
+    "Valle de México Norte": [
+     1091,
+     1001,
+     924
+    ],
+    "Valle de México Centro": [
+     1247,
+     1270,
+     1223
+    ],
+    "Valle de México Sur": [
+     2090,
+     1861,
+     2043
+    ],
+    "Bajío": [
+     7959,
+     9994,
+     11307
+    ],
+    "Golfo Centro": [
+     2965,
+     3600,
+     5300
+    ],
+    "Centro Oriente": [
+     1435,
+     1590,
+     1741
+    ],
+    "Peninsular": [
+     5219,
+     7776,
+     9932
+    ],
+    "Jalisco": [
+     12422,
+     14172,
+     17815
+    ]
+   },
+   "nacional": [
+    68421,
+    82528,
+    108651
+   ],
+   "nota": "Único indicador por división encontrado. Usuarios, km y pérdidas por división: Dato no disponible."
+  }
+ },
+ "emisiones": {
+  "fuente": "IPCC",
+  "pagina": 1335,
+  "unidad": "gCO2eq/kWh",
+  "datos": {
+   "Carbón (PC)": [
+    [
+     670,
+     760,
+     870
+    ],
+    [
+     740,
+     820,
+     910
+    ]
+   ],
+   "Gas (ciclo combinado)": [
+    [
+     350,
+     370,
+     490
+    ],
+    [
+     410,
+     490,
+     650
+    ]
+   ],
+   "Geotérmica": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     6.0,
+     38,
+     79
+    ]
+   ],
+   "Hidroeléctrica": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     1.0,
+     24,
+     2200
+    ]
+   ],
+   "Nuclear": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     3.7,
+     12,
+     110
+    ]
+   ],
+   "Solar FV (gran escala)": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     18,
+     48,
+     180
+    ]
+   ],
+   "Solar FV (techo)": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     26,
+     41,
+     60
+    ]
+   ],
+   "Eólica terrestre": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     7.0,
+     11,
+     56
+    ]
+   ],
+   "Biomasa dedicada": [
+    null,
+    [
+     130,
+     230,
+     420
+    ]
+   ]
+  },
+  "nota": "Valores globales de ciclo de vida y directos; no son factores oficiales de México. Sin datos para combustóleo, diésel ni turbogás.",
+  "fesen_max_2017": {
+   "valor": 0.582,
+   "unidad": "tCO2e/MWh",
+   "fuente": "PLAN",
+   "pagina": 40,
+   "nota": "Factor del SEN (pico 2017). Serie completa sólo en gráfica: Dato no disponible."
+  }
+ },
+ "reforma": [
+  {
+   "id": "ref2013",
+   "nombre": "Reforma constitucional en materia de energía (arts. 25, 27 y 28)",
+   "valor": "20/12/2013",
+   "unidad": "fecha DOF",
+   "fuente": "DOF2013",
+   "pagina": "decreto",
+   "alcance": "Legal",
+   "anio": 2013,
+   "nota": "Planeación y control del SEN y servicio público de transmisión y distribución quedan a cargo exclusivo de la Nación (art. 25 reformado)."
+  },
+  {
+   "id": "lie2014",
+   "nombre": "Ley de la Industria Eléctrica",
+   "valor": "11/08/2014",
+   "unidad": "fecha DOF",
+   "fuente": "LIE2014",
+   "pagina": "art. 4",
+   "alcance": "Legal",
+   "anio": 2014,
+   "nota": "Generación y comercialización en libre competencia; acceso abierto a la RNT y RGD."
+  },
+  {
+   "id": "cenace2014",
+   "nombre": "CENACE: control operativo del SEN y operación del MEM",
+   "valor": "art. 107",
+   "unidad": "LIE 2014",
+   "fuente": "LIE2014",
+   "pagina": "art. 107",
+   "alcance": "Legal",
+   "anio": 2014,
+   "nota": ""
+  },
+  {
+   "id": "lcfe2014",
+   "nombre": "CFE como empresa productiva del Estado",
+   "valor": "art. 2",
+   "unidad": "LCFE 2014",
+   "fuente": "LCFE2014",
+   "pagina": "art. 2",
+   "alcance": "Legal",
+   "anio": 2014,
+   "nota": ""
+  },
+  {
+   "id": "ref2024",
+   "nombre": "Reforma constitucional en materia de áreas y empresas estratégicas",
+   "valor": "31/10/2024",
+   "unidad": "fecha DOF",
+   "fuente": "PLAN",
+   "pagina": 8,
+   "alcance": "Legal",
+   "anio": 2024,
+   "nota": ""
+  },
+  {
+   "id": "lepecfe2025",
+   "nombre": "CFE pasa a “empresa pública del Estado” y se abroga la LCFE 2014",
+   "valor": "18/03/2025",
+   "unidad": "fecha DOF",
+   "fuente": "DOF2025",
+   "pagina": "2 y 41",
+   "alcance": "Legal",
+   "anio": 2025,
+   "nota": ""
+  },
+  {
+   "id": "lse2025",
+   "nombre": "Ley del Sector Eléctrico: el Estado debe mantener al menos 54 % de la energía inyectada a la red",
+   "valor": 54,
+   "unidad": "% (promedio anual)",
+   "fuente": "DOF2025",
+   "pagina": 97,
+   "alcance": "Legal",
+   "anio": 2025,
+   "nota": "LSE art. 12, fr. VI. Abroga la LIE 2014 (p.134)."
+  },
+  {
+   "id": "cenace2025",
+   "nombre": "CENACE conserva control operativo y operación del MEM",
+   "valor": "art. 123",
+   "unidad": "LSE 2025",
+   "fuente": "DOF2025",
+   "pagina": 118,
+   "alcance": "Legal",
+   "anio": 2025,
+   "nota": ""
+  }
+ ],
+ "calculos": {
+  "2022": {
+   "fosil_pct": 73.3,
+   "limpia_pct": 26.7,
+   "renovable_pct": 23.1,
+   "nuclear_pct": 3.2,
+   "cogeneracion_pct": 0.4,
+   "cc_pct": 59.4,
+   "vapor_pct": 6.0,
+   "renovables_mix": {
+    "Hidroeléctrica": 46.1,
+    "Geotérmica": 5.7,
+    "Eólica": 26.3,
+    "Solar fotovoltaica": 21.1,
+    "Bioenergía": 0.8
+   }
+  },
+  "2023": {
+   "fosil_pct": 76.8,
+   "limpia_pct": 23.2,
+   "renovable_pct": 18.5,
+   "nuclear_pct": 3.5,
+   "cogeneracion_pct": 1.2,
+   "cc_pct": 59.3,
+   "vapor_pct": 8.8,
+   "renovables_mix": {
+    "Hidroeléctrica": 32.1,
+    "Geotérmica": 6.5,
+    "Eólica": 32.3,
+    "Solar fotovoltaica": 28.4,
+    "Bioenergía": 0.8
+   }
+  },
+  "2024": {
+   "fosil_pct": 76.6,
+   "limpia_pct": 23.4,
+   "renovable_pct": 18.9,
+   "nuclear_pct": 3.4,
+   "cogeneracion_pct": 1.1,
+   "cc_pct": 60.4,
+   "vapor_pct": 8.0,
+   "renovables_mix": {
+    "Hidroeléctrica": 35.8,
+    "Geotérmica": 5.4,
+    "Eólica": 30.0,
+    "Solar fotovoltaica": 28.0,
+    "Bioenergía": 0.8
+   }
+  },
+  "consumo_domestico_bajo_kwh_por_usuario_2024": 1782.0,
+  "hogares_teoricos_laguna_verde_2024": 6907000.0,
+  "perdidas_pct_region_2024": {
+   "CEN": 13.2,
+   "ORI": 14.5,
+   "OCC": 10.3,
+   "NOR": 10.7,
+   "NTE": 14.3,
+   "NES": 12.7,
+   "PEN": 9.3,
+   "SIBC": 7.1,
+   "SIBCS": 7.2,
+   "SIMUL": 5.3,
+   "SIN": 12.4,
+   "SEN": 12.1
+  },
+  "cfe_part_capacidad_2024_pct": 68.2
+ }
+}

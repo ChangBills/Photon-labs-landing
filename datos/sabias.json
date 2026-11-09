@@ -1,0 +1,1500 @@
+{
+ "hallazgos": [
+  {
+   "id": "r1",
+   "tema": "recursos",
+   "pregunta": "¿Qué parte de la electricidad de México sale de combustibles fósiles?",
+   "valor": 76.6,
+   "unidad": "% en 2024",
+   "sello": "calculo",
+   "viz": {
+    "tipo": "barras100",
+    "etiquetas": [
+     "2022",
+     "2023",
+     "2024"
+    ],
+    "series": [
+     {
+      "n": "Fósil",
+      "c": "#eb6834",
+      "v": [
+       73.3,
+       76.8,
+       76.6
+      ]
+     },
+     {
+      "n": "Limpia",
+      "c": "#1baf7a",
+      "v": [
+       26.7,
+       23.2,
+       23.4
+      ]
+     }
+    ],
+    "u": "%"
+   },
+   "explica": "Tres de cada cuatro kWh inyectados a la red en 2024 vinieron de quemar gas, combustóleo, diésel o carbón. La parte fósil creció de 2022 a 2023 por la menor generación hidroeléctrica.",
+   "fuentes": [
+    {
+     "doc": "SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025)",
+     "pag": 20,
+     "extra": "Tabla 2.2; porcentajes: cálculo propio"
+    }
+   ]
+  },
+  {
+   "id": "r2",
+   "tema": "recursos",
+   "pregunta": "¿Cuánto CO₂ emite cada tecnología por kWh?",
+   "valor": 75,
+   "unidad": "veces más emite el carbón que la eólica (ciclo de vida)",
+   "sello": "calculo",
+   "viz": {
+    "tipo": "barrasH",
+    "etiquetas": [
+     "Carbón (PC)",
+     "Gas (ciclo combinado)",
+     "Geotérmica",
+     "Hidroeléctrica",
+     "Nuclear",
+     "Solar FV (gran escala)",
+     "Eólica terrestre"
+    ],
+    "valores": [
+     820,
+     490,
+     38,
+     24,
+     12,
+     48,
+     11
+    ],
+    "colores": [
+     "#eb6834",
+     "#e34948",
+     "#eda100",
+     "#e87ba4",
+     "#2a78d6",
+     "#008300",
+     "#1baf7a"
+    ],
+    "u": "gCO₂eq/kWh"
+   },
+   "explica": "Mediana de emisiones de ciclo de vida (construcción, combustible y desmantelamiento incluidos). El carbón emite 820 g por kWh; la eólica, 11 g. En emisiones directas (solo chimenea), las renovables y la nuclear dan 0. Son valores globales del IPCC, no factores oficiales de México.",
+   "fuentes": [
+    {
+     "doc": "IPCC, AR5 GT III, Anexo III (2014)",
+     "pag": 1335,
+     "extra": "Tabla A.III.2, medianas de ciclo de vida"
+    }
+   ]
+  },
+  {
+   "id": "r3",
+   "tema": "recursos",
+   "pregunta": "¿Por qué la nuclear es limpia pero no renovable?",
+   "valor": 3.4,
+   "unidad": "% de la generación 2024",
+   "sello": "calculo",
+   "viz": {
+    "tipo": "conjuntos",
+    "items": [
+     {
+      "n": "Renovable",
+      "c": "#1baf7a",
+      "d": "Su fuente se regenera: sol, viento, agua, calor de la Tierra, biomasa."
+     },
+     {
+      "n": "Limpia",
+      "c": "#2a78d6",
+      "d": "Definición legal: renovables más nuclear, cogeneración eficiente y otras que emiten poco."
+     },
+     {
+      "n": "Nuclear",
+      "c": "#008300",
+      "d": "Limpia por ley porque casi no emite, pero el uranio es un recurso que se agota."
+     }
+    ]
+   },
+   "explica": "La Ley del Sector Eléctrico incluye a la nucleoeléctrica en las energías limpias; la Ley de Planeación y Transición Energética no la incluye en las renovables. En México solo existe Laguna Verde.",
+   "fuentes": [
+    {
+     "doc": "DOF 18/03/2025, Ley del Sector Eléctrico",
+     "pag": 86,
+     "extra": "art. 3, fr. XXI (energías limpias)"
+    },
+    {
+     "doc": "Ley de Planeación y Transición Energética (DOF 18/03/2025)",
+     "pag": 193,
+     "extra": "art. 3, fr. X (energías renovables)"
+    },
+    {
+     "doc": "SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025)",
+     "pag": 20,
+     "extra": "Tabla 2.2; porcentaje: cálculo propio"
+    }
+   ]
+  },
+  {
+   "id": "r4",
+   "tema": "recursos",
+   "pregunta": "¿Qué fuentes forman la generación renovable?",
+   "valor": 35.8,
+   "unidad": "% de lo renovable es hidro (2024)",
+   "sello": "calculo",
+   "viz": {
+    "tipo": "dona",
+    "etiquetas": [
+     "Hidroeléctrica",
+     "Geotérmica",
+     "Eólica",
+     "Solar fotovoltaica",
+     "Bioenergía"
+    ],
+    "valores": [
+     35.8,
+     5.4,
+     30.0,
+     28.0,
+     0.8
+    ],
+    "colores": [
+     "#2a78d6",
+     "#e87ba4",
+     "#1baf7a",
+     "#eda100",
+     "#6250d6"
+    ],
+    "u": "%"
+   },
+   "explica": "El agua sigue siendo la primera fuente renovable, pero la eólica y la solar juntas ya la superan. La geotermia aporta poco, aunque México tiene centrales como Cerro Prieto y Los Azufres.",
+   "fuentes": [
+    {
+     "doc": "SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025)",
+     "pag": 20,
+     "extra": "Tabla 2.2; participación dentro de lo renovable: cálculo propio"
+    }
+   ]
+  },
+  {
+   "id": "r5",
+   "tema": "recursos",
+   "pregunta": "¿Qué fuentes dependen del clima y cuáles se controlan?",
+   "valor": 11.0,
+   "unidad": "% de la generación 2024 fue variable (eólica + solar)",
+   "sello": "calculo",
+   "viz": {
+    "tipo": "barrasH",
+    "etiquetas": [
+     "Ciclo combinado",
+     "Nucleoeléctrica",
+     "Hidroeléctrica",
+     "Eólica",
+     "Solar fotovoltaica"
+    ],
+    "valores": [
+     68.1,
+     85.0,
+     21.5,
+     30.4,
+     26.7
+    ],
+    "colores": [
+     "#e34948",
+     "#008300",
+     "#2a78d6",
+     "#1baf7a",
+     "#eda100"
+    ],
+    "u": "% factor de planta"
+   },
+   "explica": "El factor de planta compara lo que una tecnología generó con lo que habría generado a plena capacidad todo el año. La solar y la eólica dependen del sol y del viento; el ciclo combinado y la nuclear se despachan cuando se necesitan. La hidro depende de las lluvias del año.",
+   "fuentes": [
+    {
+     "doc": "SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025)",
+     "pag": 19,
+     "extra": "Tabla 2.1 (capacidad)"
+    },
+    {
+     "doc": "SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025)",
+     "pag": 20,
+     "extra": "Tabla 2.2 (generación); factor = generación ÷ (capacidad × 8,760 h): cálculo propio"
+    }
+   ]
+  },
+  {
+   "id": "g1",
+   "tema": "generacion",
+   "pregunta": "¿Qué tecnología produce más electricidad?",
+   "valor": 60.4,
+   "unidad": "% de la generación 2024: ciclo combinado",
+   "sello": "calculo",
+   "viz": {
+    "tipo": "barrasH",
+    "etiquetas": [
+     "Ciclo combinado",
+     "Térmica convencional",
+     "Eólica",
+     "Solar fotovoltaica",
+     "Hidroeléctrica",
+     "Nucleoeléctrica",
+     "Carboeléctrica"
+    ],
+    "valores": [
+     60.4,
+     8.0,
+     5.7,
+     5.3,
+     6.8,
+     3.4,
+     3.7
+    ],
+    "colores": [
+     "#e34948",
+     "#6250d6",
+     "#1baf7a",
+     "#eda100",
+     "#2a78d6",
+     "#008300",
+     "#eb6834"
+    ],
+    "u": "%"
+   },
+   "explica": "Seis de cada diez kWh salen de centrales de ciclo combinado, que queman gas natural en una turbina de gas y aprovechan el calor del escape en una turbina de vapor.",
+   "fuentes": [
+    {
+     "doc": "SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025)",
+     "pag": 20,
+     "extra": "Tabla 2.2; porcentajes: cálculo propio"
+    }
+   ]
+  },
+  {
+   "id": "g2",
+   "tema": "generacion",
+   "pregunta": "¿Cuál es la central de mayor capacidad del atlas?",
+   "valor": 2778.4,
+   "unidad": "MW: Petacalco (carbón, Guerrero)",
+   "sello": "oficial",
+   "viz": {
+    "tipo": "barrasH",
+    "etiquetas": [
+     "Petacalco",
+     "Chicoasén",
+     "Tuxpan",
+     "Laguna Verde",
+     "Tula",
+     "Carbón II"
+    ],
+    "valores": [
+     2778.4,
+     2400.0,
+     2100.0,
+     1608.0,
+     1605.6,
+     1400.0
+    ],
+    "colores": [
+     "#eb6834",
+     "#2a78d6",
+     "#6250d6",
+     "#008300",
+     "#6250d6",
+     "#eb6834"
+    ],
+    "u": "MW"
+   },
+   "explica": "Entre las 15 centrales del mapa del Módulo 1, la carboeléctrica Plutarco Elías Calles (Petacalco) tiene la mayor capacidad registrada, seguida por la hidroeléctrica Chicoasén. Ojo: su capacidad es de 2016; los informes de la CFE no la publican por central.",
+   "fuentes": [
+    {
+     "doc": "SENER/CRE, NACEI, Centrales_Mexico.csv (2016)",
+     "pag": "—",
+     "extra": "capacidad 2016 de Petacalco, Chicoasén, Tuxpan, Tula y Carbón II"
+    },
+    {
+     "doc": "CFE, Informe Anual 2024",
+     "pag": 21,
+     "extra": "Laguna Verde 1,608 MW"
+    }
+   ]
+  },
+  {
+   "id": "g3",
+   "tema": "generacion",
+   "pregunta": "¿Cuánta electricidad produce una central nuclear?",
+   "valor": 12307,
+   "unidad": "GWh brutos en 2024: Laguna Verde",
+   "sello": "oficial",
+   "viz": {
+    "tipo": "linea",
+    "etiquetas": [
+     2010,
+     2011,
+     2012,
+     2013,
+     2014,
+     2015,
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024
+    ],
+    "series": [
+     {
+      "n": "Nucleoeléctrica (país, neta)",
+      "c": "#008300",
+      "v": [
+       6019,
+       9640,
+       8193,
+       11389,
+       9677,
+       11577,
+       10567,
+       10572,
+       13200,
+       10881,
+       10864,
+       11606,
+       10539,
+       12043,
+       11978
+      ]
+     }
+    ],
+    "u": "GWh"
+   },
+   "explica": "Laguna Verde, la única central nuclear de México, generó 12,307 GWh brutos en 2024. Toda la nucleoeléctrica del país aportó 3.4 % de la generación neta.",
+   "fuentes": [
+    {
+     "doc": "CFE, Informe Anual 2024",
+     "pag": 26,
+     "extra": "generación bruta de Laguna Verde"
+    },
+    {
+     "doc": "SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025)",
+     "pag": 20,
+     "extra": "Tabla 2.2, serie nacional neta"
+    }
+   ]
+  },
+  {
+   "id": "g4",
+   "tema": "generacion",
+   "pregunta": "¿Cómo creció la generación solar y eólica?",
+   "valor": 9.1,
+   "unidad": "veces más en 2024 que en 2013",
+   "sello": "calculo",
+   "viz": {
+    "tipo": "linea",
+    "etiquetas": [
+     2010,
+     2011,
+     2012,
+     2013,
+     2014,
+     2015,
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024
+    ],
+    "series": [
+     {
+      "n": "Eólica",
+      "c": "#1baf7a",
+      "v": [
+       1298,
+       1675,
+       3688,
+       4243,
+       7189,
+       8991,
+       10295,
+       10456,
+       12435,
+       16727,
+       19703,
+       21075,
+       20314,
+       20700,
+       19987
+      ]
+     },
+     {
+      "n": "Solar fotovoltaica",
+      "c": "#eda100",
+      "v": [
+       0,
+       0,
+       3,
+       20,
+       83,
+       45,
+       151,
+       349,
+       2176,
+       8394,
+       13528,
+       17069,
+       16290,
+       18210,
+       18640
+      ]
+     }
+    ],
+    "u": "GWh"
+   },
+   "explica": "La eólica despegó desde 2012 y la solar a partir de 2018, cuando entraron las centrales ganadas en las subastas de largo plazo. Desde 2021 ambas se estancaron.",
+   "fuentes": [
+    {
+     "doc": "SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025)",
+     "pag": 20,
+     "extra": "Tabla 2.2; razón 2024/2013: cálculo propio"
+    }
+   ]
+  },
+  {
+   "id": "g5",
+   "tema": "generacion",
+   "pregunta": "¿Cuántos hogares podría abastecer Laguna Verde?",
+   "valor": 6.9,
+   "unidad": "millones de hogares (teórico)",
+   "sello": "calculo",
+   "viz": {
+    "tipo": "comparar",
+    "a": {
+     "n": "Laguna Verde 2024",
+     "v": 12307,
+     "u": "GWh"
+    },
+    "b": {
+     "n": "Consumo medio de un usuario doméstico",
+     "v": 1791,
+     "u": "kWh al año"
+    }
+   },
+   "explica": "Dividiendo la energía anual de Laguna Verde entre el consumo medio de un usuario doméstico de la CFE (1,791 kWh al año) salen unos 6.9 millones de hogares. Es teórico: no descuenta pérdidas ni usos propios y supone un hogar por usuario doméstico.",
+   "fuentes": [
+    {
+     "doc": "CFE, Informe Anual 2024",
+     "pag": 26,
+     "extra": "generación de Laguna Verde"
+    },
+    {
+     "doc": "CFE, Informe Anual 2024",
+     "pag": "119-120",
+     "extra": "usuarios y consumo doméstico; división: cálculo propio"
+    }
+   ]
+  },
+  {
+   "id": "t1",
+   "tema": "transmision",
+   "pregunta": "¿Cuántos kilómetros tiene la red de transmisión?",
+   "valor": 111138,
+   "unidad": "km en 2024",
+   "sello": "calculo",
+   "viz": {
+    "tipo": "barras100",
+    "etiquetas": [
+     "2024"
+    ],
+    "series": [
+     {
+      "n": "161-400 kV",
+      "c": "#0B2A5B",
+      "v": [
+       56720
+      ]
+     },
+     {
+      "n": "69-138 kV",
+      "c": "#8EC5FF",
+      "v": [
+       54418
+      ]
+     }
+    ],
+    "u": "km",
+    "absoluto": true
+   },
+   "explica": "La suma da 111,138 km, casi tres vueltas a la Tierra en el ecuador. Es la misma cifra que reporta CFE Transmisión.",
+   "fuentes": [
+    {
+     "doc": "SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025)",
+     "pag": 22,
+     "extra": "Tabla 2.3; suma: cálculo propio"
+    },
+    {
+     "doc": "CFE, Informe Anual 2024",
+     "pag": 76,
+     "extra": "111,138 km"
+    }
+   ]
+  },
+  {
+   "id": "t2",
+   "tema": "transmision",
+   "pregunta": "¿Por qué se usan líneas de 400 kV?",
+   "valor": 52.5,
+   "unidad": "% de las líneas nuevas instruidas son de 400 kV",
+   "sello": "calculo",
+   "viz": {
+    "tipo": "barrasH",
+    "etiquetas": [
+     "400 kV",
+     "230 kV",
+     "161 kV",
+     "138 kV",
+     "115 kV"
+    ],
+    "valores": [
+     3327.5,
+     1235.2,
+     0,
+     38.0,
+     1589.5
+    ],
+    "colores": [
+     "#0B2A5B",
+     "#0F4DBC",
+     "#2F80ED",
+     "#5B9DF0",
+     "#8EC5FF"
+    ],
+    "u": "km-c"
+   },
+   "explica": "Para llevar mucha potencia entre regiones conviene la tensión más alta: la corriente es menor y las pérdidas también. Por eso más de la mitad de los kilómetros-circuito en obra son de 400 kV, y la Zona Metropolitana de la Ciudad de México se alimenta con un anillo de 400 kV.",
+   "fuentes": [
+    {
+     "doc": "SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025)",
+     "pag": 76,
+     "extra": "Tabla 4.10"
+    },
+    {
+     "doc": "SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025)",
+     "pag": 78,
+     "extra": "anillo de 400 kV de la ZMCM"
+    }
+   ]
+  },
+  {
+   "id": "t3",
+   "tema": "transmision",
+   "pregunta": "¿Qué sistemas no están conectados al SIN?",
+   "valor": 3,
+   "unidad": "sistemas separados en Baja California",
+   "sello": "oficial",
+   "viz": {
+    "tipo": "barrasH",
+    "etiquetas": [
+     "SIN",
+     "SIBC",
+     "SIBCS",
+     "SIMUL"
+    ],
+    "valores": [
+     52302,
+     3635,
+     689,
+     34
+    ],
+    "colores": [
+     "#2a78d6",
+     "#eb6834",
+     "#6250d6",
+     "#1baf7a"
+    ],
+    "u": "MWh/h de demanda máxima 2024",
+    "log": true
+   },
+   "explica": "El SIBC (Baja California), el SIBCS (Baja California Sur) y el SIMUL (Mulegé) operan aparte del Sistema Interconectado Nacional. La CFE llama al de Baja California Sur «Sistema Eléctrico Aislado». La gráfica usa escala logarítmica: el SIMUL pide 34 MWh/h y el SIN más de 52 mil.",
+   "fuentes": [
+    {
+     "doc": "SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025)",
+     "pag": 12,
+     "extra": "GCR y sistemas"
+    },
+    {
+     "doc": "SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025)",
+     "pag": 103,
+     "extra": "Tabla A1.5"
+    },
+    {
+     "doc": "CFE, Informe Anual 2023",
+     "pag": 102,
+     "extra": "BCS aislado del SIN"
+    }
+   ]
+  },
+  {
+   "id": "t4",
+   "tema": "transmision",
+   "pregunta": "¿Cuánta electricidad cruza las fronteras?",
+   "valor": 2818,
+   "unidad": "GWh exportados en 2024",
+   "sello": "oficial",
+   "viz": {
+    "tipo": "barrasH",
+    "etiquetas": [
+     "Importaciones",
+     "Exportaciones"
+    ],
+    "valores": [
+     2469,
+     2818
+    ],
+    "colores": [
+     "#eb6834",
+     "#2a78d6"
+    ],
+    "u": "GWh"
+   },
+   "explica": "México tiene interconexiones con Estados Unidos, Belice y Guatemala. En 2024 exportó más de lo que importó. La GCR Baja California concentró 71.9 % de las importaciones. (Pregunta sustituta: los documentos no publican distancias entre regiones.)",
+   "fuentes": [
+    {
+     "doc": "SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025)",
+     "pag": 15,
+     "extra": "sección 2.1.3"
+    }
+   ]
+  },
+  {
+   "id": "t5",
+   "tema": "transmision",
+   "pregunta": "¿Cómo cambian las pérdidas al subir la tensión?",
+   "valor": 12.1,
+   "unidad": "veces menos pérdidas a 400 kV que a 115 kV",
+   "sello": "calculo",
+   "viz": {
+    "tipo": "barrasH",
+    "etiquetas": [
+     "69 kV",
+     "115 kV",
+     "230 kV",
+     "400 kV"
+    ],
+    "valores": [
+     105.0,
+     37.8,
+     9.5,
+     3.1
+    ],
+    "colores": [
+     "#e34948",
+     "#F5A300",
+     "#2F80ED",
+     "#1baf7a"
+    ],
+    "u": "% de pérdidas (500 MW, 10 Ω)"
+   },
+   "explica": "Con la misma potencia (500 MW) y la misma resistencia (10 Ω, valores de ejemplo), las pérdidas I²R caen con el cuadrado de la tensión: P = 3·I²·R e I = P/(√3·V·cos φ). Pruébalo en el simulador del Módulo 2.",
+   "fuentes": [
+    {
+     "doc": "Simulador del Módulo 2",
+     "pag": "—",
+     "extra": "cálculo con valores de ejemplo, no de una línea real"
+    }
+   ]
+  },
+  {
+   "id": "d1",
+   "tema": "distribucion",
+   "pregunta": "¿Cuántos usuarios reciben electricidad?",
+   "valor": 49.1,
+   "unidad": "millones de usuarios de la CFE",
+   "sello": "oficial",
+   "viz": {
+    "tipo": "dona",
+    "etiquetas": [
+     "Doméstico",
+     "Comercial",
+     "Agrícola",
+     "Industria",
+     "Otros"
+    ],
+    "valores": [
+     43729099,
+     4532876,
+     131601,
+     453783,
+     169590
+    ],
+    "colores": [
+     "#2a78d6",
+     "#6250d6",
+     "#1baf7a",
+     "#eb6834",
+     "#98A2B3"
+    ],
+    "u": "usuarios"
+   },
+   "explica": "La CFE atiende a 49.1 millones de usuarios; casi 9 de cada 10 son domésticos. El país tiene 99.64 % de electrificación.",
+   "fuentes": [
+    {
+     "doc": "CFE, Informe Anual 2024",
+     "pag": 95,
+     "extra": "usuarios"
+    },
+    {
+     "doc": "CFE, Informe Anual 2024",
+     "pag": "119-120",
+     "extra": "usuarios por tarifa"
+    },
+    {
+     "doc": "CFE, Informe Anual 2024",
+     "pag": 96,
+     "extra": "electrificación"
+    }
+   ]
+  },
+  {
+   "id": "d2",
+   "tema": "distribucion",
+   "pregunta": "¿Cuántos kilómetros de redes de distribución hay?",
+   "valor": 901,
+   "unidad": "mil km de redes",
+   "sello": "oficial",
+   "viz": {
+    "tipo": "barras100",
+    "etiquetas": [
+     "2024"
+    ],
+    "series": [
+     {
+      "n": "Media tensión",
+      "c": "#2F80ED",
+      "v": [
+       555336
+      ]
+     },
+     {
+      "n": "Baja tensión",
+      "c": "#FFC22E",
+      "v": [
+       345966
+      ]
+     }
+    ],
+    "u": "km",
+    "absoluto": true
+   },
+   "explica": "555,336 km de media tensión y 345,966 km de baja tensión: más de ocho veces la red de transmisión.",
+   "fuentes": [
+    {
+     "doc": "CFE, Informe Anual 2024",
+     "pag": 95,
+     "extra": "901 mil km"
+    },
+    {
+     "doc": "CFE, Informe Anual 2024",
+     "pag": 97,
+     "extra": "media y baja tensión"
+    }
+   ]
+  },
+  {
+   "id": "d3",
+   "tema": "distribucion",
+   "pregunta": "¿Qué porcentaje de energía se pierde en la distribución?",
+   "valor": 12.88,
+   "unidad": "% en media y baja tensión (2024)",
+   "sello": "oficial",
+   "viz": {
+    "tipo": "linea",
+    "etiquetas": [
+     2022,
+     2023,
+     2024
+    ],
+    "series": [
+     {
+      "n": "Pérdidas MT + BT",
+      "c": "#e34948",
+      "v": [
+       13.22,
+       12.88,
+       12.88
+      ]
+     }
+    ],
+    "u": "%"
+   },
+   "explica": "Incluye pérdidas técnicas (calor en cables y transformadores) y no técnicas (usos ilícitos, fallas de medición). Bajaron de 2022 a 2023 y se mantuvieron en 2024.",
+   "fuentes": [
+    {
+     "doc": "CFE, Informe Anual 2024",
+     "pag": 96,
+     "extra": "tablero de CFE Distribución"
+    }
+   ]
+  },
+  {
+   "id": "d4",
+   "tema": "distribucion",
+   "pregunta": "¿Cómo se reduce la tensión antes de llegar a casa?",
+   "valor": 1660977,
+   "unidad": "transformadores de distribución",
+   "sello": "oficial",
+   "viz": {
+    "tipo": "escalera",
+    "pasos": [
+     "400 / 230 kV",
+     "138-69 kV",
+     "Media tensión (> 1 kV)",
+     "Baja tensión (≤ 1 kV)"
+    ]
+   },
+   "explica": "La tensión baja por etapas: subestaciones de potencia pasan de alta a media tensión y los transformadores de poste o de banqueta, de media a baja. Mira la escalera y el simulador del Módulo 3.",
+   "fuentes": [
+    {
+     "doc": "CFE, Informe Anual 2024",
+     "pag": 97,
+     "extra": "transformadores"
+    },
+    {
+     "doc": "SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025)",
+     "pag": 21,
+     "extra": "definición de media y baja tensión"
+    }
+   ]
+  },
+  {
+   "id": "d5",
+   "tema": "distribucion",
+   "pregunta": "¿En qué se diferencia el consumo residencial del industrial?",
+   "valor": 138,
+   "unidad": "veces consume un usuario industrial frente a uno doméstico",
+   "sello": "calculo",
+   "viz": {
+    "tipo": "barras100",
+    "etiquetas": [
+     "Usuarios",
+     "Consumo"
+    ],
+    "series": [
+     {
+      "n": "Doméstico",
+      "c": "#2a78d6",
+      "v": [
+       89.2,
+       34.8
+      ]
+     },
+     {
+      "n": "Mediana y gran industria",
+      "c": "#eb6834",
+      "v": [
+       0.9,
+       49.7
+      ]
+     },
+     {
+      "n": "Resto",
+      "c": "#98A2B3",
+      "v": [
+       9.9,
+       15.6
+      ]
+     }
+    ],
+    "u": "%"
+   },
+   "explica": "Los domésticos son casi 9 de cada 10 usuarios pero consumen un tercio; la industria es menos del 1 % de los usuarios y consume la mitad de la energía del Suministro Básico.",
+   "fuentes": [
+    {
+     "doc": "CFE, Informe Anual 2024",
+     "pag": "119-120",
+     "extra": "usuarios y consumo por tarifa; porcentajes: cálculo propio (filas de industria corregidas, ver Módulo 3)"
+    }
+   ]
+  }
+ ],
+ "reforma": {
+  "linea": [
+   {
+    "fecha": "Antes de 2013",
+    "etapa": "antes",
+    "titulo": "La CFE, organismo con exclusividad del servicio público",
+    "actores": "CFE · CRE",
+    "texto": "Bajo la Ley del Servicio Público de Energía Eléctrica (LSPEE), los Productores Independientes de Energía debían vender toda su energía a la CFE; existían permisos de autoabastecimiento.",
+    "fuentes": [
+     {
+      "doc": "CFE, Informe Anual 2024",
+      "pag": 4,
+      "extra": "descripción de la LSPEE y los PIE"
+     }
+    ]
+   },
+   {
+    "fecha": "18 dic 2013",
+    "etapa": "reforma",
+    "titulo": "Declaratoria de la Comisión Permanente",
+    "actores": "Comisión Permanente · Dip. Ricardo Anaya Cortés, presidente",
+    "texto": "Con la aprobación de ambas cámaras y de la mayoría de las legislaturas estatales, se declaran reformados los artículos 25, 27 y 28.",
+    "fuentes": [
+     {
+      "doc": "DOF 20/12/2013, Decreto de reforma constitucional en materia de energía",
+      "pag": "1 y 9 de 9",
+      "extra": ""
+     }
+    ]
+   },
+   {
+    "fecha": "20 dic 2013",
+    "etapa": "reforma",
+    "titulo": "Se publica el decreto en el DOF",
+    "actores": "Enrique Peña Nieto · Miguel Ángel Osorio Chong",
+    "texto": "La planeación y el control del SEN y el servicio público de transmisión y distribución quedan como exclusivos de la Nación; las leyes definirán cómo participan los particulares en las demás actividades.",
+    "fuentes": [
+     {
+      "doc": "DOF 20/12/2013, Decreto de reforma constitucional en materia de energía",
+      "pag": "1-2 de 9",
+      "extra": "arts. 25, 27 y 28"
+     }
+    ]
+   },
+   {
+    "fecha": "11 ago 2014",
+    "etapa": "reforma",
+    "titulo": "Leyes secundarias: LIE y Ley de la CFE",
+    "actores": "Congreso de la Unión",
+    "texto": "La LIE abre la generación y la comercialización a la competencia, con acceso abierto a la red; el CENACE controla el sistema y opera el mercado; la CFE se vuelve empresa productiva del Estado.",
+    "fuentes": [
+     {
+      "doc": "Ley de la Industria Eléctrica (DOF 11/08/2014)",
+      "pag": "arts. 4 y 107",
+      "extra": ""
+     },
+     {
+      "doc": "Ley de la Comisión Federal de Electricidad (DOF 11/08/2014)",
+      "pag": "art. 2",
+      "extra": ""
+     }
+    ]
+   },
+   {
+    "fecha": "2016",
+    "etapa": "reforma",
+    "titulo": "Arranca el Mercado Eléctrico Mayorista",
+    "actores": "CENACE · CRE · SENER",
+    "texto": "El Plan señala el inicio del MEM en 2016 como una de las coyunturas del sector.",
+    "fuentes": [
+     {
+      "doc": "SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025)",
+      "pag": 13,
+      "extra": ""
+     }
+    ]
+   },
+   {
+    "fecha": "31 oct 2024",
+    "etapa": "2024",
+    "titulo": "Reforma constitucional de áreas y empresas estratégicas",
+    "actores": "Congreso de la Unión",
+    "texto": "Inicia el nuevo marco jurídico del sector.",
+    "fuentes": [
+     {
+      "doc": "SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025)",
+      "pag": 8,
+      "extra": ""
+     }
+    ]
+   },
+   {
+    "fecha": "18 mar 2025",
+    "etapa": "2024",
+    "titulo": "Nuevas leyes: Ley del Sector Eléctrico y Ley de la CFE",
+    "actores": "Congreso · Presidenta Claudia Sheinbaum Pardo",
+    "texto": "La CFE pasa a «empresa pública del Estado»; el Estado debe mantener al menos 54 % de la energía inyectada; el CENACE conserva el control operativo y la operación del mercado. Se abrogan la LIE 2014 y la LCFE 2014.",
+    "fuentes": [
+     {
+      "doc": "DOF 18/03/2025, Ley del Sector Eléctrico",
+      "pag": 97,
+      "extra": "LSE art. 12, fr. VI"
+     },
+     {
+      "doc": "DOF 18/03/2025, Ley del Sector Eléctrico",
+      "pag": 118,
+      "extra": "art. 123"
+     },
+     {
+      "doc": "DOF 18/03/2025, Ley del Sector Eléctrico",
+      "pag": "2 y 41",
+      "extra": "LEPECFE"
+     }
+    ]
+   }
+  ],
+  "estructura": [
+   {
+    "act": "Generación",
+    "antes": "La CFE y Productores Independientes que le vendían toda su energía (LSPEE).",
+    "r2013": "Libre competencia: cualquier generador con permiso de la CRE.",
+    "r2025": "Participan privados, pero el Estado debe mantener al menos 54 % de la energía inyectada.",
+    "f": [
+     {
+      "doc": "CFE, Informe Anual 2024",
+      "pag": 4,
+      "extra": ""
+     },
+     {
+      "doc": "Ley de la Industria Eléctrica (DOF 11/08/2014)",
+      "pag": "art. 4",
+      "extra": ""
+     },
+     {
+      "doc": "DOF 18/03/2025, Ley del Sector Eléctrico",
+      "pag": 97,
+      "extra": ""
+     }
+    ]
+   },
+   {
+    "act": "Transmisión",
+    "antes": "Servicio público a cargo de la CFE.",
+    "r2013": "Exclusiva de la Nación; el Estado puede contratar a particulares.",
+    "r2025": "Sigue reservada al Estado.",
+    "f": [
+     {
+      "doc": "DOF 20/12/2013, Decreto de reforma constitucional en materia de energía",
+      "pag": "1-2 de 9",
+      "extra": "art. 27"
+     },
+     {
+      "doc": "DOF 18/03/2025, Ley del Sector Eléctrico",
+      "pag": 97,
+      "extra": "Ley del Sector Eléctrico"
+     }
+    ]
+   },
+   {
+    "act": "Distribución",
+    "antes": "Servicio público a cargo de la CFE.",
+    "r2013": "Exclusiva de la Nación; el Estado puede contratar a particulares.",
+    "r2025": "Sigue reservada al Estado.",
+    "f": [
+     {
+      "doc": "DOF 20/12/2013, Decreto de reforma constitucional en materia de energía",
+      "pag": "1-2 de 9",
+      "extra": "art. 27"
+     }
+    ]
+   },
+   {
+    "act": "Comercialización",
+    "antes": "La CFE vendía a todos los usuarios del servicio público.",
+    "r2013": "Libre competencia; nace el suministro calificado.",
+    "r2025": "La CFE opera CFE Suministrador de Servicios Básicos y CFE Calificados.",
+    "f": [
+     {
+      "doc": "Ley de la Industria Eléctrica (DOF 11/08/2014)",
+      "pag": "art. 4",
+      "extra": ""
+     },
+     {
+      "doc": "CFE, Informe Anual 2024",
+      "pag": 2,
+      "extra": "índice de subsidiarias"
+     }
+    ]
+   },
+   {
+    "act": "Control del sistema",
+    "antes": "Centro de control dentro de la CFE.",
+    "r2013": "CENACE, organismo público descentralizado: control operativo, mercado y acceso abierto a la red.",
+    "r2025": "El CENACE conserva el control operativo y la operación del MEM.",
+    "f": [
+     {
+      "doc": "DOF 20/12/2013, Decreto de reforma constitucional en materia de energía",
+      "pag": "7-8 de 9",
+      "extra": "transitorio 16, inciso b"
+     },
+     {
+      "doc": "DOF 18/03/2025, Ley del Sector Eléctrico",
+      "pag": 118,
+      "extra": "art. 123"
+     }
+    ]
+   },
+   {
+    "act": "CFE",
+    "antes": "Organismo descentralizado.",
+    "r2013": "Empresa productiva del Estado, con estricta separación legal en subsidiarias (Generación I-VI, Transmisión, Distribución, Suministro).",
+    "r2025": "Empresa pública del Estado.",
+    "f": [
+     {
+      "doc": "DOF 20/12/2013, Decreto de reforma constitucional en materia de energía",
+      "pag": "1 y 5 de 9",
+      "extra": "transitorios 3 y 10"
+     },
+     {
+      "doc": "Ley de la Comisión Federal de Electricidad (DOF 11/08/2014)",
+      "pag": "art. 2",
+      "extra": ""
+     },
+     {
+      "doc": "DOF 18/03/2025, Ley del Sector Eléctrico",
+      "pag": "2 y 41",
+      "extra": ""
+     }
+    ]
+   }
+  ],
+  "repercusiones": [
+   {
+    "n": "Participación de la CFE y de los privados",
+    "viz": "participacion",
+    "datos": [
+     {
+      "anio": 2018,
+      "v": 53,
+      "n": "CFE en la generación (dato de la CFE)",
+      "f": {
+       "doc": "CFE, Informe Anual 2024",
+       "pag": 4,
+       "extra": ""
+      }
+     },
+     {
+      "anio": 2022,
+      "v": 41,
+      "n": "CFE en la energía inyectada",
+      "f": {
+       "doc": "CFE, Informe Anual 2022",
+       "pag": 34,
+       "extra": ""
+      }
+     },
+     {
+      "anio": 2030,
+      "v": 59,
+      "n": "Empresas públicas, meta del Plan",
+      "f": {
+       "doc": "SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025)",
+       "pag": 59,
+       "extra": ""
+      }
+     },
+     {
+      "anio": 2025,
+      "v": 54,
+      "n": "Mínimo legal del Estado",
+      "f": {
+       "doc": "DOF 18/03/2025, Ley del Sector Eléctrico",
+       "pag": 97,
+       "extra": ""
+      }
+     }
+    ],
+    "texto": "Según la CFE, su participación bajó a 53 % en 2018 y se proyectaba 29 % para 2024; en 2022 inyectó 41 % de la energía del SEN. La ley de 2025 fija un mínimo de 54 % para el Estado y el Plan proyecta 59 % en 2030.",
+    "f": [
+     {
+      "doc": "CFE, Informe Anual 2024",
+      "pag": 4,
+      "extra": ""
+     },
+     {
+      "doc": "CFE, Informe Anual 2022",
+      "pag": 34,
+      "extra": ""
+     },
+     {
+      "doc": "DOF 18/03/2025, Ley del Sector Eléctrico",
+      "pag": 97,
+      "extra": ""
+     },
+     {
+      "doc": "SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025)",
+      "pag": 59,
+      "extra": ""
+     }
+    ]
+   },
+   {
+    "n": "Capacidad instalada",
+    "viz": "capacidad",
+    "anios": [
+     2010,
+     2011,
+     2012,
+     2013,
+     2014,
+     2015,
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024
+    ],
+    "total": [
+     55090,
+     54656,
+     55692,
+     57413,
+     62359,
+     63545,
+     73242,
+     68051,
+     72958,
+     78447,
+     83122,
+     86154,
+     87131,
+     89007,
+     90543
+    ],
+    "limpias": [
+     14383,
+     14302,
+     15290,
+     15516,
+     18593,
+     19079,
+     20911,
+     20884,
+     23947,
+     26900,
+     29507,
+     30813,
+     31369,
+     32449,
+     33441
+    ],
+    "texto": "La capacidad del país pasó de 55,090 MW en 2010 a 90,543 MW en 2024 (+64 %). De 2017 a 2021 sumó 18,103 MW. La tabla muestra un salto en 2016 y una baja en 2017; se presenta tal como está publicada.",
+    "f": [
+     {
+      "doc": "SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025)",
+      "pag": 19,
+      "extra": "Tabla 2.1"
+     }
+    ]
+   },
+   {
+    "n": "Energías limpias",
+    "viz": "limpias",
+    "anios": [
+     2010,
+     2011,
+     2012,
+     2013,
+     2014,
+     2015,
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024
+    ],
+    "eol": [
+     1298,
+     1675,
+     3688,
+     4243,
+     7189,
+     8991,
+     10295,
+     10456,
+     12435,
+     16727,
+     19703,
+     21075,
+     20314,
+     20700,
+     19987
+    ],
+    "sol": [
+     0,
+     0,
+     3,
+     20,
+     83,
+     45,
+     151,
+     349,
+     2176,
+     8394,
+     13528,
+     17069,
+     16290,
+     18210,
+     18640
+    ],
+    "pct": [
+     0.5,
+     0.6,
+     1.3,
+     1.5,
+     2.6,
+     3.1,
+     3.5,
+     3.6,
+     4.7,
+     7.9,
+     10.6,
+     11.8,
+     11.0,
+     11.2,
+     11.0
+    ],
+    "texto": "El decreto de 2013 ordenó obligaciones de energías limpias. La eólica y la solar pasaron de 1.5 % de la generación en 2013 a 11.0 % en 2024.",
+    "f": [
+     {
+      "doc": "DOF 20/12/2013, Decreto de reforma constitucional en materia de energía",
+      "pag": "8 de 9",
+      "extra": "transitorio 17"
+     },
+     {
+      "doc": "SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025)",
+      "pag": 20,
+      "extra": "Tabla 2.2; porcentajes: cálculo propio"
+     }
+    ]
+   },
+   {
+    "n": "Organización del mercado eléctrico",
+    "viz": "mercado",
+    "roles": [
+     {
+      "q": "Generadores",
+      "t": "Compiten libremente; cualquier generador con permiso puede vender su energía.",
+      "f": {
+       "doc": "Ley de la Industria Eléctrica (DOF 11/08/2014)",
+       "pag": "art. 4",
+       "extra": ""
+      }
+     },
+     {
+      "q": "Red de transmisión y distribución",
+      "t": "Acceso abierto y no indebidamente discriminatorio para todos los participantes.",
+      "f": {
+       "doc": "Ley de la Industria Eléctrica (DOF 11/08/2014)",
+       "pag": "art. 4",
+       "extra": ""
+      }
+     },
+     {
+      "q": "CENACE",
+      "t": "Ejerce el control operativo del SEN y opera el Mercado Eléctrico Mayorista.",
+      "f": {
+       "doc": "Ley de la Industria Eléctrica (DOF 11/08/2014)",
+       "pag": "art. 107",
+       "extra": ""
+      }
+     },
+     {
+      "q": "Suministradores",
+      "t": "La comercialización se abre: aparece el suministro calificado junto al básico.",
+      "f": {
+       "doc": "Ley de la Industria Eléctrica (DOF 11/08/2014)",
+       "pag": "art. 4",
+       "extra": ""
+      }
+     },
+     {
+      "q": "Mercado Eléctrico Mayorista",
+      "t": "Inicia operaciones en 2016.",
+      "f": {
+       "doc": "SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025)",
+       "pag": 13,
+       "extra": ""
+      }
+     },
+     {
+      "q": "Con la ley de 2025",
+      "t": "El CENACE conserva el control operativo y la operación del mercado.",
+      "f": {
+       "doc": "DOF 18/03/2025, Ley del Sector Eléctrico",
+       "pag": 118,
+       "extra": "art. 123"
+      }
+     }
+    ],
+    "texto": "La reforma separó las actividades: la generación y la comercialización pasaron a competencia, la red quedó con acceso abierto y un organismo independiente de la CFE, el CENACE, quedó a cargo del sistema y del mercado.",
+    "f": [
+     {
+      "doc": "Ley de la Industria Eléctrica (DOF 11/08/2014)",
+      "pag": "arts. 4 y 107",
+      "extra": ""
+     },
+     {
+      "doc": "SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025)",
+      "pag": 13,
+      "extra": ""
+     },
+     {
+      "doc": "DOF 18/03/2025, Ley del Sector Eléctrico",
+      "pag": 118,
+      "extra": ""
+     }
+    ]
+   },
+   {
+    "n": "Resultados y controversias: tarifas, inversión y confiabilidad",
+    "viz": "tarifas",
+    "precios": [
+     {
+      "s": "Residencial",
+      "min": 1.1,
+      "amin": 2010,
+      "v24": 1.58
+     },
+     {
+      "s": "Empresa mediana",
+      "min": 1.46,
+      "amin": 2015,
+      "v24": 2.75
+     },
+     {
+      "s": "Gran industria",
+      "min": 0.91,
+      "amin": 2015,
+      "v24": 2.14
+     }
+    ],
+    "defensores": "La reforma atrajo inversión privada en generación: la capacidad eólica y solar pasó de cerca de 1,400 MW en 2013 a más de 15 mil MW en 2024.",
+    "criticos": "La CFE sostiene que el esquema de autoabastecimiento «se pervirtió», que los productores privados recibieron un «despacho privilegiado» en su detrimento y que se inhibió la inversión en sus centrales, con riesgo para la confiabilidad.",
+    "texto": "Los precios medios de residencial, empresa mediana y gran industria alcanzaron en 2024 su valor más alto en 15 años (en pesos corrientes). Del lado del Suministro Básico, la Tarifa Media Nacional subió 2.9 % anual de 2019 a 2024, menos que la inflación (4.8 %).",
+    "f": [
+     {
+      "doc": "SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025)",
+      "pag": "38-39",
+      "extra": "sección 2.6.2"
+     },
+     {
+      "doc": "SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025)",
+      "pag": 19,
+      "extra": "Tabla 2.1"
+     },
+     {
+      "doc": "CFE, Informe Anual 2024",
+      "pag": 4,
+      "extra": ""
+     }
+    ]
+   }
+  ]
+ }
+}

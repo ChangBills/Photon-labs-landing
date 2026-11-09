@@ -1,0 +1,103 @@
+{
+ "quejas_profeco": {
+  "anios": [
+   2022,
+   2023,
+   2024
+  ],
+  "datos": {
+   "Baja California": [
+    36,
+    28,
+    54
+   ],
+   "Noroeste": [
+    56,
+    72,
+    133
+   ],
+   "Norte": [
+    164,
+    184,
+    254
+   ],
+   "Golfo Norte": [
+    105,
+    91,
+    122
+   ],
+   "Centro Occidente": [
+    39,
+    33,
+    27
+   ],
+   "Centro Sur": [
+    1199,
+    1263,
+    832
+   ],
+   "Oriente": [
+    814,
+    965,
+    924
+   ],
+   "Sureste": [
+    537,
+    525,
+    542
+   ],
+   "Bajío": [
+    190,
+    144,
+    196
+   ],
+   "Golfo Centro": [
+    67,
+    83,
+    54
+   ],
+   "Centro Oriente": [
+    335,
+    110,
+    157
+   ],
+   "Peninsular": [
+    357,
+    432,
+    441
+   ],
+   "Jalisco": [
+    972,
+    355,
+    257
+   ],
+   "Valle de México Norte": [
+    653,
+    538,
+    353
+   ],
+   "Valle de México Centro": [
+    1473,
+    1329,
+    1023
+   ],
+   "Valle de México Sur": [
+    3134,
+    2870,
+    2013
+   ]
+  },
+  "nacional": [
+   10131,
+   9022,
+   7382
+  ],
+  "fuente": "CFE24",
+  "pagina": 131,
+  "nota": "El informe abrevia «VM Norte/Centro/Sur»; se escriben como Valle de México Norte/Centro/Sur."
+ },
+ "solicitudes_gd_texto": {
+  "texto": "Solicitudes de conexión de Generación Distribuida (por ejemplo, paneles solares en casa) registradas por división.",
+  "pagina": 123
+ }
+}

@@ -1,0 +1,786 @@
+{
+ "_meta": {
+  "generado_por": "scripts/construir_transmision.py",
+  "contorno": "Natural Earth 1:10m Admin 1 (dominio público), simplificado",
+  "ciudades": "Natural Earth 1:10m Populated Places (dominio público)"
+ },
+ "gcr": [
+  {
+   "id": "CEN",
+   "nombre": "Central",
+   "sistema": "SIN",
+   "territorio": 3.8,
+   "poblacion_pct": 24.8,
+   "poblacion_mill": 32.8,
+   "usuarios_pct": 21.2,
+   "kwh_hab": 1777,
+   "localidades": 212,
+   "estados": [
+    "Guerrero",
+    "Hidalgo",
+    "Estado de México",
+    "Michoacán",
+    "Puebla",
+    "Ciudad de México"
+   ],
+   "nota_edos": "La Ciudad de México se incluye porque el Plan indica que la GCR Central atiende la Zona Metropolitana de la Ciudad de México (p. 78).",
+   "pagina": 27,
+   "pagina_estados": 27
+  },
+  {
+   "id": "ORI",
+   "nombre": "Oriental",
+   "sistema": "SIN",
+   "territorio": 18.5,
+   "poblacion_pct": 25.7,
+   "poblacion_mill": 34.1,
+   "usuarios_pct": 25.3,
+   "kwh_hab": 1680,
+   "localidades": 4160,
+   "estados": [
+    "Chiapas",
+    "Guerrero",
+    "Morelos",
+    "Oaxaca",
+    "Puebla",
+    "Tabasco",
+    "Tlaxcala",
+    "Veracruz"
+   ],
+   "pagina": 28,
+   "pagina_estados": 28
+  },
+  {
+   "id": "OCC",
+   "nombre": "Occidental",
+   "sistema": "SIN",
+   "territorio": 15.0,
+   "poblacion_pct": 21.3,
+   "poblacion_mill": 28.2,
+   "usuarios_pct": 24.2,
+   "kwh_hab": 2709,
+   "localidades": 3010,
+   "estados": [
+    "Aguascalientes",
+    "Colima",
+    "Guanajuato",
+    "Hidalgo",
+    "Jalisco",
+    "Michoacán",
+    "Nayarit",
+    "Querétaro",
+    "San Luis Potosí",
+    "Zacatecas"
+   ],
+   "pagina": 29,
+   "pagina_estados": 29
+  },
+  {
+   "id": "NOR",
+   "nombre": "Noroeste",
+   "sistema": "SIN",
+   "territorio": 12.1,
+   "poblacion_pct": 4.7,
+   "poblacion_mill": 6.3,
+   "usuarios_pct": 4.7,
+   "kwh_hab": 4487,
+   "localidades": 617,
+   "estados": [
+    "Sinaloa",
+    "Sonora"
+   ],
+   "pagina": 30,
+   "pagina_estados": 30
+  },
+  {
+   "id": "NTE",
+   "nombre": "Norte",
+   "sistema": "SIN",
+   "territorio": 21.2,
+   "poblacion_pct": 5.2,
+   "poblacion_mill": 6.9,
+   "usuarios_pct": 5.0,
+   "kwh_hab": 4604,
+   "localidades": 2357,
+   "estados": [
+    "Chihuahua",
+    "Coahuila",
+    "Durango",
+    "Zacatecas"
+   ],
+   "pagina": 30,
+   "pagina_estados": 31
+  },
+  {
+   "id": "NES",
+   "nombre": "Noreste",
+   "sistema": "SIN",
+   "territorio": 14.8,
+   "poblacion_pct": 10.3,
+   "poblacion_mill": 13.6,
+   "usuarios_pct": 10.7,
+   "kwh_hab": 4640,
+   "localidades": 767,
+   "estados": [
+    "Coahuila",
+    "Hidalgo",
+    "Nuevo León",
+    "San Luis Potosí",
+    "Tamaulipas",
+    "Veracruz"
+   ],
+   "pagina": 31,
+   "pagina_estados": 31
+  },
+  {
+   "id": "PEN",
+   "nombre": "Peninsular",
+   "sistema": "SIN",
+   "territorio": 7.2,
+   "poblacion_pct": 4.2,
+   "poblacion_mill": 5.5,
+   "usuarios_pct": 4.6,
+   "kwh_hab": 3038,
+   "localidades": 1001,
+   "estados": [
+    "Campeche",
+    "Quintana Roo",
+    "Yucatán"
+   ],
+   "pagina": 32,
+   "pagina_estados": 32
+  },
+  {
+   "id": "BC",
+   "nombre": "Baja California",
+   "sistema": "SIBC · SIBCS · SIMUL",
+   "territorio": null,
+   "poblacion_pct": null,
+   "poblacion_mill": null,
+   "usuarios_pct": null,
+   "kwh_hab": null,
+   "localidades": 1056,
+   "estados": [
+    "Baja California",
+    "Baja California Sur",
+    "Sonora"
+   ],
+   "nota": "El Plan da cifras por sistema: SIBC 3.6 % del territorio, 4.1 millones de personas, 3.5 % de usuarios, 4,139 kWh/hab; SIBCS y SIMUL juntos 3.8 % del territorio, 0.9 millones, 0.8 % de usuarios, 3,941 kWh/hab.",
+   "pagina": 33,
+   "pagina_estados": 33
+  }
+ ],
+ "subsistemas_bc": [
+  {
+   "id": "SIBC",
+   "nombre": "Sistema Interconectado Baja California",
+   "territorio": 3.6,
+   "poblacion_pct": 3.1,
+   "poblacion_mill": 4.1,
+   "usuarios_pct": 3.5,
+   "kwh_hab": 4139,
+   "pagina": 33
+  },
+  {
+   "id": "SIBCS+SIMUL",
+   "nombre": "SIBCS y SIMUL en conjunto",
+   "territorio": 3.8,
+   "poblacion_pct": 0.7,
+   "poblacion_mill": 0.9,
+   "usuarios_pct": 0.8,
+   "kwh_hab": 3941,
+   "reparto_demanda": {
+    "SIBCS": 95.3,
+    "SIMUL": 4.7
+   },
+   "pagina": 33
+  }
+ ],
+ "zonas": [
+  {
+   "nombre": "Ciudad de México",
+   "sistema": "SIN",
+   "gcr": "CEN",
+   "texto": "La GCR Central atiende la Zona Metropolitana de la Ciudad de México con un anillo de doble circuito de 400 kV.",
+   "fuente": "PLAN",
+   "pagina": 78,
+   "lat": 19.444388,
+   "lon": -99.132934
+  },
+  {
+   "nombre": "Coatzacoalcos",
+   "sistema": "SIN",
+   "gcr": "ORI",
+   "texto": "La zona Coatzacoalcos concentró 28.8 % de la demanda de la región Oriente.",
+   "fuente": "PLAN",
+   "pagina": 28,
+   "lat": 18.120404,
+   "lon": -94.42001
+  },
+  {
+   "nombre": "Villahermosa",
+   "sistema": "SIN",
+   "gcr": "ORI",
+   "texto": "Villahermosa es la zona con más demanda de la región Sureste (25.4 %).",
+   "fuente": "PLAN",
+   "pagina": 28,
+   "lat": 17.999972,
+   "lon": -92.899973
+  },
+  {
+   "nombre": "Puebla",
+   "sistema": "SIN",
+   "gcr": "ORI",
+   "texto": "Puebla es la zona con más demanda de la región Centro Oriente (42.6 %).",
+   "fuente": "PLAN",
+   "pagina": 28,
+   "lat": 19.032594,
+   "lon": -98.203737
+  },
+  {
+   "nombre": "Guadalajara",
+   "sistema": "SIN",
+   "gcr": "OCC",
+   "texto": "La región Jalisco representó 28.6 % de la demanda máxima de la GCR Occidental.",
+   "fuente": "PLAN",
+   "pagina": 29,
+   "lat": 20.671962,
+   "lon": -103.33198
+  },
+  {
+   "nombre": "Hermosillo",
+   "sistema": "SIN",
+   "gcr": "NOR",
+   "texto": "La zona Hermosillo tiene la mayor participación en la demanda de la GCR Noroeste (21.3 %).",
+   "fuente": "PLAN",
+   "pagina": 30,
+   "lat": 29.098881,
+   "lon": -110.954065
+  },
+  {
+   "nombre": "Culiacán",
+   "sistema": "SIN",
+   "gcr": "NOR",
+   "texto": "Culiacán representa 16.5 % de la demanda de la GCR Noroeste.",
+   "fuente": "PLAN",
+   "pagina": 30,
+   "lat": 24.831941,
+   "lon": -107.381914
+  },
+  {
+   "nombre": "Torreón",
+   "sistema": "SIN",
+   "gcr": "NTE",
+   "texto": "La zona Torreón representa 24 % de la demanda de la GCR Norte.",
+   "fuente": "PLAN",
+   "pagina": 30,
+   "lat": 25.571999,
+   "lon": -103.421949
+  },
+  {
+   "nombre": "Ciudad Juárez",
+   "sistema": "SIN",
+   "gcr": "NTE",
+   "texto": "Ciudad Juárez representa 21.9 % de la demanda de la GCR Norte.",
+   "fuente": "PLAN",
+   "pagina": 30,
+   "lat": 31.692323,
+   "lon": -106.491994
+  },
+  {
+   "nombre": "Monterrey",
+   "sistema": "SIN",
+   "gcr": "NES",
+   "texto": "La zona Monterrey representa 47.4 % de la demanda máxima de la GCR Noreste.",
+   "fuente": "PLAN",
+   "pagina": 31,
+   "lat": 25.671941,
+   "lon": -100.331931
+  },
+  {
+   "nombre": "Mérida",
+   "sistema": "SIN",
+   "gcr": "PEN",
+   "texto": "La zona Mérida representa 30.3 % de la demanda máxima de la GCR Peninsular.",
+   "fuente": "PLAN",
+   "pagina": 32,
+   "lat": 20.968585,
+   "lon": -89.618579
+  },
+  {
+   "nombre": "Cancún",
+   "sistema": "SIN",
+   "gcr": "PEN",
+   "texto": "Cancún representa 25.1 % de la demanda máxima de la GCR Peninsular.",
+   "fuente": "PLAN",
+   "pagina": 32,
+   "lat": 21.16996,
+   "lon": -86.830008
+  },
+  {
+   "nombre": "Mexicali",
+   "sistema": "SIBC",
+   "gcr": "BC",
+   "texto": "La zona Mexicali representa 48.8 % de la demanda máxima del SIBC.",
+   "fuente": "PLAN",
+   "pagina": 33,
+   "lat": 32.651928,
+   "lon": -115.481962
+  },
+  {
+   "nombre": "Tijuana",
+   "sistema": "SIBC",
+   "gcr": "BC",
+   "texto": "Tijuana-Tecate representa 32.0 % de la demanda máxima del SIBC.",
+   "fuente": "PLAN",
+   "pagina": 33,
+   "lat": 32.501963,
+   "lon": -117.081942
+  },
+  {
+   "nombre": "Ensenada",
+   "sistema": "SIBC",
+   "gcr": "BC",
+   "texto": "Zona del SIBC donde el Plan prevé formar un anillo con Mexicali.",
+   "fuente": "PLAN",
+   "pagina": 80,
+   "lat": 31.869978,
+   "lon": -116.619998
+  },
+  {
+   "nombre": "La Paz",
+   "sistema": "SIBCS",
+   "gcr": "BC",
+   "texto": "Zona del SIBCS; la SE El Palmar restringe la transmisión entre La Paz y Los Cabos.",
+   "fuente": "PLAN",
+   "pagina": 81,
+   "lat": 24.139959,
+   "lon": -110.319995
+  },
+  {
+   "nombre": "Cabo San Lucas",
+   "sistema": "SIBCS",
+   "gcr": "BC",
+   "texto": "Zona Los Cabos, la de mayor crecimiento del SIBCS en 2024 (4.2 %).",
+   "fuente": "PLAN",
+   "pagina": 33,
+   "lat": 22.892756,
+   "lon": -109.904516
+  },
+  {
+   "nombre": "Santa Rosalía",
+   "sistema": "SIMUL",
+   "gcr": "BC",
+   "texto": "Zona del SIMUL con mayor crecimiento en 2024 (2.4 %).",
+   "fuente": "PLAN",
+   "pagina": 33,
+   "lat": 27.317078,
+   "lon": -112.283364
+  },
+  {
+   "nombre": "Guerrero Negro",
+   "sistema": "SIMUL",
+   "gcr": "BC",
+   "texto": "Zona del SIMUL; el Plan estudia una solución integral de suministro de largo plazo (E25-MU1).",
+   "fuente": "PLAN",
+   "pagina": 84,
+   "lat": 27.990422,
+   "lon": -114.169967
+  }
+ ],
+ "metas": {
+  "instruidas": {
+   "por_tension": {
+    "tensiones": [
+     "400 kV",
+     "230 kV",
+     "161 kV",
+     "138 kV",
+     "115 kV",
+     "85 kV",
+     "69 kV",
+     "34.5 kV",
+     "13.8 kV"
+    ],
+    "km_c": [
+     3327.5,
+     1235.2,
+     null,
+     38.0,
+     1589.5,
+     4.2,
+     97.2,
+     31.5,
+     18.6
+    ],
+    "km_c_total": 6341.7,
+    "mva": [
+     10000.0,
+     9622.9,
+     null,
+     0.0,
+     136.2,
+     null,
+     null,
+     null,
+     null
+    ],
+    "mva_total": 19759.1,
+    "mvar": [
+     5520.2,
+     1908.0,
+     42.0,
+     277.0,
+     3998.2,
+     0.0,
+     280.6,
+     null,
+     77.4
+    ],
+    "mvar_total": 12103.4,
+    "pagina": 76
+   },
+   "por_entidad": [
+    {
+     "entidad": "Aguascalientes",
+     "km_c": null,
+     "mva": null,
+     "mvar": 28.0
+    },
+    {
+     "entidad": "Baja California",
+     "km_c": 636.5,
+     "mva": 1605.0,
+     "mvar": 345.5
+    },
+    {
+     "entidad": "Baja California Sur",
+     "km_c": 156.0,
+     "mva": 100.0,
+     "mvar": 175.0
+    },
+    {
+     "entidad": "Campeche",
+     "km_c": 134.8,
+     "mva": 581.2,
+     "mvar": null
+    },
+    {
+     "entidad": "Chiapas",
+     "km_c": 318.7,
+     "mva": 900.0,
+     "mvar": 320.0
+    },
+    {
+     "entidad": "Chihuahua",
+     "km_c": 495.8,
+     "mva": 2325.0,
+     "mvar": 1405.0
+    },
+    {
+     "entidad": "Ciudad de México",
+     "km_c": null,
+     "mva": null,
+     "mvar": null
+    },
+    {
+     "entidad": "Coahuila",
+     "km_c": 696.3,
+     "mva": 700.0,
+     "mvar": 619.2
+    },
+    {
+     "entidad": "Colima",
+     "km_c": null,
+     "mva": 200.0,
+     "mvar": 200.0
+    },
+    {
+     "entidad": "Durango",
+     "km_c": null,
+     "mva": null,
+     "mvar": 82.5
+    },
+    {
+     "entidad": "Estado de México",
+     "km_c": 332.9,
+     "mva": 875.0,
+     "mvar": 275.0
+    },
+    {
+     "entidad": "Guanajuato",
+     "km_c": 349.2,
+     "mva": 1408.3,
+     "mvar": 495.0
+    },
+    {
+     "entidad": "Guerrero",
+     "km_c": null,
+     "mva": null,
+     "mvar": null
+    },
+    {
+     "entidad": "Hidalgo",
+     "km_c": 373.6,
+     "mva": 133.3,
+     "mvar": 30.0
+    },
+    {
+     "entidad": "Jalisco",
+     "km_c": 151.5,
+     "mva": 1425.0,
+     "mvar": 374.9
+    },
+    {
+     "entidad": "Michoacán",
+     "km_c": 81.0,
+     "mva": 600.0,
+     "mvar": 69.6
+    },
+    {
+     "entidad": "Morelos",
+     "km_c": 4.0,
+     "mva": 500.0,
+     "mvar": null
+    },
+    {
+     "entidad": "Nayarit",
+     "km_c": 457.8,
+     "mva": 725.0,
+     "mvar": 93.7
+    },
+    {
+     "entidad": "Nuevo León",
+     "km_c": 74.7,
+     "mva": 1100.0,
+     "mvar": 142.5
+    },
+    {
+     "entidad": "Oaxaca",
+     "km_c": 265.0,
+     "mva": null,
+     "mvar": 913.6
+    },
+    {
+     "entidad": "Puebla",
+     "km_c": 0.2,
+     "mva": null,
+     "mvar": 597.2
+    },
+    {
+     "entidad": "Querétaro",
+     "km_c": 137.6,
+     "mva": 1350.0,
+     "mvar": 1065.0
+    },
+    {
+     "entidad": "Quintana Roo",
+     "km_c": 302.8,
+     "mva": 1090.0,
+     "mvar": 1096.1
+    },
+    {
+     "entidad": "San Luis Potosí",
+     "km_c": 99.1,
+     "mva": 733.3,
+     "mvar": 15.0
+    },
+    {
+     "entidad": "Sinaloa",
+     "km_c": 662.5,
+     "mva": 958.0,
+     "mvar": 1055.0
+    },
+    {
+     "entidad": "Sonora",
+     "km_c": 164.9,
+     "mva": 1425.0,
+     "mvar": 786.1
+    },
+    {
+     "entidad": "Tabasco",
+     "km_c": 1.5,
+     "mva": null,
+     "mvar": 78.5
+    },
+    {
+     "entidad": "Tamaulipas",
+     "km_c": 71.5,
+     "mva": 225.0,
+     "mvar": 277.0
+    },
+    {
+     "entidad": "Tlaxcala",
+     "km_c": 24.5,
+     "mva": null,
+     "mvar": null
+    },
+    {
+     "entidad": "Veracruz",
+     "km_c": 283.4,
+     "mva": 500.0,
+     "mvar": 784.1
+    },
+    {
+     "entidad": "Yucatán",
+     "km_c": 62.8,
+     "mva": 300.0,
+     "mvar": 90.0
+    },
+    {
+     "entidad": "Zacatecas",
+     "km_c": 3.1,
+     "mva": null,
+     "mvar": 690.0
+    }
+   ],
+   "pagina_entidad": 76,
+   "nota": "«---» en la tabla del Plan se muestra como «sin meta registrada». El texto del Plan dice 12,103.1 MVAr y la Tabla 4.10/4.11 suma 12,103.4 MVAr; se usa la tabla."
+  },
+  "identificadas_2025": {
+   "km_c_total": 224.9,
+   "mva_total": 3921.3,
+   "mvar_total": 1527.5,
+   "tensiones": "230 kV y 115 kV",
+   "por_entidad": [
+    {
+     "entidad": "Baja California",
+     "km_c": 12.2,
+     "mva": 505.0,
+     "mvar": 30.0
+    },
+    {
+     "entidad": "Chiapas",
+     "km_c": 65.0,
+     "mva": null,
+     "mvar": 22.5
+    },
+    {
+     "entidad": "Chihuahua",
+     "km_c": 36.0,
+     "mva": 533.3,
+     "mvar": 365.0
+    },
+    {
+     "entidad": "Coahuila",
+     "km_c": null,
+     "mva": 200.0,
+     "mvar": 30.0
+    },
+    {
+     "entidad": "Durango",
+     "km_c": 8.0,
+     "mva": null,
+     "mvar": 30.0
+    },
+    {
+     "entidad": "Jalisco",
+     "km_c": null,
+     "mva": 100.0,
+     "mvar": 30.0
+    },
+    {
+     "entidad": "Nayarit",
+     "km_c": null,
+     "mva": 525.0,
+     "mvar": null
+    },
+    {
+     "entidad": "Nuevo León",
+     "km_c": 1.8,
+     "mva": 750.0,
+     "mvar": 697.5
+    },
+    {
+     "entidad": "Oaxaca",
+     "km_c": 5.0,
+     "mva": 100.0,
+     "mvar": 15.0
+    },
+    {
+     "entidad": "San Luis Potosí",
+     "km_c": 96.0,
+     "mva": null,
+     "mvar": null
+    },
+    {
+     "entidad": "Sinaloa",
+     "km_c": 1.0,
+     "mva": null,
+     "mvar": null
+    },
+    {
+     "entidad": "Sonora",
+     "km_c": 0.0,
+     "mva": 758.0,
+     "mvar": 0.0
+    },
+    {
+     "entidad": "Tabasco",
+     "km_c": 0.0,
+     "mva": 450.0,
+     "mvar": 307.5
+    }
+   ],
+   "pagina": 78
+  }
+ },
+ "comercio": {
+  "importaciones_gwh": 2469,
+  "exportaciones_gwh": 2818,
+  "por_gcr": {
+   "BC": {
+    "imp": 71.9,
+    "exp": 25.7
+   },
+   "ORI": {
+    "imp": 2.0,
+    "exp": 58.5
+   },
+   "PEN": {
+    "imp": 0.0,
+    "exp": 14.5
+   },
+   "NES": {
+    "imp": 26.1,
+    "exp": 1.3
+   }
+  },
+  "paises": "Estados Unidos de América, Belice y Guatemala",
+  "fuente": "PLAN",
+  "pagina": 15,
+  "nota": "La Peninsular «no presenta importaciones» según el texto; se muestra 0 %."
+ },
+ "conexion": [
+  {
+   "texto": "Las GCR Central, Noreste, Noroeste, Norte, Occidental, Oriental y Peninsular conforman el Sistema Interconectado Nacional (SIN).",
+   "fuente": "PLAN",
+   "pagina": 12
+  },
+  {
+   "texto": "La GCR Baja California contiene tres sistemas interconectados: SIBC, SIBCS y SIMUL.",
+   "fuente": "PLAN",
+   "pagina": 12
+  },
+  {
+   "texto": "El sistema eléctrico de Baja California Sur «se encuentra aislado del Sistema Interconectado Nacional».",
+   "fuente": "CFE23",
+   "pagina": 102
+  },
+  {
+   "texto": "La CFE lo llama «Sistema Eléctrico Aislado Baja California Sur».",
+   "fuente": "CFE24",
+   "pagina": 281
+  },
+  {
+   "texto": "El SEN tiene interconexiones con Estados Unidos de América, Belice y Guatemala; la GCR Baja California concentra 71.9 % de las importaciones de 2024.",
+   "fuente": "PLAN",
+   "pagina": 15
+  }
+ ],
+ "rnt_texto": {
+  "texto": "En la ZMCM la red consiste en un anillo de doble circuito de 400 kV que alimenta una red mallada de 230 kV.",
+  "fuente": "PLAN",
+  "pagina": 78
+ }
+}
