@@ -294,7 +294,7 @@
   pintaDiag();
 
   /* ===================== DATOS ===================== */
-  fetch('datos/atlas-datos.json').then((r) => r.json()).then(conDatos).catch(() => {
+  fetch('datos/atlas-datos.json', { cache: 'no-cache' }).then((r) => r.json()).then(conDatos).catch(() => {
     $('#kpis-limpia').innerHTML = '<div class="nodisp"><strong>No se pudieron cargar los datos.</strong>Abre el sitio desde un servidor (GitHub Pages o «python -m http.server»).</div>';
   });
 

@@ -52,7 +52,7 @@
   let D, P, C;   // datos completos, Plan y CFE
   const charts = {};
 
-  fetch('datos/atlas-datos.json').then((r) => r.json()).then((d) => { D = d; iniciar(); }).catch((err) => { console.error(err);
+  fetch('datos/atlas-datos.json', { cache: 'no-cache' }).then((r) => r.json()).then((d) => { D = d; iniciar(); }).catch((err) => { console.error(err);
     $('#hero-stats').innerHTML = '<div class="nodisp" style="grid-column:1/-1"><strong>No se pudieron cargar los datos.</strong>Abre el sitio desde un servidor (GitHub Pages o «python -m http.server»).</div>';
   });
 

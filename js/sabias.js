@@ -15,7 +15,7 @@
   let S, filtro = 'todos', ep = 'r2013', ev = 0, rep = 0;
   const charts = {};
 
-  fetch('datos/sabias.json').then((r) => r.json()).then((d) => { S = d; iniciar(); }).catch((e) => { console.error(e);
+  fetch('datos/sabias.json', { cache: 'no-cache' }).then((r) => r.json()).then((d) => { S = d; iniciar(); }).catch((e) => { console.error(e);
     $('#rejilla').innerHTML = '<div class="nodisp"><strong>No se pudieron cargar los datos.</strong>Abre el sitio desde un servidor (GitHub Pages o «python -m http.server»).</div>'; });
 
   const fuente = (f) => `${f.url ? `<a href="${f.url}" target="_blank" rel="noopener">${f.doc}</a>` : f.doc}${f.pag && f.pag !== 'web' && f.pag !== '—' ? (/^arts?\./.test(f.pag) ? `, ${f.pag}` : `, p. ${f.pag}`) : ''}${f.extra ? ` (${f.extra})` : ''}`;
