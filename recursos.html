@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A01744124 · Atlas · 0 Recursos energéticos</title>
+  <meta name="description" content="Módulo 0 del Atlas Eléctrico de México: recursos fósiles, nucleares y renovables, de la fuente a la electricidad.">
+  <meta name="theme-color" content="#0B2A5B">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/atlas.css">
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="barra">
+  <div class="contenedor">
+    <a class="logo" href="index.html" aria-label="Atlas Eléctrico, inicio"><img src="assets/logo-horizontal.svg" alt="Logo A01744124"></a>
+    <nav class="modulos" aria-label="Módulos del atlas">
+      <a href="recursos.html" aria-current="page"><span>0</span>Recursos</a>
+      <a href="generacion.html"><span>1</span>Generación</a>
+      <a href="transmision.html"><span>2</span>Transmisión</a>
+      <a href="distribucion.html"><span>3</span>Distribución</a>
+      <a href="sabias-que.html"><span>4</span>¿Sabías que?</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+  <div class="hero hero-mod">
+    <div class="contenedor">
+      <div>
+        <p class="migas"><a href="index.html">Atlas</a> › Módulo 0</p>
+        <h1>Recursos energéticos: <span>de dónde sale la electricidad</span></h1>
+        <p class="sub">Antes de llegar a un cable, la energía está en un recurso: gas, carbón, uranio, sol, viento, agua o el calor de la Tierra. Aquí los clasificas, sigues su conversión y comparas su peso en México.</p>
+        <ul class="chips" aria-label="Secciones del módulo">
+          <li><a href="#cadena" style="color:inherit">De recurso a electricidad</a></li>
+          <li><a href="#clasificador" style="color:inherit">Clasificador</a></li>
+          <li><a href="#diagramas" style="color:inherit">Diagramas</a></li>
+          <li><a href="#matriz" style="color:inherit">Matriz</a></li>
+          <li><a href="#comparador" style="color:inherit">Comparador</a></li>
+          <li><a href="#conciencia" style="color:inherit">Indicadores</a></li>
+          <li><a href="#reflexion" style="color:inherit">Reflexión</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 1. CADENA Y CLASIFICACIÓN ================= -->
+  <section id="cadena">
+    <div class="contenedor">
+      <span class="etiqueta">1 · Clasificación de recursos</span>
+      <h2>Recurso, combustible, conversión, tecnología y electricidad no son lo mismo</h2>
+      <p class="intro">Cinco palabras que suelen confundirse. Pasa el cursor (o enfoca con el teclado) sobre los términos subrayados para ver su definición.</p>
+      <div class="cadena-cab" aria-label="Eslabones de la cadena">
+        <div><b>1 · Recurso primario</b>Lo que existe en la naturaleza: gas en un yacimiento, viento, uranio.</div>
+        <div><b>2 · Fuente o combustible</b>Cómo llega el recurso a la central: gas por ducto, combustóleo, pastillas de uranio.</div>
+        <div><b>3 · Proceso de conversión</b>El fenómeno físico: combustión, fisión, efecto fotovoltaico.</div>
+        <div><b>4 · Tecnología de generación</b>El tipo de central: ciclo combinado, nucleoeléctrica, eólica.</div>
+        <div><b>5 · Electricidad producida</b>Energía eléctrica medida en kWh, MWh o <dfn class="def" tabindex="0">GWh<span class="def-texto" role="tooltip">Gigawatt-hora: mil millones de watt-hora. 1 GWh = 1,000 MWh = 1,000,000 kWh.</span></dfn>.</div>
+      </div>
+
+      <div class="tabla-envoltura" style="margin-top:20px">
+        <table>
+          <thead><tr><th>Recurso primario</th><th>Fuente o combustible</th><th>Proceso de conversión</th><th>Tecnología</th><th>Categoría</th></tr></thead>
+          <tbody>
+            <tr><td>Gas natural</td><td>Gas natural por gasoducto</td><td>Combustión</td><td><dfn class="def" tabindex="0">Ciclo combinado<span class="def-texto" role="tooltip">Une una turbina de gas con una de vapor: los gases calientes que salen de la primera calientan agua en una caldera de recuperación y ese vapor mueve la segunda. Aprovecha más energía del combustible que cada turbina por separado.</span></dfn>, <dfn class="def" tabindex="0">turbogás<span class="def-texto" role="tooltip">Turbina de gas sola: los gases de la combustión mueven directamente la turbina. Arranca rápido; se usa para cubrir picos de demanda. Puede quemar gas natural o diésel.</span></dfn>, cogeneración</td><td><span class="sello" style="color:#9a3412;background:#FFF1EA">Fósil</span></td></tr>
+            <tr><td>Carbón mineral</td><td>Carbón triturado</td><td>Combustión en caldera</td><td>Carboeléctrica</td><td><span class="sello" style="color:#9a3412;background:#FFF1EA">Fósil</span></td></tr>
+            <tr><td>Petróleo</td><td>Combustóleo, diésel</td><td>Combustión</td><td><dfn class="def" tabindex="0">Vapor convencional<span class="def-texto" role="tooltip">Central térmica que quema combustible en una caldera para producir vapor, que mueve una turbina (ciclo Rankine). En México usa combustóleo o gas natural.</span></dfn>, turbogás, combustión interna</td><td><span class="sello" style="color:#9a3412;background:#FFF1EA">Fósil</span></td></tr>
+            <tr><td>Uranio</td><td>Combustible nuclear (uranio)</td><td><dfn class="def" tabindex="0">Fisión nuclear<span class="def-texto" role="tooltip">Un neutrón divide un núcleo de uranio en dos núcleos más ligeros; se liberan energía en forma de calor y más neutrones que mantienen la reacción en cadena.</span></dfn></td><td>Nucleoeléctrica</td><td><span class="sello" style="color:#1e4f9a;background:var(--azul-hielo)">Nuclear</span></td></tr>
+            <tr><td>Radiación solar</td><td>Luz del Sol</td><td><dfn class="def" tabindex="0">Efecto fotovoltaico<span class="def-texto" role="tooltip">Los fotones que llegan a un semiconductor (silicio) liberan electrones y generan una corriente directa sin piezas móviles.</span></dfn></td><td>Solar fotovoltaica</td><td><span class="sello" style="color:#0b6b48;background:#E7F7F0">Renovable</span></td></tr>
+            <tr><td>Viento</td><td>Masa de aire en movimiento</td><td>Energía cinética → mecánica</td><td>Eólica</td><td><span class="sello" style="color:#0b6b48;background:#E7F7F0">Renovable</span></td></tr>
+            <tr><td>Agua en cauces y embalses</td><td>Agua almacenada o en movimiento</td><td>Energía potencial o cinética → mecánica</td><td>Hidroeléctrica</td><td><span class="sello" style="color:#0b6b48;background:#E7F7F0">Renovable</span></td></tr>
+            <tr><td>Calor geotérmico</td><td>Vapor y agua caliente del subsuelo</td><td>Vapor → turbina</td><td>Geotermoeléctrica</td><td><span class="sello" style="color:#0b6b48;background:#E7F7F0">Renovable</span></td></tr>
+            <tr><td>Biomasa y biogás</td><td>Residuos agrícolas, biogás de rellenos o granjas</td><td>Combustión</td><td>Bioenergía</td><td><span class="sello" style="color:#0b6b48;background:#E7F7F0">Renovable</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="aviso" style="margin-top:16px"><strong>Una tecnología puede usar distintos combustibles.</strong> Una central de vapor convencional puede quemar combustóleo o gas natural; un turbogás, gas natural o diésel; un motor de combustión interna, diésel, combustóleo, gas o biogás. Por eso el atlas clasifica por <em>recurso</em>, no por tipo de central.</p>
+
+      <div class="rejilla c3">
+        <article class="tarjeta cat" style="--c:var(--r-fosil)">
+          <h3><i></i>Recursos fósiles</h3>
+          <p>Se formaron hace millones de años y no se regeneran a escala humana.</p>
+          <ul><li>Gas natural</li><li>Carbón mineral</li><li>Combustóleo</li><li>Diésel y otros derivados del petróleo</li></ul>
+          <p><strong>Tecnologías:</strong> ciclo combinado, carboeléctrica, vapor convencional, turbogás y combustión interna.</p>
+        </article>
+        <article class="tarjeta cat" style="--c:var(--r-nuclear)">
+          <h3><i></i>Recursos nucleares</h3>
+          <p>El uranio es un mineral finito: <strong>no es renovable</strong>.</p>
+          <ul><li>Uranio (recurso)</li><li>Fisión nuclear (proceso)</li><li>Generación nucleoeléctrica (tecnología)</li></ul>
+          <p>La fisión libera calor que convierte agua en vapor; el vapor mueve una turbina acoplada a un generador. Es el mismo final que una termoeléctrica, sin combustión.</p>
+        </article>
+        <article class="tarjeta cat" style="--c:var(--r-renovable)">
+          <h3><i></i>Recursos renovables</h3>
+          <p>Se regeneran naturalmente a escala de tiempo humana.</p>
+          <ul><li>Radiación solar → solar fotovoltaica</li><li>Viento → eólica</li><li>Energía hidráulica → hidroeléctrica</li><li>Calor geotérmico → geotermoeléctrica</li><li>Biomasa y biogás renovables → bioenergía</li></ul>
+        </article>
+      </div>
+
+      <article class="panel" style="margin-top:28px" aria-labelledby="t-limpia">
+        <h3 id="t-limpia">Renovable no es lo mismo que limpia</h3>
+        <div class="conjuntos">
+          <div>
+            <p><strong>Renovable</strong> describe el <em>recurso</em>: su fuente se regenera naturalmente a escala de tiempo humana. La ley enumera viento, radiación solar, agua en cauces, energía oceánica, calor de la Tierra y biocombustibles.</p>
+            <p><strong>Limpia</strong> es una categoría <em>legal</em> basada en emisiones y residuos. Incluye todas las renovables y además la <strong>energía nucleoeléctrica</strong>, la <strong>cogeneración eficiente</strong> (que usa gas) y la generación térmica con captura de carbono.</p>
+            <p>Por eso la nuclear es <strong>limpia pero no renovable</strong>: el uranio no se regenera, pero la ley la cuenta como limpia por sus bajas emisiones.</p>
+          </div>
+          <svg viewBox="0 0 360 230" role="img" aria-label="Diagrama: el conjunto de energías limpias contiene a las renovables, a la nuclear y a la cogeneración eficiente">
+            <rect x="6" y="6" width="348" height="218" rx="22" fill="#EAF3FF" stroke="#0F4DBC" stroke-width="2"/>
+            <text x="22" y="32" font-family="Poppins, sans-serif" font-weight="700" font-size="15" fill="#0B2A5B">Energías limpias (ley)</text>
+            <rect x="22" y="48" width="196" height="160" rx="18" fill="#E7F7F0" stroke="#1baf7a" stroke-width="2"/>
+            <text x="36" y="72" font-family="Poppins, sans-serif" font-weight="700" font-size="13" fill="#0b6b48">Renovables</text>
+            <text x="36" y="96" font-family="Inter, sans-serif" font-size="12" fill="#101828">Solar · Eólica</text>
+            <text x="36" y="116" font-family="Inter, sans-serif" font-size="12" fill="#101828">Hidroeléctrica</text>
+            <text x="36" y="136" font-family="Inter, sans-serif" font-size="12" fill="#101828">Geotérmica</text>
+            <text x="36" y="156" font-family="Inter, sans-serif" font-size="12" fill="#101828">Bioenergía · Oceánica</text>
+            <rect x="232" y="48" width="108" height="64" rx="14" fill="#fff" stroke="#2a78d6" stroke-width="2"/>
+            <text x="244" y="76" font-family="Poppins, sans-serif" font-weight="700" font-size="12" fill="#1e4f9a">Nuclear</text>
+            <text x="244" y="96" font-family="Inter, sans-serif" font-size="11" fill="#5B6B85">no renovable</text>
+            <rect x="232" y="124" width="108" height="84" rx="14" fill="#fff" stroke="#eb6834" stroke-width="2"/>
+            <text x="244" y="150" font-family="Poppins, sans-serif" font-weight="700" font-size="12" fill="#9a3412">Cogeneración</text>
+            <text x="244" y="166" font-family="Poppins, sans-serif" font-weight="700" font-size="12" fill="#9a3412">eficiente</text>
+            <text x="244" y="188" font-family="Inter, sans-serif" font-size="11" fill="#5B6B85">usa gas (fósil)</text>
+          </svg>
+        </div>
+        <p class="fuente"><strong>Fuentes:</strong> Energías Limpias: Ley del Sector Eléctrico, art. 3, fr. XXI (DOF 18/03/2025, p. 86); la Ley de la Industria Eléctrica de 2014 tenía una definición equivalente (art. 3, fr. XXII). Energías Renovables: Ley de Planeación y Transición Energética, art. 3, fr. X (DOF 18/03/2025, p. 193).</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= 2. CLASIFICADOR ================= -->
+  <section id="clasificador" class="alt">
+    <div class="contenedor">
+      <span class="etiqueta">2 · Clasificador interactivo</span>
+      <h2>¿Fósil, nuclear o renovable?</h2>
+      <p class="intro">Clasifica las 23 tarjetas: recursos, procesos y tecnologías. Usa los botones de cada tarjeta o arrástrala a una de las tres cajas. Cada respuesta trae su explicación.</p>
+      <div class="clasif-bar">
+        <p class="marcador-pts" id="puntaje" aria-live="polite">0 de 23 clasificadas · 0 aciertos</p>
+        <button class="btn btn-primario" type="button" id="reiniciar">Reiniciar</button>
+      </div>
+      <div class="cajas" id="cajas">
+        <div class="caja" data-cat="fosil" style="--c:var(--r-fosil)"><h4><i></i>Fósil</h4><ul></ul></div>
+        <div class="caja" data-cat="nuclear" style="--c:var(--r-nuclear)"><h4><i></i>Nuclear</h4><ul></ul></div>
+        <div class="caja" data-cat="renovable" style="--c:var(--r-renovable)"><h4><i></i>Renovable</h4><ul></ul></div>
+      </div>
+      <div class="mazo" id="mazo"></div>
+    </div>
+  </section>
+
+  <!-- ================= 3. DIAGRAMAS ================= -->
+  <section id="diagramas">
+    <div class="contenedor">
+      <span class="etiqueta">3 · Diagramas de conversión</span>
+      <h2>Cómo se transforma la energía en cada tecnología</h2>
+      <p class="intro">Elige un recurso y después una etapa para ver qué ocurre y en qué forma está la energía en ese momento.</p>
+      <div class="diag-tabs filtros" id="diag-tabs" role="group" aria-label="Elegir diagrama"></div>
+      <div class="diagrama" id="diagrama" aria-live="polite"></div>
+      <div class="explica" id="explica" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- ================= 4. MATRIZ ================= -->
+  <section id="matriz" class="alt">
+    <div class="contenedor">
+      <span class="etiqueta">4 · Matriz energética por recurso</span>
+      <h2>¿Con qué recursos se genera la electricidad en México?</h2>
+      <p class="intro">Datos nacionales (todo el sistema, CFE y privados) y datos solo de la CFE, siempre separados.</p>
+
+      <div class="kpis" id="kpis-limpia"></div>
+
+      <article class="panel" style="margin-top:24px" aria-labelledby="t-recurso">
+        <div class="cab">
+          <div><h3 id="t-recurso">Generación nacional por recurso, 2022-2024</h3><p class="desc">Generación neta inyectada a la red. La cogeneración eficiente se cuenta como fósil porque usa gas, aunque la ley la considere limpia.</p></div>
+          <div class="filtros">
+            <div class="segmentado" role="group" aria-label="Unidad"><button type="button" aria-pressed="true" data-u1="gwh">GWh</button><button type="button" aria-pressed="false" data-u1="pct">%</button></div>
+            <button class="filtro" type="button" data-tabla="tabla-recurso" aria-expanded="false" aria-controls="tabla-recurso">Ver tabla</button>
+          </div>
+        </div>
+        <ul class="leyenda" id="ley-recurso"></ul>
+        <div class="lienzo"><canvas id="g-recurso" role="img" aria-label="Barras apiladas de generación nacional por recurso 2022 a 2024"></canvas></div>
+        <div class="tabla-envoltura" id="tabla-recurso" hidden></div>
+        <p class="fuente"><strong>Fuente:</strong> SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025), Tabla 2.2, p. 20. <span class="alcance">Nacional</span> Porcentajes: cálculo propio.</p>
+      </article>
+
+      <div class="rejilla c2">
+        <article class="panel" aria-labelledby="t-cfe">
+          <div><h3 id="t-cfe">CFE contra el país, por recurso</h3><p class="desc">Porcentaje de la generación de cada uno. 2022 de la CFE por tecnología: <span class="sello nd">Dato no disponible</span></p></div>
+          <div class="lienzo" style="height:300px"><canvas id="g-cfe" role="img" aria-label="Barras al 100 % comparando la mezcla de recursos de la CFE y del país en 2023 y 2024"></canvas></div>
+          <p class="fuente"><strong>Fuentes:</strong> <span class="alcance">CFE</span> Informe Anual 2024, p. 26 (generación <em>bruta</em>, sin productores independientes). <span class="alcance">Nacional</span> Plan, Tabla 2.2, p. 20 (generación <em>neta inyectada</em>). Se comparan porcentajes, no GWh, porque las dos mediciones no son iguales.</p>
+        </article>
+        <article class="panel" aria-labelledby="t-top">
+          <div><h3 id="t-top">Tecnologías más importantes, 2024</h3><p class="desc">Participación en la generación nacional. El color indica el recurso.</p></div>
+          <div class="lienzo" style="height:300px"><canvas id="g-top" role="img" aria-label="Barras horizontales con la participación de cada tecnología en 2024"></canvas></div>
+          <p class="fuente"><strong>Fuente:</strong> Plan, Tabla 2.2, p. 20. <span class="alcance">Nacional</span> Cálculo propio de porcentajes.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 5. COMPARADOR ================= -->
+  <section id="comparador">
+    <div class="contenedor">
+      <span class="etiqueta">5 · Comparador energético</span>
+      <h2>Compara dos o más recursos</h2>
+      <p class="intro">Selecciona al menos dos. Las emisiones vienen del IPCC y no se inventan: donde el documento no da un valor, aparece «Dato no disponible».</p>
+      <div class="filtros" id="comp-chips" role="group" aria-label="Recursos a comparar" style="margin-top:20px"></div>
+      <p class="aviso" id="comp-aviso" hidden style="margin-top:12px">Selecciona al menos dos recursos para comparar.</p>
+      <div class="tabla-envoltura comp-tabla" id="comp-tabla" style="margin-top:16px"></div>
+
+      <article class="panel" style="margin-top:24px" aria-labelledby="t-emis">
+        <div class="cab">
+          <div><h3 id="t-emis">Emisiones por kWh generado</h3><p class="desc">Valor mediano en g CO₂eq/kWh; el rango mínimo-máximo aparece en el cursor y en la tabla.</p></div>
+          <div class="segmentado" role="group" aria-label="Tipo de emisión">
+            <button type="button" aria-pressed="false" data-emis="directas">Directas</button>
+            <button type="button" aria-pressed="true" data-emis="vida">Ciclo de vida</button>
+          </div>
+        </div>
+        <p class="desc" style="margin:0"><dfn class="def" tabindex="0">Emisiones directas<span class="def-texto" role="tooltip">Las que salen de la central al generar: la chimenea de una termoeléctrica. En solar, eólica, hidro, geotérmica y nuclear el IPCC reporta 0.</span></dfn> contra <dfn class="def" tabindex="0">emisiones de ciclo de vida<span class="def-texto" role="tooltip">Suma de todas las etapas: fabricación de equipos, construcción, extracción y transporte del combustible, operación y desmantelamiento. Por eso la solar o la eólica no tienen cero.</span></dfn>.</p>
+        <div class="lienzo" style="height:300px"><canvas id="g-emis" role="img" aria-label="Barras con emisiones por recurso seleccionado"></canvas></div>
+        <p class="fuente"><strong>Fuente:</strong> IPCC (2014), AR5 Grupo de Trabajo III, Anexo III, Tabla A.III.2, p. 1335. Valores de referencia mundiales, no factores oficiales de México. El IPCC no reporta valores para combustóleo ni diésel.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= 6. CONCIENCIA ================= -->
+  <section id="conciencia" class="alt">
+    <div class="contenedor">
+      <span class="etiqueta">6 · Indicadores de conciencia energética</span>
+      <h2>Cinco números para pensar</h2>
+      <div class="conciencia" id="ind-conciencia"></div>
+      <article class="panel" style="margin-top:24px" aria-labelledby="t-evol">
+        <h3 id="t-evol">Indicador 4 · Evolución de las tecnologías, 2010-2024</h3>
+        <p class="desc">Generación neta inyectada en GWh. Cada gráfica tiene su propia escala vertical.</p>
+        <div class="multiples" id="multiples"></div>
+        <p class="fuente"><strong>Fuente:</strong> Plan, Tabla 2.2, p. 20. <span class="alcance">Nacional</span></p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= 7. REFLEXIÓN ================= -->
+  <section id="reflexion">
+    <div class="contenedor">
+      <span class="etiqueta">7 · Actividad de reflexión</span>
+      <h2>Interpreta las gráficas</h2>
+      <p class="intro">Cinco preguntas que se responden leyendo las gráficas y el comparador de esta página. Cada respuesta explica el porqué.</p>
+      <p class="marcador-pts" id="puntaje-ref" aria-live="polite">0 de 5 respondidas</p>
+      <div id="preguntas"></div>
+    </div>
+  </section>
+  <section class="siguiente-sec"><div class="contenedor"><a class="siguiente" href="generacion.html"><span class="sig-num">1</span><span><small>Siguiente módulo</small><strong>Generación</strong><span class="sig-d">Ya sabes de dónde sale la energía. Ahora mira dónde y con qué tecnologías se convierte en electricidad.</span></span><span class="sig-flecha" aria-hidden="true">→</span></a></div></section>
+</main>
+
+<footer>
+  <div class="contenedor">
+    <img src="assets/logo-horizontal-claro.svg" alt="Logo A01744124">
+    <div>
+      <p><strong style="color:#fff">TE1020 · Análisis de circuitos eléctricos</strong></p>
+      <p>Atlas Eléctrico de México: de los recursos energéticos al consumidor.</p>
+    </div>
+    <p class="aparte">Fuentes del módulo: SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025) · CFE, Informes Anuales 2023 y 2024 · IPCC AR5 GT III, Anexo III · Ley del Sector Eléctrico y Ley de Planeación y Transición Energética (DOF 18/03/2025) · PRODESEN 2023-2037, cap. 4. Proyecto académico; no es un sitio oficial de la CFE ni de la SENER.</p>
+  </div>
+</footer>
+<a class="arriba" href="#" aria-label="Volver arriba">↑</a>
+
+<script src="js/vendor/chart.umd.min.js"></script>
+<script src="js/recursos.js"></script>
+<script>(function(){var n=document.querySelector(".modulos"),a=n&&n.querySelector("[aria-current]");if(n&&a&&n.scrollWidth>n.clientWidth){n.scrollLeft=a.offsetLeft-(n.clientWidth-a.offsetWidth)/2;}})();</script>
+<script>(function(){var b=document.querySelector(".arriba");if(!b)return;function f(){b.classList.toggle("visible",scrollY>innerHeight*0.8);}addEventListener("scroll",f,{passive:true});f();})();</script>
+</body>
+</html>

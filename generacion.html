@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A01744124 · Atlas · 1 Generación</title>
+  <meta name="description" content="Módulo 1 del Atlas Eléctrico de México: centrales, tecnologías y generación eléctrica 2022-2024, de la CFE y del país.">
+  <meta name="theme-color" content="#0B2A5B">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="js/vendor/leaflet.css">
+  <link rel="stylesheet" href="css/atlas.css">
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="barra">
+  <div class="contenedor">
+    <a class="logo" href="index.html" aria-label="Atlas Eléctrico, inicio"><img src="assets/logo-horizontal.svg" alt="Logo A01744124"></a>
+    <nav class="modulos" aria-label="Módulos del atlas">
+      <a href="recursos.html"><span>0</span>Recursos</a>
+      <a href="generacion.html" aria-current="page"><span>1</span>Generación</a>
+      <a href="transmision.html"><span>2</span>Transmisión</a>
+      <a href="distribucion.html"><span>3</span>Distribución</a>
+      <a href="sabias-que.html"><span>4</span>¿Sabías que?</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+  <div class="hero hero-mod hero-gen">
+    <div class="contenedor">
+      <div>
+        <p class="migas"><a href="index.html">Atlas</a> › Módulo 1</p>
+        <h1>Generación: <span>dónde y cómo se produce la electricidad</span></h1>
+        <p class="sub">Explora las centrales de la CFE en el mapa, compara tecnologías y sigue cómo cambió la generación de 2022 a 2024. Usa la barra de filtros: todo el módulo responde a ella.</p>
+        <ul class="chips chips-hero" aria-label="Secciones del módulo"><li><a href="#tecnologias" style="color:inherit">Tecnologías</a></li><li><a href="#mapa-sec" style="color:inherit">Mapa de centrales</a></li><li><a href="#graficas" style="color:inherit">Generación y capacidad</a></li><li><a href="#limpias" style="color:inherit">Fósiles y limpias</a></li><li><a href="#duelo" style="color:inherit">Ciclo combinado vs vapor</a></li></ul>
+        <div class="hero-stats" id="hero-stats" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filtros globales -->
+  <div class="filtros-globales" role="region" aria-label="Filtros del módulo">
+    <div class="contenedor">
+      <div class="grupo"><span class="rot" id="r-alc">Alcance</span>
+        <div class="segmentado" role="group" aria-labelledby="r-alc"><button type="button" data-alc="nac" aria-pressed="true">Nacional</button><button type="button" data-alc="cfe" aria-pressed="false">CFE</button></div></div>
+      <div class="grupo"><span class="rot" id="r-anio">Año</span>
+        <div class="segmentado" role="group" aria-labelledby="r-anio"><button type="button" data-anio="2022" aria-pressed="false">2022</button><button type="button" data-anio="2023" aria-pressed="false">2023</button><button type="button" data-anio="2024" aria-pressed="true">2024</button></div></div>
+      <div class="grupo" style="flex:1 1 360px;min-width:0"><span class="rot" id="r-tec">Tecnología</span>
+        <div class="tecs" id="tecs" role="group" aria-labelledby="r-tec"></div></div>
+    </div>
+  </div>
+
+  <!-- Explorador -->
+  <section id="tecnologias">
+    <div class="contenedor revelar">
+      <span class="etiqueta">Indicador 2 · Participación por tecnología</span>
+      <h2>Ocho familias de tecnologías</h2>
+      <p class="intro" id="intro-tec">Porcentaje de la generación del año elegido. Toca una tarjeta para filtrar el mapa y las gráficas por esa tecnología.</p>
+      <div class="explorador" id="explorador"></div>
+      <p class="fuente" id="fuente-tec" style="margin-top:14px"></p>
+    </div>
+  </section>
+
+  <!-- Mapa -->
+  <section id="mapa-sec" class="alt">
+    <div class="contenedor revelar">
+      <span class="etiqueta">Mapa de centrales</span>
+      <h2>15 centrales de la CFE en 9 estados</h2>
+      <p class="intro">Selecciona una central en el mapa o en la lista para ver su ficha. Los marcadores llevan la inicial de su tecnología: N nuclear, C carbón, H hidro, G geotérmica, V vapor y CC ciclo combinado.</p>
+      <div class="mapa-layout">
+        <div class="mapa" id="mapa" aria-label="Mapa de centrales eléctricas"></div>
+        <aside class="detalle" id="detalle" aria-live="polite">
+          <div class="vacio" id="vacio"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#8EC5FF" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Selecciona una central</span></div>
+          <div id="ficha" hidden></div>
+          <ul class="lista-c" id="lista-c" aria-label="Lista de centrales"></ul>
+        </aside>
+      </div>
+      <p class="fuente" style="margin-top:14px"><strong>Ubicación:</strong> NACEI (SENER/CRE), vía Global Power Plant Database (Centrales_Mexico.csv). <strong>Capacidad:</strong> CFE, Informes Anuales 2023 (p. 16) y 2024 (p. 21 y 24) cuando la reportan; si no, valor de 2016 (NACEI), marcado como tal. <strong>Generación por central:</strong> solo existe para 2024 y solo en algunas centrales (CFE, Informe 2024). Mapa base: © OpenStreetMap.</p>
+    </div>
+  </section>
+
+  <!-- Gráficas -->
+  <section id="graficas">
+    <div class="contenedor revelar">
+      <span class="etiqueta">Indicadores 1 y 3</span>
+      <h2>Cuánto se generó y cómo cambió</h2>
+      <div class="rejilla c2">
+        <article class="panel" aria-labelledby="t-anual">
+          <div class="cab"><div><h3 id="t-anual">Generación anual, 2022-2024</h3><p class="desc">Nacional: generación neta inyectada. CFE: generación bruta de sus centrales.</p></div>
+            <button class="filtro" type="button" data-tabla="tabla-anual" aria-expanded="false" aria-controls="tabla-anual">Ver tabla</button></div>
+          <ul class="leyenda"><li><i style="background:#2a78d6"></i>Nacional</li><li><i style="background:#eb6834"></i>CFE</li></ul>
+          <div class="lienzo" style="height:300px"><canvas id="g-anual" role="img" aria-label="Barras de generación anual nacional y de la CFE 2022 a 2024"></canvas></div>
+          <div class="tabla-envoltura" id="tabla-anual" hidden></div>
+          <p class="fuente"><span class="alcance">Nacional</span> Plan de Desarrollo del Sector Eléctrico 2025-2030, Tabla 2.2, p. 20. <span class="alcance">CFE</span> Informe Anual 2023, p. 15 (2022) e Informe 2024, p. 26 (2023 y 2024). No se suman ni se restan: miden cosas distintas.</p>
+        </article>
+        <article class="panel" aria-labelledby="t-var">
+          <div class="cab"><div><h3 id="t-var">Variación interanual por tecnología</h3><p class="desc" id="desc-var"></p></div></div>
+          <div class="lienzo" style="height:300px"><canvas id="g-var" role="img" aria-label="Barras divergentes con la variación porcentual por tecnología"></canvas></div>
+          <div id="nd-var" hidden></div>
+          <p class="fuente" id="fuente-var"></p>
+        </article>
+      </div>
+
+      <article class="panel" style="margin-top:20px" aria-labelledby="t-part">
+        <div class="cab"><div><h3 id="t-part">Participación por tecnología</h3><p class="desc" id="desc-part"></p></div></div>
+        <div class="lienzo" style="height:360px"><canvas id="g-part" role="img" aria-label="Barras horizontales con la participación de cada tecnología"></canvas></div>
+        <div id="nd-part" hidden></div>
+        <p class="fuente" id="fuente-part"></p>
+      </article>
+    </div>
+  </section>
+
+  <section id="limpias" class="alt">
+    <div class="contenedor revelar">
+      <span class="etiqueta">Indicador 4 · Fósiles y limpias</span>
+      <h2>¿Qué parte fue energía limpia?</h2>
+      <p class="intro">«Limpia» es la categoría legal: incluye las renovables, la <dfn class="def" tabindex="0">nucleoeléctrica<span class="def-texto" role="tooltip">Central que usa el calor de la fisión de uranio para producir vapor y mover una turbina. En México solo existe Laguna Verde (Veracruz).</span></dfn> y la <dfn class="def" tabindex="0">cogeneración eficiente<span class="def-texto" role="tooltip">Produce electricidad y calor útil para un proceso industrial con el mismo combustible (normalmente gas). La ley la cuenta como limpia si cumple criterios de eficiencia, aunque su recurso sea fósil.</span></dfn>.</p>
+      <article class="panel" style="margin-top:20px" aria-labelledby="t-limp">
+        <h3 id="t-limp">Participación fósil y limpia, Nacional y CFE</h3>
+        <ul class="leyenda"><li><i style="background:#eb6834"></i>Fósil</li><li><i style="background:#1baf7a"></i>Limpia</li></ul>
+        <div class="lienzo" style="height:320px"><canvas id="g-limp" role="img" aria-label="Barras al 100 % de participación fósil y limpia por año y alcance"></canvas></div>
+        <p class="fuente"><span class="alcance">Nacional</span> Cálculo con Plan, Tabla 2.2, p. 20 (columna «Limpias»). <span class="alcance">CFE</span> Porcentajes publicados por la CFE: Informe 2022, p. 34 (35 %); Informe 2023, p. 18 (24.7 %); Informe 2024, p. 27 (25.3 %). La parte fósil de la CFE es 100 % menos la limpia.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="duelo">
+    <div class="contenedor revelar">
+      <span class="etiqueta">Indicador 5 · Ciclo combinado contra vapor convencional</span>
+      <h2>Dos formas de quemar combustible</h2>
+      <p class="intro">Las dos son fósiles, pero no rinden igual. El <dfn class="def" tabindex="0">vapor convencional<span class="def-texto" role="tooltip">Quema combustóleo o gas en una caldera; el vapor mueve una turbina y luego se condensa para volver a la caldera. Es un solo ciclo de vapor (ciclo Rankine).</span></dfn> usa solo el <dfn class="def" tabindex="0">ciclo Rankine<span class="def-texto" role="tooltip">Ciclo termodinámico del vapor: bomba → caldera (se evapora el agua) → turbina (el vapor se expande y produce trabajo) → condensador (vuelve a ser líquido).</span></dfn>; el <dfn class="def" tabindex="0">ciclo combinado<span class="def-texto" role="tooltip">Una turbina de gas (ciclo Brayton) más una turbina de vapor (ciclo Rankine) que aprovecha el calor del escape de la primera. Saca más electricidad del mismo combustible.</span></dfn> encadena una turbina de gas con una de vapor.</p>
+      <div class="duelo" id="duelo-cards"></div>
+      <article class="panel" style="margin-top:20px" aria-labelledby="t-hist">
+        <h3 id="t-hist">Generación nacional, 2010-2024</h3>
+        <p class="desc">El ciclo combinado desplazó al vapor convencional en 15 años.</p>
+        <div class="lienzo" style="height:300px"><canvas id="g-hist" role="img" aria-label="Líneas de generación de ciclo combinado y térmica convencional 2010 a 2024"></canvas></div>
+        <p class="fuente"><span class="alcance">Nacional</span> Plan, Tabla 2.2, p. 20. El Plan llama «térmica convencional» a las centrales de vapor convencional. Eficiencia: IPCC AR5, Anexo III, Tabla A.III.1, p. 1333.</p>
+      </article>
+    </div>
+  </section>
+  <section class="siguiente-sec"><div class="contenedor"><a class="siguiente" href="transmision.html"><span class="sig-num">2</span><span><small>Siguiente módulo</small><strong>Transmisión</strong><span class="sig-d">La electricidad ya se generó. Sigue su viaje por las carreteras de alta tensión.</span></span><span class="sig-flecha" aria-hidden="true">→</span></a></div></section>
+</main>
+
+<footer>
+  <div class="contenedor">
+    <img src="assets/logo-horizontal-claro.svg" alt="Logo A01744124">
+    <div>
+      <p><strong style="color:#fff">TE1020 · Análisis de circuitos eléctricos</strong></p>
+      <p>Atlas Eléctrico de México: de los recursos energéticos al consumidor.</p>
+    </div>
+    <p class="aparte">Fuentes del módulo: SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025) · CFE, Informes Anuales 2022, 2023 y 2024 · IPCC AR5 GT III, Anexo III · NACEI (SENER/CRE). Proyecto académico; no es un sitio oficial de la CFE ni de la SENER.</p>
+  </div>
+</footer>
+<a class="arriba" href="#" aria-label="Volver arriba">↑</a>
+
+<script src="js/vendor/chart.umd.min.js"></script>
+<script src="js/vendor/leaflet.js"></script>
+<script src="js/generacion.js"></script>
+<script>(function(){var n=document.querySelector(".modulos"),a=n&&n.querySelector("[aria-current]");if(n&&a&&n.scrollWidth>n.clientWidth){n.scrollLeft=a.offsetLeft-(n.clientWidth-a.offsetWidth)/2;}})();</script>
+<script>(function(){var b=document.querySelector(".arriba");if(!b)return;function f(){b.classList.toggle("visible",scrollY>innerHeight*0.8);}addEventListener("scroll",f,{passive:true});f();})();</script>
+</body>
+</html>

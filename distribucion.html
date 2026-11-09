@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A01744124 · Atlas · 3 Distribución</title>
+  <meta name="description" content="Módulo 3 del Atlas Eléctrico de México: usuarios, redes, pérdidas y calidad del servicio de distribución, y un simulador de transformador.">
+  <meta name="theme-color" content="#0B2A5B">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="js/vendor/leaflet.css">
+  <link rel="stylesheet" href="css/atlas.css">
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="barra">
+  <div class="contenedor">
+    <a class="logo" href="index.html" aria-label="Atlas Eléctrico, inicio"><img src="assets/logo-horizontal.svg" alt="Logo A01744124"></a>
+    <nav class="modulos" aria-label="Módulos del atlas">
+      <a href="recursos.html"><span>0</span>Recursos</a>
+      <a href="generacion.html"><span>1</span>Generación</a>
+      <a href="transmision.html"><span>2</span>Transmisión</a>
+      <a href="distribucion.html" aria-current="page"><span>3</span>Distribución</a>
+      <a href="sabias-que.html"><span>4</span>¿Sabías que?</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+  <div class="hero hero-mod hero-gen hero-dx">
+    <svg class="hero-torres" viewBox="0 0 600 200" aria-hidden="true" preserveAspectRatio="xMaxYMax meet">
+      <g fill="none" stroke="rgba(255,255,255,.22)" stroke-width="3">
+        <path d="M120 200 V50 M90 62 H150"/><path d="M320 200 V50 M290 62 H350"/><path d="M520 200 V50 M490 62 H550"/>
+      </g>
+      <rect x="300" y="80" width="40" height="34" rx="6" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="2"/>
+      <g fill="none" stroke="rgba(255,194,46,.6)" stroke-width="1.6">
+        <path class="cable" d="M90 62 Q 190 92 290 62 Q 390 92 490 62"/><path class="cable" d="M150 62 Q 250 92 350 62 Q 450 92 550 62"/>
+      </g>
+      <g fill="rgba(255,255,255,.18)"><path d="M380 200 V160 l30 -22 30 22 V200z"/><path d="M450 200 V170 l22 -16 22 16 V200z"/></g>
+    </svg>
+    <div class="contenedor">
+      <div>
+        <p class="migas"><a href="index.html">Atlas</a> › Módulo 3</p>
+        <h1>Distribución: <span>el último tramo hasta tu casa</span></h1>
+        <p class="sub">Las redes de media y baja tensión llevan la electricidad a 49 millones de usuarios. Explora cuánto consume y pierde cada región, cómo cambia la calidad del servicio y prueba un transformador en el simulador.</p>
+        <ul class="chips chips-hero" aria-label="Secciones del módulo"><li><a href="#cadena" style="color:inherit">Escalera de tensión</a></li><li><a href="#regiones" style="color:inherit">Mapa por región</a></li><li><a href="#divisiones" style="color:inherit">16 divisiones</a></li><li><a href="#red" style="color:inherit">Red y calidad</a></li><li><a href="#usuarios" style="color:inherit">Residencial vs industrial</a></li><li><a href="#simulador" style="color:inherit">Simulador</a></li></ul>
+        <div class="hero-stats" id="hero-stats" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cadena de tensión -->
+  <section id="cadena">
+    <div class="contenedor revelar">
+      <span class="etiqueta">¿Cómo baja la tensión?</span>
+      <h2>De 400 kV al contacto de tu casa</h2>
+      <p class="intro">Toca cada paso. La tensión se reduce en etapas con transformadores, porque la red de alta tensión es buena para viajar lejos y la baja tensión es segura para usar.</p>
+      <div class="escalera" id="escalera" role="tablist" aria-label="Etapas de la tensión"></div>
+      <div class="explica" id="escalera-explica" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- Mapa por región -->
+  <section id="regiones" class="alt">
+    <div class="contenedor revelar">
+      <span class="etiqueta">Mapa · Regiones de control</span>
+      <h2>¿Dónde están los usuarios y dónde se pierde la energía?</h2>
+      <p class="intro">Cada burbuja es una región del Plan: sus 7 gerencias del SIN y los tres sistemas de Baja California. Su tamaño muestra el indicador que elijas. Toca una burbuja para ver sus datos.</p>
+      <div class="capa-bar">
+        <div class="segmentado" role="group" aria-label="Indicador" id="ind">
+          <button type="button" data-ind="usuarios" aria-pressed="true">Usuarios</button>
+          <button type="button" data-ind="consumo" aria-pressed="false">Consumo final</button>
+          <button type="button" data-ind="perdidas" aria-pressed="false">Pérdidas</button>
+          <button type="button" data-ind="pperd" aria-pressed="false">Pérdidas %</button>
+          <button type="button" data-ind="kwh" aria-pressed="false">kWh por habitante</button>
+        </div>
+        <div class="segmentado" role="group" aria-label="Año" id="anio-r">
+          <button type="button" data-anio="2022" aria-pressed="false">2022</button><button type="button" data-anio="2023" aria-pressed="false">2023</button><button type="button" data-anio="2024" aria-pressed="true">2024</button>
+        </div>
+      </div>
+      <div class="mapa-layout">
+        <div class="mapa-envoltura">
+          <div class="mapa mapa-tx" id="mapa" aria-label="Mapa de burbujas por región de control"></div>
+          <ul class="leyenda" style="margin-top:10px" id="ley-mapa"></ul>
+        </div>
+        <aside class="detalle" id="detalle" aria-live="polite"></aside>
+      </div>
+      <div class="aviso" style="margin-top:16px"><strong>¿Por qué no hay un mapa de las 16 divisiones de la CFE?</strong> Los documentos del proyecto no publican el territorio de cada división, y sus límites no coinciden con los de los estados. Para no inventar fronteras, el mapa usa las regiones de control del Plan, que sí traen usuarios, consumo y pérdidas. Las 16 divisiones aparecen abajo con los datos que la CFE publica por división.</div>
+      <p class="fuente" style="margin-top:14px" id="fuente-mapa"></p>
+    </div>
+  </section>
+
+  <!-- Divisiones -->
+  <section id="divisiones">
+    <div class="contenedor revelar">
+      <span class="etiqueta">Las 16 divisiones de distribución de la CFE</span>
+      <h2>Lo que la CFE publica por división</h2>
+      <p class="intro" id="intro-div"></p>
+      <article class="panel" aria-labelledby="t-div">
+        <div class="cab"><div><h3 id="t-div">Divisiones de distribución</h3><p class="desc" id="desc-div"></p></div>
+          <button class="filtro" type="button" data-tabla="tabla-div" aria-expanded="false" aria-controls="tabla-div">Ver tabla</button></div>
+        <div class="capa-bar" style="margin-top:0">
+          <div class="segmentado" role="group" aria-label="Indicador por división">
+            <button type="button" data-div="gd" aria-pressed="true">Solicitudes de generación distribuida</button>
+            <button type="button" data-div="quejas" aria-pressed="false">Quejas ante Profeco</button>
+          </div>
+          <div class="segmentado" role="group" aria-label="Año">
+            <button type="button" data-da="2022" aria-pressed="false">2022</button><button type="button" data-da="2023" aria-pressed="false">2023</button><button type="button" data-da="2024" aria-pressed="true">2024</button>
+          </div>
+        </div>
+        <div class="lienzo" style="height:460px"><canvas id="g-div" role="img" aria-label="Barras horizontales por división de distribución"></canvas></div>
+        <div class="tabla-envoltura" id="tabla-div" hidden></div>
+        <p class="fuente" id="fuente-div"></p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Red y calidad -->
+  <section id="red" class="alt">
+    <div class="contenedor revelar">
+      <span class="etiqueta">Indicadores · Red, pérdidas y continuidad</span>
+      <h2>La red de distribución de la CFE</h2>
+      <div class="rejilla c2">
+        <article class="panel" aria-labelledby="t-redes">
+          <h3 id="t-redes">Kilómetros de red, 2024</h3>
+          <p class="desc">Media tensión (más de 1 kV y menos de 69 kV) y baja tensión (1 kV o menos).</p>
+          <div class="lienzo" style="height:240px"><canvas id="g-redes" role="img" aria-label="Barras de kilómetros de líneas de media, baja tensión y subtransmisión"></canvas></div>
+          <div class="equipos" id="equipos"></div>
+          <p class="fuente" id="fuente-redes"></p>
+        </article>
+        <article class="panel" aria-labelledby="t-cal">
+          <h3 id="t-cal">Pérdidas y continuidad, 2022-2024</h3>
+          <p class="desc">Indicadores del tablero de CFE Distribución. Menos es mejor en los cuatro.</p>
+          <div class="multiples dx-mult" id="calidad"></div>
+          <p class="fuente" id="fuente-cal"></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Residencial vs industrial -->
+  <section id="usuarios">
+    <div class="contenedor revelar">
+      <span class="etiqueta">Residencial contra industrial</span>
+      <h2>Muchos usuarios, poco consumo; pocos usuarios, mucho consumo</h2>
+      <p class="intro">Compara qué parte de los usuarios y qué parte de la energía vendida corresponde a cada tarifa del Suministro Básico de la CFE en 2024.</p>
+      <article class="panel" aria-labelledby="t-tar">
+        <div class="cab"><div><h3 id="t-tar">Usuarios y consumo por tarifa, 2024</h3><p class="desc">Barras al 100 %. Pasa el cursor para ver las cifras.</p></div>
+          <button class="filtro" type="button" data-tabla="tabla-tar" aria-expanded="false" aria-controls="tabla-tar">Ver tabla</button></div>
+        <ul class="leyenda" id="ley-tar"></ul>
+        <div class="lienzo" style="height:200px"><canvas id="g-tar" role="img" aria-label="Barras al 100 % de usuarios y consumo por tarifa"></canvas></div>
+        <div class="tabla-envoltura" id="tabla-tar" hidden></div>
+        <div class="rejilla c2" id="contraste"></div>
+        <p class="fuente" id="fuente-tar"></p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Simulador -->
+  <section id="simulador" class="alt">
+    <div class="contenedor revelar">
+      <span class="etiqueta">Simulador de transformador</span>
+      <h2>Un transformador ideal, por dentro</h2>
+      <p class="intro">Cambia la tensión del primario, la relación de espiras y la potencia aparente. La potencia que entra es la que sale; lo que cambia es el reparto entre tensión y corriente.</p>
+      <div class="simulador">
+        <div class="panel">
+          <h3>Controles</h3>
+          <div class="control">
+            <label for="s-vp"><span>Tensión primaria, V<sub>p</sub></span> <span class="und">V</span></label>
+            <div class="par"><input type="range" id="s-vp" min="120" max="34500" step="10" value="13800"><input type="number" id="n-vp" min="120" max="34500" step="10" value="13800" aria-label="Tensión primaria en volts"></div>
+            <div class="filtros" id="vp-rapidos" role="group" aria-label="Tensiones de media tensión"></div>
+          </div>
+          <div class="control">
+            <label for="s-a"><span>Relación de espiras, N<sub>p</sub> / N<sub>s</sub></span> <span class="und">adimensional</span></label>
+            <div class="par"><input type="range" id="s-a" min="0.5" max="200" step="0.5" value="60"><input type="number" id="n-a" min="0.5" max="200" step="0.5" value="60" aria-label="Relación de espiras"></div>
+          </div>
+          <div class="control">
+            <label for="s-s"><span>Potencia aparente, S</span> <span class="und">kVA</span></label>
+            <div class="par"><input type="range" id="s-s" min="1" max="500" step="0.5" value="75"><input type="number" id="n-s" min="1" max="500" step="0.5" value="75" aria-label="Potencia aparente en kVA"></div>
+          </div>
+          <div class="botones"><button type="button" class="filtro" id="t-reset">Restablecer valores</button></div>
+          <p class="aviso" style="margin-top:14px">Valores iniciales de ejemplo: 13,800 V (13.8 kV es un nivel de tensión que aparece en el Plan, Tabla 4.10), relación 60 y 75 kVA. No describen un transformador real de la CFE.</p>
+        </div>
+        <div class="panel">
+          <h3>Resultados</h3>
+          <div class="trafo" id="trafo" aria-hidden="true"></div>
+          <div class="formula">V<sub>s</sub> = V<sub>p</sub> × N<sub>s</sub> / N<sub>p</sub></div>
+          <div class="res-fila"><span>Tensión secundaria</span><output class="resultado" id="o-vs"></output></div>
+          <div class="formula">I<sub>p</sub> = S / V<sub>p</sub> &nbsp;·&nbsp; I<sub>s</sub> = S / V<sub>s</sub></div>
+          <div class="res-fila"><span>Corriente primaria</span><output class="resultado sec" id="o-ip"></output></div>
+          <div class="res-fila"><span>Corriente secundaria</span><output class="resultado" id="o-is"></output></div>
+          <div class="formula">V<sub>p</sub> × I<sub>p</sub> = V<sub>s</sub> × I<sub>s</sub></div>
+          <div class="res-fila"><span>Comprobación</span><output class="resultado sec" id="o-chk"></output></div>
+          <div id="o-tipo"></div>
+          <details class="pasos"><summary>Ver el cálculo paso a paso</summary><div id="o-pasos"></div></details>
+        </div>
+      </div>
+      <div class="rejilla c2" style="margin-top:20px">
+        <article class="panel" aria-labelledby="t-tv">
+          <h3 id="t-tv">Primario contra secundario</h3>
+          <p class="desc">Escala logarítmica: la tensión baja tantas veces como sube la corriente.</p>
+          <ul class="leyenda"><li><i style="background:#0F4DBC"></i>Primario</li><li><i style="background:#F5A300"></i>Secundario</li></ul>
+          <div class="lienzo" style="height:260px"><canvas id="g-tv" role="img" aria-label="Barras de tensión y corriente en primario y secundario"></canvas></div>
+        </article>
+        <article class="panel" aria-labelledby="t-ta">
+          <h3 id="t-ta">Tensión secundaria según la relación de espiras</h3>
+          <p class="desc">Con tu tensión primaria. El punto marca tu relación.</p>
+          <div class="lienzo" style="height:260px"><canvas id="g-ta" role="img" aria-label="Curva de tensión secundaria contra relación de espiras"></canvas></div>
+        </article>
+      </div>
+      <article class="panel" style="margin-top:20px">
+        <h3>Supuestos del transformador ideal</h3>
+        <ul class="supuestos">
+          <li><strong>Sin pérdidas.</strong> No hay pérdidas en el cobre (resistencia de los devanados) ni en el núcleo (histéresis y corrientes parásitas): la eficiencia es 100 % y V<sub>p</sub>·I<sub>p</sub> = V<sub>s</sub>·I<sub>s</sub>.</li>
+          <li><strong>Acoplamiento perfecto.</strong> Todo el flujo magnético del primario atraviesa el secundario: no hay flujo de dispersión, por eso V<sub>p</sub>/V<sub>s</sub> = N<sub>p</sub>/N<sub>s</sub> exactamente.</li>
+          <li><strong>Núcleo ideal.</strong> Permeabilidad infinita y sin saturación: no se necesita corriente de magnetización.</li>
+          <li><strong>Monofásico o por fase.</strong> Las fórmulas son de un transformador monofásico. En uno trifásico se aplican por fase y la potencia total se reparte entre las tres.</li>
+          <li><strong>Unidades consistentes.</strong> Tensión en volts (V), corriente en amperes (A), potencia aparente en voltamperes (VA): 1 kVA = 1,000 VA.</li>
+          <li><strong>Un transformador real</strong> tiene eficiencia menor a 100 %, su tensión secundaria baja un poco con la carga y se calienta.</li>
+        </ul>
+        <p class="fuente">Fórmulas del enunciado del proyecto (TE1020). <span class="sello calculo">Cálculo</span> Todos los resultados del simulador son cálculos con los valores que eliges.</p>
+      </article>
+    </div>
+  </section>
+  <section class="siguiente-sec"><div class="contenedor"><a class="siguiente" href="sabias-que.html"><span class="sig-num">4</span><span><small>Siguiente módulo</small><strong>¿Sabías que?</strong><span class="sig-d">Cierra el recorrido con 20 hallazgos y la historia de la reforma energética de 2013.</span></span><span class="sig-flecha" aria-hidden="true">→</span></a></div></section>
+</main>
+
+<footer>
+  <div class="contenedor">
+    <img src="assets/logo-horizontal-claro.svg" alt="Logo A01744124">
+    <div>
+      <p><strong style="color:#fff">TE1020 · Análisis de circuitos eléctricos</strong></p>
+      <p>Atlas Eléctrico de México: de los recursos energéticos al consumidor.</p>
+    </div>
+    <p class="aparte">Fuentes del módulo: CFE, Informe Anual 2024 · SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025). Contorno de estados y ubicación de ciudades: Natural Earth (dominio público). Proyecto académico; no es un sitio oficial de la CFE ni de la SENER.</p>
+  </div>
+</footer>
+<a class="arriba" href="#" aria-label="Volver arriba">↑</a>
+
+<script src="js/vendor/chart.umd.min.js"></script>
+<script src="js/vendor/leaflet.js"></script>
+<script src="js/distribucion.js"></script>
+<script>(function(){var n=document.querySelector(".modulos"),a=n&&n.querySelector("[aria-current]");if(n&&a&&n.scrollWidth>n.clientWidth){n.scrollLeft=a.offsetLeft-(n.clientWidth-a.offsetWidth)/2;}})();</script>
+<script>(function(){var b=document.querySelector(".arriba");if(!b)return;function f(){b.classList.toggle("visible",scrollY>innerHeight*0.8);}addEventListener("scroll",f,{passive:true});f();})();</script>
+</body>
+</html>

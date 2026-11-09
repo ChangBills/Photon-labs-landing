@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A01744124 · Atlas · 2 Transmisión</title>
+  <meta name="description" content="Módulo 2 del Atlas Eléctrico de México: los cuatro sistemas interconectados, la red de transmisión por nivel de tensión y un simulador de pérdidas en la línea.">
+  <meta name="theme-color" content="#0B2A5B">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="js/vendor/leaflet.css">
+  <link rel="stylesheet" href="css/atlas.css">
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="barra">
+  <div class="contenedor">
+    <a class="logo" href="index.html" aria-label="Atlas Eléctrico, inicio"><img src="assets/logo-horizontal.svg" alt="Logo A01744124"></a>
+    <nav class="modulos" aria-label="Módulos del atlas">
+      <a href="recursos.html"><span>0</span>Recursos</a>
+      <a href="generacion.html"><span>1</span>Generación</a>
+      <a href="transmision.html" aria-current="page"><span>2</span>Transmisión</a>
+      <a href="distribucion.html"><span>3</span>Distribución</a>
+      <a href="sabias-que.html"><span>4</span>¿Sabías que?</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+  <div class="hero hero-mod hero-gen hero-tx">
+    <svg class="hero-torres" viewBox="0 0 600 200" aria-hidden="true" preserveAspectRatio="xMaxYMax meet">
+      <g fill="none" stroke="rgba(255,255,255,.22)" stroke-width="2">
+        <path d="M80 200 L110 40 L140 200 M92 140 H128 M100 90 H120 M70 60 H150 M85 40 H135"/>
+        <path d="M300 200 L330 40 L360 200 M312 140 H348 M320 90 H340 M290 60 H370 M305 40 H355"/>
+        <path d="M520 200 L550 40 L580 200 M532 140 H568 M540 90 H560 M510 60 H590 M525 40 H575"/>
+      </g>
+      <g fill="none" stroke="rgba(255,194,46,.55)" stroke-width="1.6">
+        <path class="cable" d="M70 60 Q 180 95 290 60 Q 400 95 510 60"/>
+        <path class="cable" d="M150 60 Q 260 95 370 60 Q 480 95 590 60"/>
+        <path class="cable" d="M85 40 Q 195 72 305 40 Q 415 72 525 40"/>
+      </g>
+    </svg>
+    <div class="contenedor">
+      <div>
+        <p class="migas"><a href="index.html">Atlas</a> › Módulo 2</p>
+        <h1>Transmisión: <span>las carreteras de alta tensión</span></h1>
+        <p class="sub">La electricidad viaja cientos de kilómetros desde las centrales hasta las ciudades. Explora los cuatro sistemas eléctricos del país, la red por nivel de tensión y descubre en el simulador por qué se transmite a 400 kV.</p>
+        <ul class="chips chips-hero" aria-label="Secciones del módulo"><li><a href="#sistemas" style="color:inherit">Mapa de sistemas</a></li><li><a href="#conexiones" style="color:inherit">Conexiones</a></li><li><a href="#red" style="color:inherit">Indicadores de la red</a></li><li><a href="#simulador" style="color:inherit">Simulador</a></li></ul>
+        <div class="hero-stats" id="hero-stats" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mapa de sistemas -->
+  <section id="sistemas">
+    <div class="contenedor revelar">
+      <span class="etiqueta">Mapa · Cuatro sistemas, ocho gerencias</span>
+      <h2>Un país, cuatro redes que no se tocan</h2>
+      <p class="intro">El <dfn class="def" tabindex="0">Sistema Eléctrico Nacional (SEN)<span class="def-texto" role="tooltip">Conjunto de la Red Nacional de Transmisión, las Redes Generales de Distribución, las centrales eléctricas y los equipos que las unen. Lo opera el CENACE.</span></dfn> se divide en 8 <dfn class="def" tabindex="0">Gerencias de Control Regional (GCR)<span class="def-texto" role="tooltip">Regiones operativas del CENACE. Siete forman el SIN; la GCR Baja California opera tres sistemas separados.</span></dfn>. Siete forman el Sistema Interconectado Nacional; Baja California opera tres sistemas aparte. Toca una gerencia o un estado para ver sus datos.</p>
+
+      <div class="capa-bar">
+        <div class="segmentado" role="group" aria-label="Capa del mapa">
+          <button type="button" data-capa="sis" aria-pressed="true">Sistemas y gerencias</button>
+          <button type="button" data-capa="obras" aria-pressed="false">Obras de transmisión por estado</button>
+        </div>
+        <div class="segmentado" role="group" aria-label="Indicador de obras" id="metrica" hidden>
+          <button type="button" data-met="km_c" aria-pressed="true">km-c</button>
+          <button type="button" data-met="mva" aria-pressed="false">MVA</button>
+          <button type="button" data-met="mvar" aria-pressed="false">MVAr</button>
+        </div>
+      </div>
+      <div class="chips-gcr" id="chips-gcr" role="group" aria-label="Gerencias de Control Regional"></div>
+
+      <div class="mapa-layout">
+        <div class="mapa-envoltura">
+          <div class="mapa mapa-tx" id="mapa" aria-label="Mapa de México por sistema eléctrico"></div>
+          <div class="ley-mapa" id="ley-mapa"></div>
+        </div>
+        <aside class="detalle" id="detalle" aria-live="polite"></aside>
+      </div>
+      <p class="fuente" style="margin-top:14px" id="fuente-mapa"></p>
+    </div>
+  </section>
+
+  <!-- Esquema de conexiones -->
+  <section id="conexiones" class="alt">
+    <div class="contenedor revelar">
+      <span class="etiqueta">Conexiones entre sistemas</span>
+      <h2>¿Quién está conectado con quién?</h2>
+      <p class="intro">Un esquema, no un mapa: muestra qué sistemas comparten red y cuáles están aislados, sin dibujar trayectorias de líneas. Pasa el cursor o toca un bloque.</p>
+      <div class="rejilla esquema-rej">
+        <div class="panel">
+          <div class="esquema" id="esquema"></div>
+        </div>
+        <div class="panel" id="hechos-conexion"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Indicadores -->
+  <section id="red">
+    <div class="contenedor revelar">
+      <span class="etiqueta">Indicadores · Longitud, tensión y transformación</span>
+      <h2>La red de transmisión en números</h2>
+      <article class="panel" aria-labelledby="t-km">
+        <div class="cab"><div><h3 id="t-km">Kilómetros de líneas por nivel de tensión, 2010-2024</h3><p class="desc">Toca una tensión para mostrarla u ocultarla.</p></div>
+          <button class="filtro" type="button" data-tabla="tabla-km" aria-expanded="false" aria-controls="tabla-km">Ver tabla</button></div>
+        <div class="filtros" id="chips-kv" role="group" aria-label="Niveles de tensión"></div>
+        <div class="lienzo" style="height:360px"><canvas id="g-km" role="img" aria-label="Barras apiladas de kilómetros de líneas por nivel de tensión de 2010 a 2024"></canvas></div>
+        <div class="tabla-envoltura" id="tabla-km" hidden></div>
+        <p class="aviso" style="margin-top:4px"><strong>Ojo con 2017:</strong> las líneas de 69 a 138 kV pasan de 5,803 km a 52,682 km en un año. La Tabla 2.3 del Plan lo registra así y el texto no explica el cambio; no debe leerse como 47 mil km construidos en un año.</p>
+        <p class="fuente" id="fuente-km"></p>
+      </article>
+
+      <div class="rejilla c2" style="margin-top:20px">
+        <article class="panel" aria-labelledby="t-mva">
+          <h3 id="t-mva">Capacidad de transformación, 2010-2024</h3>
+          <p class="desc">Bancos de transformación de la RNT y de las RGD del Mercado Eléctrico Mayorista, en MVA.</p>
+          <ul class="leyenda"><li><i style="background:#0F4DBC"></i>RNT</li><li><i style="background:#F5A300"></i>RGD del MEM</li></ul>
+          <div class="lienzo" style="height:280px"><canvas id="g-mva" role="img" aria-label="Líneas de capacidad de transformación de la RNT y las RGD 2010 a 2024"></canvas></div>
+          <p class="fuente" id="fuente-mva"></p>
+        </article>
+        <article class="panel" aria-labelledby="t-dem">
+          <h3 id="t-dem">Demanda máxima integrada bruta, 2024</h3>
+          <p class="desc">Por gerencia y sistema, en MWh/h. Es la potencia más alta que pidió cada región en una hora del año.</p>
+          <div class="lienzo" style="height:280px"><canvas id="g-dem" role="img" aria-label="Barras horizontales de demanda máxima 2024 por región"></canvas></div>
+          <p class="fuente" id="fuente-dem"></p>
+        </article>
+      </div>
+
+      <article class="panel" style="margin-top:20px" aria-labelledby="t-obras">
+        <div class="cab"><div><h3 id="t-obras">Obras instruidas para ampliar la red, por nivel de tensión</h3><p class="desc" id="desc-obras"></p></div>
+          <div class="segmentado" role="group" aria-label="Rubro" id="rubro"><button type="button" data-r="km_c" aria-pressed="true">Líneas (km-c)</button><button type="button" data-r="mva" aria-pressed="false">Transformación (MVA)</button><button type="button" data-r="mvar" aria-pressed="false">Compensación (MVAr)</button></div></div>
+        <div class="lienzo" style="height:280px"><canvas id="g-obras" role="img" aria-label="Barras de metas físicas de obras de transmisión por nivel de tensión"></canvas></div>
+        <p class="fuente" id="fuente-obras"></p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Simulador -->
+  <section id="simulador" class="alt">
+    <div class="contenedor revelar">
+      <span class="etiqueta">Simulador de transmisión</span>
+      <h2>¿Por qué se transmite a 400 kV?</h2>
+      <p class="intro">Mueve los controles y mira qué le pasa a la corriente y a las pérdidas. Para la misma potencia, subir la tensión baja la corriente, y las pérdidas caen con el cuadrado de la corriente.</p>
+
+      <div class="linea-viva panel" aria-hidden="true">
+        <svg viewBox="0 0 800 120" preserveAspectRatio="none" id="linea-svg">
+          <defs><linearGradient id="calor" x1="0" x2="1"><stop offset="0" stop-color="#2F80ED"/><stop offset="1" id="calor-fin" stop-color="#2F80ED"/></linearGradient></defs>
+          <g class="torre" transform="translate(30,18)"><path d="M20 90 L35 0 L50 90 M26 60 H44 M15 14 H55" fill="none" stroke="#0B2A5B" stroke-width="2.5"/></g>
+          <g class="torre" transform="translate(700,18)"><path d="M20 90 L35 0 L50 90 M26 60 H44 M15 14 H55" fill="none" stroke="#0B2A5B" stroke-width="2.5"/></g>
+          <path id="cable" d="M65 32 Q 400 78 735 32" fill="none" stroke="url(#calor)" stroke-width="6" stroke-linecap="round"/>
+          <g id="cargas"></g>
+          <text x="65" y="114" class="lv-et">Central</text><text x="735" y="114" class="lv-et" text-anchor="end">Subestación de llegada</text>
+        </svg>
+        <div class="lv-datos"><span id="lv-i"></span><span id="lv-p"></span></div>
+      </div>
+
+      <div class="simulador" style="margin-top:20px">
+        <div class="panel">
+          <h3>Controles</h3>
+          <div class="control">
+            <label for="s-p">Potencia activa transmitida, P <span class="und">MW</span></label>
+            <div class="par"><input type="range" id="s-p" min="10" max="2000" step="10" value="500"><input type="number" id="n-p" min="10" max="2000" step="10" value="500" aria-label="Potencia en MW"></div>
+          </div>
+          <div class="control">
+            <label for="s-v">Tensión entre líneas, V <span class="und">kV</span></label>
+            <div class="par"><input type="range" id="s-v" min="69" max="400" step="1" value="400"><input type="number" id="n-v" min="69" max="400" step="1" value="400" aria-label="Tensión en kV"></div>
+            <div class="filtros" id="kv-rapidos" role="group" aria-label="Tensiones de la red mexicana"></div>
+          </div>
+          <div class="control">
+            <label for="s-r">Resistencia equivalente por fase, R <span class="und">Ω</span></label>
+            <div class="par"><input type="range" id="s-r" min="0.5" max="50" step="0.5" value="10"><input type="number" id="n-r" min="0.5" max="50" step="0.5" value="10" aria-label="Resistencia en ohm"></div>
+          </div>
+          <div class="control">
+            <label for="s-f">Factor de potencia, cos φ <span class="und">adimensional</span></label>
+            <div class="par"><input type="range" id="s-f" min="0.70" max="1" step="0.01" value="1"><input type="number" id="n-f" min="0.70" max="1" step="0.01" value="1" aria-label="Factor de potencia"></div>
+          </div>
+          <div class="botones"><button type="button" class="filtro" id="s-reset">Restablecer valores</button></div>
+          <p class="aviso" style="margin-top:14px">Los valores iniciales (500 MW, 400 kV, 10 Ω, cos φ = 1) son de ejemplo para explorar el modelo. No describen una línea real de la CFE.</p>
+        </div>
+        <div class="panel">
+          <h3>Resultados</h3>
+          <div class="formula">I = P / (√3 × V × cos φ)</div>
+          <div class="res-fila"><span>Corriente por fase</span><output class="resultado" id="o-i"></output></div>
+          <div class="formula">P<sub>pérdidas</sub> = 3 × I² × R</div>
+          <div class="res-fila"><span>Pérdidas resistivas</span><output class="resultado" id="o-pl"></output></div>
+          <div class="res-fila"><span>Pérdidas respecto a P</span><output class="resultado" id="o-pc"></output></div>
+          <div class="medidor" aria-hidden="true"><div id="o-bar"></div></div>
+          <div class="res-fila"><span>Potencia que llega</span><output class="resultado sec" id="o-pr"></output></div>
+          <div class="res-fila"><span>Potencia aparente, S = P / cos φ</span><output class="resultado sec" id="o-s"></output></div>
+          <div id="o-aviso" role="status"></div>
+          <details class="pasos"><summary>Ver el cálculo paso a paso</summary><div id="o-pasos"></div></details>
+        </div>
+      </div>
+
+      <article class="panel" style="margin-top:20px" aria-labelledby="t-curva">
+        <h3 id="t-curva">Relación entre tensión, corriente y pérdidas</h3>
+        <p class="desc">Con la potencia, la resistencia y el factor de potencia que elegiste, así cambian la corriente y las pérdidas de 69 a 400 kV. El punto marca tu tensión.</p>
+        <ul class="leyenda"><li><i style="background:#e34948"></i>Pérdidas (% de P), eje izquierdo</li><li><i style="background:#0F4DBC"></i>Corriente (A), eje derecho</li></ul>
+        <div class="lienzo" style="height:320px"><canvas id="g-curva" role="img" aria-label="Curvas de pérdidas y corriente en función de la tensión"></canvas></div>
+      </article>
+
+      <div class="tensiones" id="tensiones" aria-live="polite"></div>
+
+      <article class="panel" style="margin-top:20px">
+        <h3>Supuestos y limitaciones del modelo</h3>
+        <ul class="supuestos">
+          <li><strong>Sistema trifásico balanceado.</strong> Las tres fases llevan la misma corriente; por eso aparecen √3 en la corriente y el 3 en las pérdidas.</li>
+          <li><strong>Solo resistencia.</strong> Se ignoran la reactancia inductiva y la capacitancia de la línea, así que no hay caída de tensión ni potencia reactiva de la línea.</li>
+          <li><strong>R constante.</strong> En la realidad, la resistencia del conductor sube con la temperatura y con la longitud; aquí es un valor fijo que tú eliges.</li>
+          <li><strong>V fija en el extremo de envío.</strong> La corriente se calcula con la tensión de salida; no se recalcula con la tensión de llegada.</li>
+          <li><strong>Sin efecto corona ni límites térmicos.</strong> El modelo no sabe si el conductor aguanta la corriente; si las pérdidas superan 100 % de P, el resultado no tiene sentido físico.</li>
+          <li><strong>Pérdidas técnicas por efecto Joule.</strong> El Plan define así las pérdidas técnicas: «energía térmica (efecto Joule) que se origina por el calentamiento de los conductores». Las pérdidas no técnicas (uso ilícito, fallas de medición) no se modelan.</li>
+        </ul>
+        <p class="fuente" id="fuente-sim"></p>
+      </article>
+    </div>
+  </section>
+  <section class="siguiente-sec"><div class="contenedor"><a class="siguiente" href="distribucion.html"><span class="sig-num">3</span><span><small>Siguiente módulo</small><strong>Distribución</strong><span class="sig-d">La energía llega a las ciudades. Mira cómo baja la tensión hasta tu casa.</span></span><span class="sig-flecha" aria-hidden="true">→</span></a></div></section>
+</main>
+
+<footer>
+  <div class="contenedor">
+    <img src="assets/logo-horizontal-claro.svg" alt="Logo A01744124">
+    <div>
+      <p><strong style="color:#fff">TE1020 · Análisis de circuitos eléctricos</strong></p>
+      <p>Atlas Eléctrico de México: de los recursos energéticos al consumidor.</p>
+    </div>
+    <p class="aparte">Fuentes del módulo: SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025) · CFE, Informes Anuales 2023 y 2024. Contorno de estados y ubicación de ciudades: Natural Earth (dominio público). Proyecto académico; no es un sitio oficial de la CFE, el CENACE ni la SENER.</p>
+  </div>
+</footer>
+<a class="arriba" href="#" aria-label="Volver arriba">↑</a>
+
+<script src="js/vendor/chart.umd.min.js"></script>
+<script src="js/vendor/leaflet.js"></script>
+<script src="js/transmision.js"></script>
+<script>(function(){var n=document.querySelector(".modulos"),a=n&&n.querySelector("[aria-current]");if(n&&a&&n.scrollWidth>n.clientWidth){n.scrollLeft=a.offsetLeft-(n.clientWidth-a.offsetWidth)/2;}})();</script>
+<script>(function(){var b=document.querySelector(".arriba");if(!b)return;function f(){b.classList.toggle("visible",scrollY>innerHeight*0.8);}addEventListener("scroll",f,{passive:true});f();})();</script>
+</body>
+</html>

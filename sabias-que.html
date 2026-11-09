@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A01744124 · Atlas · 4 ¿Sabías que?</title>
+  <meta name="description" content="Módulo 4 del Atlas Eléctrico de México: 20 hallazgos documentados sobre recursos, generación, transmisión y distribución, y la reforma energética de 2013.">
+  <meta name="theme-color" content="#0B2A5B">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/atlas.css">
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="barra">
+  <div class="contenedor">
+    <a class="logo" href="index.html" aria-label="Atlas Eléctrico, inicio"><img src="assets/logo-horizontal.svg" alt="Logo A01744124"></a>
+    <nav class="modulos" aria-label="Módulos del atlas">
+      <a href="recursos.html"><span>0</span>Recursos</a>
+      <a href="generacion.html"><span>1</span>Generación</a>
+      <a href="transmision.html"><span>2</span>Transmisión</a>
+      <a href="distribucion.html"><span>3</span>Distribución</a>
+      <a href="sabias-que.html" aria-current="page"><span>4</span>¿Sabías que?</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+  <div class="hero hero-mod hero-gen hero-sq">
+    <div class="contenedor">
+      <div>
+        <p class="migas"><a href="index.html">Atlas</a> › Módulo 4</p>
+        <h1>¿Sabías que…? <span>20 hallazgos y una reforma</span></h1>
+        <p class="sub">Veinte datos sorprendentes del sistema eléctrico mexicano, cada uno con su número, su gráfica y su fuente. Al final, la historia de la reforma energética de 2013 y lo que cambió después.</p>
+        <div class="botones" style="margin-top:22px">
+          <a class="btn btn-primario" href="#hallazgos">Ver los 20 hallazgos</a>
+          <a class="btn btn-secundario" href="#reforma">Ir a la reforma de 2013</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="hallazgos">
+    <div class="contenedor">
+      <span class="etiqueta">Hallazgos</span>
+      <h2>Veinte cosas que quizá no sabías</h2>
+      <div class="capa-bar">
+        <div class="filtros" id="temas" role="group" aria-label="Filtrar por tema"></div>
+        <button type="button" class="btn btn-primario btn-chico" id="sorpresa">Sorpréndeme</button>
+      </div>
+      <p class="gris" id="cuenta" aria-live="polite" style="margin-top:10px"></p>
+      <div class="hallazgos" id="rejilla"></div>
+    </div>
+  </section>
+
+  <section id="reforma" class="alt">
+    <div class="contenedor revelar">
+      <span class="etiqueta">Apartado especial</span>
+      <h2>La reforma energética de 2013: ¿cómo cambió el sector eléctrico mexicano?</h2>
+      <p class="intro">Recorre la historia en tres etapas. Toca un punto de la línea de tiempo para ver qué pasó, quién participó y la fuente.</p>
+
+      <h3 class="t-sec">1. Contexto político y legislativo</h3>
+      <div class="filtros" id="etapas" role="group" aria-label="Etapa"></div>
+      <div class="tiempo" id="tiempo" role="tablist" aria-label="Línea de tiempo"></div>
+      <div class="panel evento" id="evento" aria-live="polite"></div>
+
+      <h3 class="t-sec">2. Cambios estructurales y 4. Comparación histórica</h3>
+      <p class="gris">Elige una época para ver cómo funcionaba cada actividad. Las tarjetas que cambian respecto a la época anterior se marcan.</p>
+      <div class="segmentado" role="group" aria-label="Época" id="epocas" style="margin-top:12px">
+        <button type="button" data-ep="antes" aria-pressed="false">Antes de 2013</button>
+        <button type="button" data-ep="r2013" aria-pressed="true">Reforma 2013-2014</button>
+        <button type="button" data-ep="r2025" aria-pressed="false">Cambios 2024-2025</button>
+      </div>
+      <div class="cadena-ref" id="cadena-ref"></div>
+      <details class="pasos" style="margin-top:12px"><summary>Ver la comparación completa en tabla</summary><div class="tabla-envoltura" id="tabla-ref"></div></details>
+
+      <h3 class="t-sec">3. Repercusiones</h3>
+      <div class="filtros" id="rep-tabs" role="tablist" aria-label="Repercusiones"></div>
+      <article class="panel" id="rep" style="margin-top:14px"></article>
+    </div>
+  </section>
+  <section class="siguiente-sec"><div class="contenedor"><a class="siguiente" href="index.html"><span class="sig-num">↺</span><span><small>Fin del recorrido</small><strong>Volver al inicio</strong><span class="sig-d">Recorriste los cinco módulos, del recurso energético al consumidor.</span></span><span class="sig-flecha" aria-hidden="true">→</span></a></div></section>
+</main>
+
+<footer>
+  <div class="contenedor">
+    <img src="assets/logo-horizontal-claro.svg" alt="Logo A01744124">
+    <div>
+      <p><strong style="color:#fff">TE1020 · Análisis de circuitos eléctricos</strong></p>
+      <p>Atlas Eléctrico de México: de los recursos energéticos al consumidor.</p>
+    </div>
+    <p class="aparte">Fuentes del módulo: CFE, Informes Anuales 2022-2024 · SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 · IPCC AR5 · DOF (2013, 2014, 2025). Proyecto académico; no es un sitio oficial de la CFE ni de la SENER.</p>
+  </div>
+</footer>
+<a class="arriba" href="#" aria-label="Volver arriba">↑</a>
+
+<script src="js/vendor/chart.umd.min.js"></script>
+<script src="js/sabias.js"></script>
+<script>(function(){var n=document.querySelector(".modulos"),a=n&&n.querySelector("[aria-current]");if(n&&a&&n.scrollWidth>n.clientWidth){n.scrollLeft=a.offsetLeft-(n.clientWidth-a.offsetWidth)/2;}})();</script>
+<script>(function(){var b=document.querySelector(".arriba");if(!b)return;function f(){b.classList.toggle("visible",scrollY>innerHeight*0.8);}addEventListener("scroll",f,{passive:true});f();})();</script>
+</body>
+</html>
