@@ -235,7 +235,7 @@
       plugins: [etiquetas((ch, ctx) => ch.getDatasetMeta(0).data.forEach((b, i) => { ctx.textAlign = 'left'; ctx.fillText(fmt(ch.data.datasets[0].data[i], 1) + ' %', b.x + 6, b.y); }))] });
 
     charts.limp = new Chart($('#g-limp'), { type: 'bar', data: { labels: ['Nacional 2022', 'Nacional 2023', 'Nacional 2024', 'CFE 2022', 'CFE 2023', 'CFE 2024'], datasets: [
-      { label: 'Fósil', data: [], backgroundColor: [], borderColor: '#fff', borderWidth: { right: 2 }, borderSkipped: false, maxBarThickness: 34 },
+      { label: 'No limpia (fósil)', data: [], backgroundColor: [], borderColor: '#fff', borderWidth: { right: 2 }, borderSkipped: false, maxBarThickness: 34 },
       { label: 'Limpia', data: [], backgroundColor: [], borderColor: '#fff', borderWidth: { right: 2 }, borderSkipped: false, maxBarThickness: 34 }] },
       options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', scales: { x: { stacked: true, max: 100, grid: { color: '#EEF3FB' }, border: { display: false }, ticks: { callback: (x) => x + ' %' } }, y: { stacked: true, grid: { display: false }, border: { display: false }, ticks: { color: '#0B2A5B', font: { weight: 600 } } } },
         plugins: { legend: { display: false }, tooltip: { ...TIP, callbacks: { label: (c) => ` ${c.dataset.label}: ${fmt(c.raw, 1)} %` } } } },

@@ -10,7 +10,7 @@
   Chart.defaults.color = '#5B6B85';
   if (reduce) Chart.defaults.animation = false;
   const TIP = { backgroundColor: '#0B2A5B', padding: 10, titleFont: { family: 'Poppins' } };
-  const TEMAS = { recursos: { n: 'Recursos', c: '#1baf7a', num: 0 }, generacion: { n: 'Generación', c: '#eb6834', num: 1 }, transmision: { n: 'Transmisión', c: '#0F4DBC', num: 2 }, distribucion: { n: 'Distribución', c: '#F5A300', num: 3 } };
+  const TEMAS = { recursos: { n: 'Recursos', c: '#1baf7a', ct: '#0E7A55', num: 0 }, generacion: { n: 'Generación', c: '#eb6834', ct: '#B5461C', num: 1 }, transmision: { n: 'Transmisión', c: '#0F4DBC', ct: '#0F4DBC', num: 2 }, distribucion: { n: 'Distribución', c: '#F5A300', ct: '#8A5A00', num: 3 } };
   const SELLO = { oficial: '<span class="sello oficial">Dato oficial</span>', calculo: '<span class="sello calculo">Cálculo</span>' };
   let S, filtro = 'todos', ep = 'r2013', ev = 0, rep = 0;
   const charts = {};
@@ -37,7 +37,7 @@
     $('#rejilla').innerHTML = hs.map((h) => {
       const t = TEMAS[h.tema];
       return `<article class="hallazgo-c" id="c-${h.id}" style="--c:${t.c}">
-        <div class="h-cab"><span class="h-tema">${t.num} · ${t.n}</span><span class="h-num">${h.id.toUpperCase()}</span></div>
+        <div class="h-cab"><span class="h-tema" style="color:${t.ct}">${t.num} · ${t.n}</span><span class="h-num">${h.id.toUpperCase()}</span></div>
         <h3>${h.pregunta}</h3>
         <div class="h-valor"><b data-v="${h.valor}">${fmt(h.valor, dec(h.valor))}</b><span>${h.unidad}</span></div>
         ${SELLO[h.sello]}
@@ -59,10 +59,10 @@
   function lienzo(id, h = 150) { $('#v-' + id).innerHTML = `<div style="position:relative;height:${h}px"><canvas aria-label="Gráfica del hallazgo"></canvas></div>`; return $('#v-' + id + ' canvas'); }
   function viz(h) {
     const v = h.viz, u = v.u || '';
-    const opt = (extra = {}) => ({ maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { ...TIP, callbacks: { label: (c) => `${c.dataset.label ? c.dataset.label + ': ' : ''}${fmt(c.raw?.y ?? c.raw, 1)} ${u}` } } }, ...extra });
+    const opt = ({ plugins: pX = {}, ...extra } = {}) => ({ maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { ...TIP, callbacks: { label: (c) => `${c.dataset.label ? c.dataset.label + ': ' : ''}${fmt(c.raw?.y ?? c.raw, 1)} ${u}` } }, ...pX }, ...extra });
     if (v.tipo === 'barrasH') {
-      charts['h' + h.id] = new Chart(lienzo(h.id, 30 + 26 * v.etiquetas.length), { type: 'bar', data: { labels: v.etiquetas, datasets: [{ data: v.valores, backgroundColor: v.colores, borderRadius: 4 }] },
-        options: opt({ indexAxis: 'y', scales: { x: { type: v.log ? 'logarithmic' : 'linear', grid: { color: '#EAF3FF' }, ticks: { callback: (x) => (v.log && ![10, 100, 1000, 10000, 100000].includes(x) ? '' : fmt(x)), font: { size: 10 } } }, y: { grid: { display: false }, ticks: { font: { size: 11 } } } } }) });
+      charts['h' + h.id] = new Chart(lienzo(h.id, 30 + 26 * v.etiquetas.length), { type: 'bar', data: { labels: v.etiquetas, datasets: [{ label: v.directas ? 'Ciclo de vida' : '', data: v.valores, backgroundColor: v.colores, borderRadius: 4 }].concat(v.directas ? [{ label: 'Directas (chimenea)', data: v.directas, backgroundColor: '#98A2B3', borderRadius: 4 }] : []) },
+        options: opt({ indexAxis: 'y', ...(v.directas ? { plugins: { legend: { display: true, position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } } } } : {}), scales: { x: { type: v.log ? 'logarithmic' : 'linear', grid: { color: '#EAF3FF' }, ticks: { callback: (x) => (v.log && ![10, 100, 1000, 10000, 100000].includes(x) ? '' : fmt(x)), font: { size: 10 } } }, y: { grid: { display: false }, ticks: { font: { size: 11 } } } } }) });
     } else if (v.tipo === 'barras100') {
       charts['h' + h.id] = new Chart(lienzo(h.id, 40 + 34 * v.etiquetas.length), { type: 'bar', data: { labels: v.etiquetas, datasets: v.series.map((s) => ({ label: s.n, data: s.v, backgroundColor: s.c, borderColor: '#fff', borderWidth: 2, borderSkipped: false })) },
         options: opt({ indexAxis: 'y', plugins: { legend: { display: true, position: 'bottom', labels: { boxWidth: 10, font: { size: 11 } } }, tooltip: { ...TIP, callbacks: { label: (c) => `${c.dataset.label}: ${fmt(c.raw, 1)} ${u}` } } },
@@ -104,7 +104,7 @@
     $$('.hito').forEach((b) => b.addEventListener('click', () => { ev = +b.dataset.i; pintarLinea(); }));
     const sel = $('.hito[aria-selected="true"]'); sel && sel.scrollIntoView({ block: 'nearest', inline: 'center', behavior: reduce ? 'auto' : 'smooth' });
     const votos = e.votos ? `<div class="votos"><div class="vb"><i style="width:${(100 * e.votos.favor) / (e.votos.favor + e.votos.contra)}%"></i></div><span><b>${e.votos.favor}</b> a favor · <b>${e.votos.contra}</b> en contra (${fmt((100 * e.votos.favor) / (e.votos.favor + e.votos.contra), 1)} % a favor)</span></div>` : '';
-    $('#evento').innerHTML = `<span class="h-fecha grande">${e.fecha} · ${ETAPAS[e.etapa]}</span><h3>${e.titulo}</h3><p class="actores"><strong>Actores:</strong> ${e.actores}</p><p>${e.texto}</p>${votos}
+    $('#evento').innerHTML = `<span class="h-fecha grande">${e.fecha}${e.fecha === ETAPAS[e.etapa] ? '' : ` · ${ETAPAS[e.etapa]}`}</span><h3>${e.titulo}</h3><p class="actores"><strong>Actores:</strong> ${e.actores}</p><p>${e.texto}</p>${votos}
       <div class="nav-ev"><button type="button" class="filtro" id="ev-ant" ${ev === 0 ? 'disabled' : ''}>← Anterior</button><span class="gris">${ev + 1} de ${L.length}</span><button type="button" class="filtro" id="ev-sig" ${ev === L.length - 1 ? 'disabled' : ''}>Siguiente →</button></div>
       <p class="fuente"><strong>Fuente:</strong> ${e.fuentes.map(fuente).join(' · ')}${e.fuentes.some((f) => f.url) ? ' <span class="sello nd" style="margin-left:4px">Fuente externa</span>' : ''}</p>`;
     $('#ev-ant').onclick = () => { ev--; pintarLinea(); }; $('#ev-sig').onclick = () => { ev++; pintarLinea(); };
@@ -142,8 +142,10 @@
     $$('[data-rep]').forEach((b) => { b.setAttribute('aria-selected', String(+b.dataset.rep === rep)); b.setAttribute('aria-pressed', String(+b.dataset.rep === rep)); });
     if (charts.rep) { charts.rep.destroy(); delete charts.rep; }
     let extra = '';
-    if (r.viz === 'tarifas') extra = `<div class="debate"><div class="lado-d pro"><h4>Lo que señalan sus defensores</h4><p>${r.defensores}</p></div><div class="lado-d contra"><h4>Lo que señala la CFE (crítica)</h4><p>${r.criticos}</p></div></div>`;
-    $('#rep').innerHTML = `<h3>${rep + 1}. ${r.n}</h3><p>${r.texto}</p>${r.viz === 'mercado' ? `<div class="hechos-mem">${r.roles.map((x) => `<div class="panel"><h4>${x.q}</h4><p>${x.t}</p><p class="fuente">${fuente(x.f)}</p></div>`).join('')}</div>` : '<div class="lienzo" style="height:300px"><canvas id="g-rep" role="img" aria-label="Gráfica de la repercusión"></canvas></div>'}${extra}<p class="fuente"><strong>Fuentes:</strong> ${r.f.map(fuente).join(' · ')}</p>`;
+    if (r.viz === 'tarifas') extra = `<div class="debate"><div class="lado-d pro"><h4>Lo que planteaba la reforma</h4><p>${r.defensores}</p><p class="fuente">DOF 20/12/2013, art. 25 y transitorio 17 · Plan, Tabla 2.1, p. 19</p></div><div class="lado-d contra"><h4>Lo que critica la CFE</h4><p>${r.criticos}</p><p class="fuente">CFE, Informe Anual 2024, p. 4</p></div></div><p class="mini-nota">Son dos interpretaciones documentadas, no hechos neutrales: la primera es el objetivo escrito en la ley; la segunda, la postura de la CFE en su informe.</p>`;
+    const fl = (x) => (Array.isArray(x) ? x : [x]).map(fuente).join(' · ');
+    const tri = r.obj ? `<div class="tri-ref"><div><span class="tri-et obj">Objetivo declarado</span><p>${r.obj.t}</p><small>${fl(r.obj.f)}</small></div><div><span class="tri-et ley">Cambio legal</span><p>${r.ley.t}</p><small>${fl(r.ley.f)}</small></div><div><span class="tri-et res">Resultado observado</span><p>${r.texto}</p></div></div>` : `<p>${r.texto}</p>`;
+    $('#rep').innerHTML = `<h3>${rep + 1}. ${r.n}</h3>${tri}${r.viz === 'mercado' ? `<div class="hechos-mem">${r.roles.map((x) => `<div class="panel"><h4>${x.q}</h4><p>${x.t}</p><p class="fuente">${fuente(x.f)}</p></div>`).join('')}</div>` : '<div class="lienzo" style="height:300px"><canvas id="g-rep" role="img" aria-label="Gráfica de la repercusión"></canvas></div>'}${extra}<p class="fuente"><strong>Fuentes:</strong> ${r.f.map(fuente).join(' · ')}</p>`;
     const g = $('#g-rep'), base = { maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 12 } }, tooltip: { ...TIP } } };
     const marca2013 = { id: 'm13', afterDraw: (c) => { const x = c.scales.x; if (!x || r.viz === 'participacion' || r.viz === 'tarifas') return; const px = x.getPixelForValue(x.getLabels ? x.getLabels().indexOf(2013) : 2013); if (!(px > 0)) return; const { top, bottom } = c.chartArea, k = c.ctx; k.save(); k.strokeStyle = '#F5A300'; k.setLineDash([5, 4]); k.lineWidth = 2; k.beginPath(); k.moveTo(px, top); k.lineTo(px, bottom); k.stroke(); k.fillStyle = '#0B2A5B'; k.font = '600 11px Inter'; k.fillText('Reforma 2013', px + 4, top + 12); k.restore(); } };
     if (r.viz === 'participacion') {

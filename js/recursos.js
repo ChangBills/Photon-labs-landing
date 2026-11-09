@@ -49,51 +49,191 @@
     { n: 'Bioenergía', t: 'Tecnología', ok: ['renovable'], matiz: true, e: 'Renovable cuando la biomasa se repone (cultivos, residuos). Quemarla sí emite CO₂ en la chimenea; el IPCC lo trata aparte porque las plantas lo absorbieron al crecer.' },
     { n: 'Cogeneración eficiente', t: 'Tecnología', ok: ['fosil'], matiz: true, e: 'Su recurso es fósil (gas natural), pero la ley la cuenta como energía limpia por su eficiencia (Ley del Sector Eléctrico, art. 3, fr. XXI, inciso k). Es limpia, no renovable.' },
   ];
-  const estado = {};
-  function pintaMazo() {
-    const mazo = $('#mazo'); mazo.innerHTML = '';
-    document.querySelectorAll('.caja ul').forEach((u) => (u.innerHTML = ''));
-    CARTAS.forEach((c, i) => {
-      const art = document.createElement('article');
-      art.className = 'carta'; art.draggable = true; art.dataset.i = i;
-      art.innerHTML = `<span class="tipo">${c.t}</span><h4>${c.n}</h4>` +
-        `<div class="opciones" role="group" aria-label="Clasificar ${c.n}">` +
-        ['fosil', 'nuclear', 'renovable'].map((k) => `<button type="button" data-cat="${k}">${NOM[k]}</button>`).join('') +
-        `</div><div class="retro" aria-live="polite" hidden></div>`;
-      art.querySelectorAll('button').forEach((b) => b.addEventListener('click', () => clasifica(i, b.dataset.cat)));
-      art.addEventListener('dragstart', (ev) => ev.dataTransfer.setData('text/plain', String(i)));
-      mazo.appendChild(art);
+  /* Juego: una tarjeta a la vez; se arrastra (ratón o dedo) a uno de tres contenedores.
+     Dos rondas: 1) recursos, combustibles y procesos; 2) tecnologías. */
+  const CATS = ['fosil', 'nuclear', 'renovable'];
+  const ICO = {
+    Recurso: '<path d="M3 20l6-11 4 6 3-4 5 9z"/>',
+    Combustible: '<path d="M12 3c3 5 6 8 6 12a6 6 0 0 1-12 0c0-4 3-7 6-12z"/>',
+    Proceso: '<circle cx="12" cy="12" r="2.5"/><ellipse cx="12" cy="12" rx="9" ry="3.6" fill="none" stroke-width="1.8"/><ellipse cx="12" cy="12" rx="9" ry="3.6" fill="none" stroke-width="1.8" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9" ry="3.6" fill="none" stroke-width="1.8" transform="rotate(-60 12 12)"/>',
+    'Tecnología': '<path d="M3 21V11l5 3V11l5 3V5h4l1 16z"/>',
+  };
+  const PISTA = {
+    Recurso: '¿De dónde viene su energía?', Combustible: '¿De qué está hecho este combustible?',
+    Proceso: '¿Qué recurso aprovecha este proceso?', 'Tecnología': '¿Qué recurso usa esta central?',
+  };
+  const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const J = { mazo: [], pos: 0, res: [], racha: 0, mejor: 0, ocupado: false, rondas: [], teclado: false };
+  const mezcla = (a) => { const b = a.slice(); for (let k = b.length - 1; k > 0; k--) { const j = Math.floor(Math.random() * (k + 1)); [b[k], b[j]] = [b[j], b[k]]; } return b; };
+  const pila = $('#jg-pila'), botes = [...document.querySelectorAll('.jg-bote')];
+  const espera = (ms) => new Promise((r) => setTimeout(r, quieto ? 0 : ms));
+
+  function inicia(soloIdx) {
+    const base = soloIdx || CARTAS.map((_, i) => i);
+    const r1 = mezcla(base.filter((i) => CARTAS[i].t !== 'Tecnología'));
+    const r2 = mezcla(base.filter((i) => CARTAS[i].t === 'Tecnología'));
+    J.rondas = [r1, r2].filter((r) => r.length);
+    J.mazo = J.rondas.flat(); J.pos = 0; J.res = []; J.racha = 0; J.mejor = 0; J.ocupado = false;
+    J.repaso = !!soloIdx;
+    botes.forEach((b) => { b.querySelector('[data-n]').textContent = '0'; b.classList.remove('sobre', 'pulso-ok', 'pulso-mal'); });
+    $('#jg-fin').hidden = true; $('#jg-mesa').hidden = false; $('#jg-botes').hidden = false;
+    const prog = $('#jg-prog'); prog.setAttribute('aria-valuemax', J.mazo.length);
+    prog.innerHTML = J.mazo.map(() => '<i></i>').join('');
+    marcador(); reparte();
+  }
+  const rondaDe = (pos) => (pos < J.rondas[0].length ? 0 : 1);
+  function marcador(vista = J.pos) {
+    $('#jg-aciertos').textContent = J.res.filter((r) => r.clase !== 'mal').length;
+    $('#jg-racha').textContent = J.racha;
+    $('#jg-racha-w').classList.toggle('encendida', J.racha >= 3);
+    const segs = $('#jg-prog').children;
+    [...segs].forEach((s, k) => { s.className = J.res[k] ? J.res[k].clase : (k === J.pos ? 'actual' : ''); });
+    $('#jg-prog').setAttribute('aria-valuenow', J.res.length);
+    if (vista < J.mazo.length) {
+      const r = rondaDe(vista), ini = r === 0 ? 0 : J.rondas[0].length, tot = J.rondas[r].length;
+      const nom = CARTAS[J.mazo[vista]].t === 'Tecnología' ? 'Tecnologías' : 'Recursos y combustibles';
+      $('#jg-ronda').innerHTML = `${J.repaso ? 'Repaso · ' : ''}Ronda ${r + 1} de ${J.rondas.length} · ${nom} <span>Tarjeta ${vista - ini + 1} de ${tot}</span>`;
+    }
+  }
+
+  function reparte() {
+    const i = J.mazo[J.pos], c = CARTAS[i];
+    const quedan = J.mazo.length - J.pos - 1;
+    pila.innerHTML = (quedan >= 2 ? '<div class="jg-sombra s2"></div>' : '') + (quedan >= 1 ? '<div class="jg-sombra s1"></div>' : '') +
+      `<article class="jg-carta entra" tabindex="0" data-tipo="${c.t}" aria-roledescription="tarjeta arrastrable"
+        aria-label="${c.n}, ${c.t.toLowerCase()}. Arrástrala a fósil, nuclear o renovable, o pulsa 1, 2 o 3.">
+        <span class="jg-tipo"><svg viewBox="0 0 24 24" aria-hidden="true">${ICO[c.t]}</svg>${c.t}</span>
+        <h3>${c.n}</h3>
+        <p class="jg-pista">${PISTA[c.t]}</p>
+        <span class="jg-agarre" aria-hidden="true"><i></i><i></i><i></i>arrastra</span>
+      </article>`;
+    const carta = pila.querySelector('.jg-carta');
+    arrastrable(carta);
+    carta.addEventListener('keydown', teclas);
+    $('#jg-ayuda').hidden = false;
+    marcador();
+    if (J.pos > 0) { if (J.teclado) carta.focus({ preventScroll: true }); enVista(); }
+  }
+  // que la tarjeta y los tres contenedores queden visibles a la vez
+  function enVista() {
+    const rb = $('#jg-botes').getBoundingClientRect(), rj = $('#jg').getBoundingClientRect();
+    if (rb.bottom > innerHeight - 8 || rj.top < 60) $('#jg').scrollIntoView({ block: 'start', behavior: quieto ? 'auto' : 'smooth' });
+  }
+
+  function teclas(ev) {
+    const m = { 1: 'fosil', 2: 'nuclear', 3: 'renovable', ArrowLeft: 'fosil', ArrowDown: 'nuclear', ArrowRight: 'renovable' }[ev.key];
+    if (m) { ev.preventDefault(); J.teclado = true; suelta(ev.currentTarget, m); }
+  }
+
+  function boteBajo(x, y) {
+    return botes.find((b) => { const r = b.getBoundingClientRect(); return x >= r.left - 8 && x <= r.right + 8 && y >= r.top - 24 && y <= r.bottom + 8; });
+  }
+  function arrastrable(carta) {
+    let x0 = 0, y0 = 0, activo = false, sobre = null, chica = 1;
+    carta.addEventListener('pointerdown', (ev) => {
+      if (J.ocupado || ev.button > 0) return;
+      ev.preventDefault(); J.teclado = false;
+      activo = true; x0 = ev.clientX; y0 = ev.clientY;
+      chica = innerWidth < 700 ? 0.55 : 0.8;
+      carta.setPointerCapture(ev.pointerId); carta.classList.add('agarrada'); carta.classList.remove('entra');
+      document.getElementById('jg').classList.add('arrastrando');
     });
-    Object.keys(estado).forEach((k) => delete estado[k]);
-    puntaje();
+    carta.addEventListener('pointermove', (ev) => {
+      if (!activo) return;
+      const dx = ev.clientX - x0, dy = ev.clientY - y0;
+      carta.style.transform = `translate(${dx}px, ${dy}px) rotate(${Math.max(-14, Math.min(14, dx / 14))}deg) scale(${chica})`;
+      const b = boteBajo(ev.clientX, ev.clientY);
+      if (b !== sobre) { botes.forEach((o) => o.classList.toggle('sobre', o === b)); sobre = b; }
+    });
+    const fin = (ev) => {
+      if (!activo) return; activo = false;
+      carta.classList.remove('agarrada'); document.getElementById('jg').classList.remove('arrastrando');
+      botes.forEach((o) => o.classList.remove('sobre'));
+      const b = ev.type === 'pointerup' ? boteBajo(ev.clientX, ev.clientY) : null; sobre = null;
+      if (b) suelta(carta, b.dataset.cat, true);
+      else { carta.classList.add('regresa'); carta.style.transform = ''; setTimeout(() => carta.classList.remove('regresa'), 320); }
+    };
+    carta.addEventListener('pointerup', fin);
+    carta.addEventListener('pointercancel', fin);
   }
-  function clasifica(i, cat) {
-    if (estado[i]) return;
-    const c = CARTAS[i];
-    const acierto = c.ok.includes(cat);
-    const clase = acierto ? (c.matiz ? 'matiz' : 'ok') : 'mal';
-    estado[i] = { cat, acierto };
-    const art = $(`.carta[data-i="${i}"]`);
-    art.classList.add(clase); art.draggable = false;
-    art.querySelectorAll('button').forEach((b) => (b.disabled = true));
-    const r = art.querySelector('.retro'); r.hidden = false; r.className = `retro ${clase}`;
-    const titulo = acierto ? (c.matiz ? 'Correcto, con un matiz' : 'Correcto') : `No: es ${c.ok.map((k) => NOM[k].toLowerCase()).join(' o ')}`;
-    r.innerHTML = `<b>${titulo}</b>${c.e}`;
-    const li = document.createElement('li'); li.textContent = `${acierto ? '✓' : '✗'} ${c.n}`;
-    $(`.caja[data-cat="${cat}"] ul`).appendChild(li);
-    puntaje();
+
+  async function suelta(carta, cat, yaArrastrada) {
+    if (J.ocupado) return; J.ocupado = true;
+    const i = J.mazo[J.pos], c = CARTAS[i];
+    const acierto = c.ok.includes(cat), clase = acierto ? (c.matiz ? 'matiz' : 'ok') : 'mal';
+    J.res[J.pos] = { i, cat, clase };
+    J.racha = acierto ? J.racha + 1 : 0; J.mejor = Math.max(J.mejor, J.racha);
+    const bote = botes.find((b) => b.dataset.cat === cat);
+    // vuelo de la tarjeta al contenedor
+    const rc = carta.getBoundingClientRect(), rb = bote.getBoundingClientRect();
+    const base = carta.style.transform.match(/translate\(([-\d.]+)px, ([-\d.]+)px\)/);
+    const bx = base ? +base[1] : 0, by = base ? +base[2] : 0;
+    const dx = rb.left + rb.width / 2 - (rc.left + rc.width / 2) + bx, dy = rb.top + rb.height / 2 - (rc.top + rc.height / 2) + by;
+    carta.classList.add('vuela');
+    carta.style.transform = `translate(${dx}px, ${dy}px) scale(.15) rotate(${yaArrastrada ? 0 : 8}deg)`;
+    carta.style.opacity = '0';
+    await espera(380);
+    const n = bote.querySelector('[data-n]'); n.textContent = +n.textContent + 1;
+    bote.classList.remove('pulso-ok', 'pulso-mal'); void bote.offsetWidth;
+    bote.classList.add(acierto ? 'pulso-ok' : 'pulso-mal');
+    retro(c, cat, clase);
   }
-  function puntaje() {
-    const hechos = Object.keys(estado).length, ok = Object.values(estado).filter((e) => e.acierto).length;
-    $('#puntaje').textContent = `${hechos} de ${CARTAS.length} clasificadas · ${ok} aciertos` + (hechos === CARTAS.length ? ` · ${Math.round((100 * ok) / hechos)} %` : '');
+
+  function retro(c, cat, clase) {
+    const ultima = J.pos === J.mazo.length - 1;
+    const finRonda = !ultima && rondaDe(J.pos + 1) !== rondaDe(J.pos);
+    const tit = clase === 'ok' ? '¡Correcto!' : clase === 'matiz' ? 'Correcto, con un matiz' : 'No exactamente';
+    const icono = clase === 'mal' ? '✕' : clase === 'matiz' ? '!' : '✓';
+    const va = c.ok.map((k) => `<b class="jg-chip" data-cat="${k}">${NOM[k]}</b>`).join(' o ');
+    let extra = '';
+    if (finRonda) {
+      const r1 = J.res.slice(0, J.rondas[0].length), ok1 = r1.filter((r) => r.clase !== 'mal').length;
+      extra = `<div class="jg-entreronda"><strong>Ronda 1 terminada: ${ok1} de ${r1.length}.</strong> Ahora vienen las tecnologías. Ojo: una central puede quemar distintos combustibles, así que piensa en el <em>recurso</em> que usa.</div>`;
+    }
+    $('#jg-ayuda').hidden = true;
+    pila.innerHTML = `<div class="jg-retro ${clase}" role="status">
+        <div class="jg-veredicto"><span class="jg-ico" aria-hidden="true">${icono}</span><div><h3>${tit}</h3>
+          <p class="jg-donde"><span>${c.n}</span> → lo pusiste en <b class="jg-chip" data-cat="${cat}">${NOM[cat]}</b>${clase === 'mal' ? ` · va en ${va}` : ''}</p></div></div>
+        <p class="jg-exp">${c.e}</p>
+        ${extra}
+        <button class="btn btn-primario jg-sig" type="button">${ultima ? 'Ver resultados' : finRonda ? 'Empezar ronda 2' : 'Siguiente tarjeta'} <span aria-hidden="true">→</span></button>
+      </div>`;
+    J.pos += 1; marcador(J.pos - 1);
+    const sig = pila.querySelector('.jg-sig');
+    sig.addEventListener('click', () => { J.ocupado = false; if (ultima) resultados(); else reparte(); });
+    if (J.teclado) sig.focus({ preventScroll: true });
   }
-  document.querySelectorAll('.caja').forEach((caja) => {
-    caja.addEventListener('dragover', (ev) => { ev.preventDefault(); caja.classList.add('sobre'); });
-    caja.addEventListener('dragleave', () => caja.classList.remove('sobre'));
-    caja.addEventListener('drop', (ev) => { ev.preventDefault(); caja.classList.remove('sobre'); clasifica(+ev.dataTransfer.getData('text/plain'), caja.dataset.cat); });
-  });
-  $('#reiniciar').addEventListener('click', pintaMazo);
-  pintaMazo();
+
+  function resultados() {
+    const tot = J.res.length, ok = J.res.filter((r) => r.clase !== 'mal').length, pct = Math.round((100 * ok) / tot);
+    const fallas = J.res.filter((r) => r.clase === 'mal').map((r) => r.i);
+    const msj = pct === 100 ? '¡Perfecto! Distingues muy bien recurso, proceso y tecnología.' : pct >= 80 ? 'Muy bien. Repasa las que fallaste: casi siempre es la diferencia entre tecnología y recurso.' : pct >= 50 ? 'Vas bien. Lee las explicaciones de abajo y vuelve a intentarlo.' : 'Repasa la sección <a href="#cadena">«De recurso a electricidad»</a> y vuelve a jugar.';
+    const grupo = (k) => {
+      const items = J.res.filter((r) => CARTAS[r.i].ok[0] === k);
+      if (!items.length) return '';
+      return `<div class="jg-col" style="--c:var(--r-${k})"><h4>${NOM[k]}</h4><div class="jg-lista">` + items.map((r) => {
+        const c = CARTAS[r.i];
+        return `<details class="jg-item ${r.clase}"><summary><span class="jg-mini" aria-hidden="true">${r.clase === 'mal' ? '✕' : r.clase === 'matiz' ? '!' : '✓'}</span>${c.n}</summary>` +
+          `<p><small>${c.t}</small>${r.clase === 'mal' ? `Lo pusiste en ${NOM[r.cat].toLowerCase()}. ` : ''}${c.e}</p></details>`;
+      }).join('') + '</div></div>';
+    };
+    $('#jg-mesa').hidden = true; $('#jg-botes').hidden = true;
+    $('#jg-ronda').textContent = J.repaso ? 'Resultados del repaso' : 'Resultados';
+    const fin = $('#jg-fin'); fin.hidden = false;
+    fin.innerHTML = `<div class="jg-resumen">
+        <div class="jg-anillo" style="--p:${pct}" role="img" aria-label="${pct} % de aciertos"><span>${pct}<small>%</small></span></div>
+        <div><h3>${ok} de ${tot} correctas</h3><p>${msj}</p><p class="jg-dato">Mejor racha: <b>${J.mejor}</b> seguidas</p>
+          <div class="jg-acciones">${fallas.length ? `<button class="btn btn-primario" type="button" id="jg-fallas">Repasar las ${fallas.length} que fallé</button>` : ''}
+          <button class="btn ${fallas.length ? 'btn-sec' : 'btn-primario'}" type="button" id="jg-otra">Jugar otra vez</button></div></div>
+      </div>
+      <p class="jg-sub">Toca cualquier tarjeta para leer su explicación. Se agrupan por su recurso correcto.</p>
+      <div class="jg-cols">${CATS.map(grupo).join('')}</div>`;
+    $('#jg-otra').addEventListener('click', () => { inicia(); $('#jg').scrollIntoView({ behavior: quieto ? 'auto' : 'smooth', block: 'start' }); });
+    if (fallas.length) $('#jg-fallas').addEventListener('click', () => { inicia(fallas); $('#jg').scrollIntoView({ behavior: quieto ? 'auto' : 'smooth', block: 'start' }); });
+  }
+
+  $('#reiniciar').addEventListener('click', () => inicia());
+  inicia();
 
   /* ===================== 3. DIAGRAMAS ===================== */
   const DIAG = [
@@ -292,11 +432,12 @@
   function conciencia(g, A, I, tot, nac) {
     const D = g.datos;
     const fosConv = I.map((i, j) => (100 * ['Carboeléctrica', 'Térmica convencional', 'Combustión interna', 'Turbogás', 'Ciclo combinado'].reduce((s, k) => s + D[k][i], 0)) / tot[j]);
+    const fosRec = I.map((i, j) => fosConv[j] + (100 * D['Cogeneración eficiente'][i]) / tot[j]);
     const ren = nac.map((o, j) => (100 * o.renovable) / tot[j]);
     const nuc = I.map((i, j) => (100 * D['Nucleoeléctrica'][i]) / tot[j]);
     const t = (x) => fmt(x, 1) + ' %';
     const cards = [
-      ['1 · Dependencia fósil', t(fosConv[2]), `de la electricidad de 2024 salió de centrales fósiles convencionales (${t(fosConv[0])} en 2022). Solo el ciclo combinado aportó ${t((100 * D['Ciclo combinado'][I[2]]) / tot[2])}.`, 'Plan, p. 19 (76.6 %) y Tabla 2.2, p. 20', fosConv],
+      ['1 · Dependencia fósil', t(fosRec[2]), `de la electricidad de 2024 salió de quemar combustibles fósiles (${t(fosRec[0])} en 2022). Incluye la cogeneración eficiente, que quema gas: el Plan reporta ${t(fosConv[2])} «convencional» porque la ley la cuenta como limpia. Solo el ciclo combinado aportó ${t((100 * D['Ciclo combinado'][I[2]]) / tot[2])}.`, 'Plan, p. 19 (76.6 % convencional) y Tabla 2.2, p. 20', fosRec],
       ['2 · Participación renovable', t(ren[2]), `en 2024, contra ${t(ren[0])} en 2022. La caída se concentra en 2023, cuando la hidroeléctrica bajó 42 % por falta de lluvia.`, 'Plan, Tabla 2.2, p. 20; CFE, Informe Anual 2023, p. 18 (estiaje)', ren],
       ['3 · Participación nuclear', t(nuc[2]), `de la generación nacional de 2024 (${fmt(D['Nucleoeléctrica'][I[2]])} GWh), todo de una sola central: Laguna Verde. Es limpia por ley, no renovable.`, 'Plan, Tabla 2.2, p. 20', nuc],
       ['4 · Evolución de tecnologías', `${fmt(D['Solar fotovoltaica'][I[2]])} GWh`, 'generó la solar en 2024; en 2010 no inyectaba nada. El carbón bajó 63 % en el mismo periodo. Mira las gráficas pequeñas de abajo.', 'Plan, Tabla 2.2, p. 20', null],
@@ -304,7 +445,7 @@
     ];
     $('#ind-conciencia').innerHTML = cards.map((c, n) => `<article class="kpi"><div class="cab"><span class="nombre">${c[0]}</span><span class="alcance">${n === 4 ? 'Global / Nacional' : 'Nacional'}</span></div>` +
       `<div class="valor">${c[1]}</div><p style="margin:0;font-size:.92rem">${c[2]}</p>${c[4] ? `<div class="mini"><canvas id="mini-${n}" role="img" aria-label="Tendencia 2022 a 2024"></canvas></div>` : ''}` +
-      `${n === 0 ? '<span class="sello oficial">Dato oficial</span>' : '<span class="sello calculo">Cálculo</span>'}<div class="pie">${c[3]}</div></article>`).join('');
+      `<span class="sello calculo">Cálculo</span><div class="pie">${c[3]}</div></article>`).join('');
     cards.forEach((c, n) => { if (!c[4]) return; new Chart($(`#mini-${n}`), { type: 'line', data: { labels: A.map(String), datasets: [{ data: c[4], borderColor: '#0F4DBC', backgroundColor: '#0F4DBC', borderWidth: 2, pointRadius: 4 }] },
       options: { responsive: true, maintainAspectRatio: false, scales: { x: { grid: { display: false }, border: { display: false } }, y: { grid: { color: '#EEF3FB' }, border: { display: false }, ticks: { maxTicksLimit: 3, callback: (x) => fmt(x, 0) + ' %' } } },
         plugins: { legend: { display: false }, tooltip: { ...TIP, callbacks: { label: (x) => ' ' + fmt(x.raw, 1) + ' %' } } } } }); });

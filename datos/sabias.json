@@ -4,8 +4,8 @@
    "id": "r1",
    "tema": "recursos",
    "pregunta": "¿Qué parte de la electricidad de México sale de combustibles fósiles?",
-   "valor": 76.6,
-   "unidad": "% en 2024",
+   "valor": 77.7,
+   "unidad": "% en 2024, contando por recurso",
    "sello": "calculo",
    "viz": {
     "tipo": "barras100",
@@ -19,29 +19,43 @@
       "n": "Fósil",
       "c": "#eb6834",
       "v": [
-       73.3,
-       76.8,
-       76.6
+       73.7,
+       78.0,
+       77.7
       ]
      },
      {
-      "n": "Limpia",
+      "n": "Nuclear",
+      "c": "#2a78d6",
+      "v": [
+       3.2,
+       3.5,
+       3.4
+      ]
+     },
+     {
+      "n": "Renovable",
       "c": "#1baf7a",
       "v": [
-       26.7,
-       23.2,
-       23.4
+       23.1,
+       18.5,
+       18.9
       ]
      }
     ],
     "u": "%"
    },
-   "explica": "Tres de cada cuatro kWh inyectados a la red en 2024 vinieron de quemar gas, combustóleo, diésel o carbón. La parte fósil creció de 2022 a 2023 por la menor generación hidroeléctrica.",
+   "explica": "Casi cuatro de cada cinco kWh de 2024 vinieron de quemar gas, combustóleo, diésel o carbón. El Plan reporta 76.6 % de tecnologías «convencionales» porque la ley cuenta la cogeneración eficiente como limpia, aunque quema gas; contando por recurso, lo fósil sube a 77.7 %. La parte fósil creció en 2023, cuando bajó la generación hidroeléctrica.",
    "fuentes": [
     {
      "doc": "SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025)",
+     "pag": 19,
+     "extra": "76.6 % convencional"
+    },
+    {
+     "doc": "SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025)",
      "pag": 20,
-     "extra": "Tabla 2.2; porcentajes: cálculo propio"
+     "extra": "Tabla 2.2; agrupación por recurso: cálculo propio"
     }
    ]
   },
@@ -72,23 +86,32 @@
      48,
      11
     ],
+    "directas": [
+     760,
+     370,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
     "colores": [
      "#eb6834",
      "#e34948",
-     "#eda100",
      "#e87ba4",
      "#2a78d6",
      "#008300",
+     "#eda100",
      "#1baf7a"
     ],
     "u": "gCO₂eq/kWh"
    },
-   "explica": "Mediana de emisiones de ciclo de vida (construcción, combustible y desmantelamiento incluidos). El carbón emite 820 g por kWh; la eólica, 11 g. En emisiones directas (solo chimenea), las renovables y la nuclear dan 0. Son valores globales del IPCC, no factores oficiales de México.",
+   "explica": "Mediana de emisiones de ciclo de vida (construcción, combustible y desmantelamiento incluidos). El carbón emite 820 g por kWh; la eólica, 11 g. En emisiones directas (solo chimenea, barra gris) el carbón emite 760 g, el gas 370 g y las renovables y la nuclear 0. Son valores globales del IPCC, no factores oficiales de México.",
    "fuentes": [
     {
      "doc": "IPCC, AR5 GT III, Anexo III (2014)",
      "pag": 1335,
-     "extra": "Tabla A.III.2, medianas de ciclo de vida"
+     "extra": "Tabla A.III.2, medianas directas y de ciclo de vida"
     }
    ]
   },
@@ -277,7 +300,7 @@
    "tema": "generacion",
    "pregunta": "¿Cuál es la central de mayor capacidad del atlas?",
    "valor": 2778.4,
-   "unidad": "MW: Petacalco (carbón, Guerrero)",
+   "unidad": "MW: Petacalco (carbón, Guerrero), dato de 2016",
    "sello": "oficial",
    "viz": {
     "tipo": "barrasH",
@@ -458,12 +481,17 @@
     ],
     "u": "GWh"
    },
-   "explica": "La eólica despegó desde 2012 y la solar a partir de 2018, cuando entraron las centrales ganadas en las subastas de largo plazo. Desde 2021 ambas se estancaron.",
+   "explica": "La eólica despegó desde 2012 y la solar a partir de 2018. Desde 2021 ambas se mantienen casi sin cambio. La CFE informa que la mayoría de las centrales de las subastas de largo plazo de 2015 y 2016 ya opera, pero los documentos no separan cuánta de esta generación viene de ellas.",
    "fuentes": [
     {
      "doc": "SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025)",
      "pag": 20,
      "extra": "Tabla 2.2; razón 2024/2013: cálculo propio"
+    },
+    {
+     "doc": "CFE, Informe Anual 2024",
+     "pag": 129,
+     "extra": "subastas de largo plazo"
     }
    ]
   },
@@ -683,14 +711,14 @@
    "viz": {
     "tipo": "barrasH",
     "etiquetas": [
-     "69 kV",
      "115 kV",
+     "161 kV",
      "230 kV",
      "400 kV"
     ],
     "valores": [
-     105.0,
      37.8,
+     19.3,
      9.5,
      3.1
     ],
@@ -705,9 +733,14 @@
    "explica": "Con la misma potencia (500 MW) y la misma resistencia (10 Ω, valores de ejemplo), las pérdidas I²R caen con el cuadrado de la tensión: P = 3·I²·R e I = P/(√3·V·cos φ). Pruébalo en el simulador del Módulo 2.",
    "fuentes": [
     {
+     "doc": "SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025)",
+     "pag": 22,
+     "extra": "Tabla 2.3, niveles de tensión de la red"
+    },
+    {
      "doc": "Simulador del Módulo 2",
      "pag": "—",
-     "extra": "cálculo con valores de ejemplo, no de una línea real"
+     "extra": "fórmulas del enunciado; 500 MW y 10 Ω son valores de ejemplo, no de una línea real"
     }
    ]
   },
@@ -941,11 +974,30 @@
     ]
    },
    {
+    "fecha": "2013",
+    "etapa": "reforma",
+    "titulo": "Origen político: el Pacto por México",
+    "actores": "Gobierno de Enrique Peña Nieto · Pacto por México",
+    "texto": "La CFE ubica la reforma energética, junto con la de telecomunicaciones, dentro del «Pacto por México», y se refiere a «la administración que implementó la reforma energética de 2013». La fecha de la iniciativa y las votaciones de cada cámara no aparecen en los documentos del proyecto: Dato no disponible.",
+    "fuentes": [
+     {
+      "doc": "CFE, Informe Anual 2023",
+      "pag": 260,
+      "extra": ""
+     },
+     {
+      "doc": "CFE, Informe Anual 2024",
+      "pag": 9,
+      "extra": ""
+     }
+    ]
+   },
+   {
     "fecha": "18 dic 2013",
     "etapa": "reforma",
     "titulo": "Declaratoria de la Comisión Permanente",
     "actores": "Comisión Permanente · Dip. Ricardo Anaya Cortés, presidente",
-    "texto": "Con la aprobación de ambas cámaras y de la mayoría de las legislaturas estatales, se declaran reformados los artículos 25, 27 y 28.",
+    "texto": "«Previa la aprobación de las Cámaras de Diputados y de Senadores […] así como la mayoría de las legislaturas de los Estados», la Comisión Permanente declara reformados los artículos 25, 27 y 28 de la Constitución.",
     "fuentes": [
      {
       "doc": "DOF 20/12/2013, Decreto de reforma constitucional en materia de energía",
@@ -983,6 +1035,20 @@
      {
       "doc": "Ley de la Comisión Federal de Electricidad (DOF 11/08/2014)",
       "pag": "art. 2",
+      "extra": ""
+     }
+    ]
+   },
+   {
+    "fecha": "Tras 2014",
+    "etapa": "reforma",
+    "titulo": "La planeación pasa de la CFE a la SENER",
+    "actores": "SENER · CFE · CENACE",
+    "texto": "La planeación del SEN pasó del Programa de Obras e Inversiones del Sector Eléctrico (POISE), de la CFE, al PRODESEN, de la SENER, que incorpora proyectos de la CFE y del sector privado.",
+    "fuentes": [
+     {
+      "doc": "CFE, Informe Anual 2024",
+      "pag": 189,
       "extra": ""
      }
     ]
@@ -1139,13 +1205,18 @@
     "f": [
      {
       "doc": "DOF 20/12/2013, Decreto de reforma constitucional en materia de energía",
-      "pag": "1 y 5 de 9",
+      "pag": "3 y 5 de 9",
       "extra": "transitorios 3 y 10"
      },
      {
       "doc": "Ley de la Comisión Federal de Electricidad (DOF 11/08/2014)",
       "pag": "art. 2",
       "extra": ""
+     },
+     {
+      "doc": "CFE, Informe Anual 2024",
+      "pag": 2,
+      "extra": "índice de subsidiarias"
      },
      {
       "doc": "DOF 18/03/2025, Ley del Sector Eléctrico",
@@ -1201,6 +1272,29 @@
       }
      }
     ],
+    "obj": {
+     "t": "«La ley alentará y protegerá la actividad económica que realicen los particulares» en el sector.",
+     "f": {
+      "doc": "DOF 20/12/2013, Decreto de reforma constitucional en materia de energía",
+      "pag": "1 de 9",
+      "extra": "art. 25"
+     }
+    },
+    "ley": {
+     "t": "2014: generación en libre competencia. 2025: el Estado debe mantener al menos 54 % de la energía inyectada.",
+     "f": [
+      {
+       "doc": "Ley de la Industria Eléctrica (DOF 11/08/2014)",
+       "pag": "art. 4",
+       "extra": ""
+      },
+      {
+       "doc": "DOF 18/03/2025, Ley del Sector Eléctrico",
+       "pag": 97,
+       "extra": ""
+      }
+     ]
+    },
     "texto": "Según la CFE, su participación bajó a 53 % en 2018 y se proyectaba 29 % para 2024; en 2022 inyectó 41 % de la energía del SEN. La ley de 2025 fija un mínimo de 54 % para el Estado y el Plan proyecta 59 % en 2030.",
     "f": [
      {
@@ -1279,6 +1373,24 @@
      32449,
      33441
     ],
+    "obj": {
+     "t": "El decreto no fija una meta de capacidad instalada.",
+     "f": {
+      "doc": "DOF 20/12/2013, Decreto de reforma constitucional en materia de energía",
+      "pag": "1-9 de 9",
+      "extra": ""
+     }
+    },
+    "ley": {
+     "t": "Cualquier generador con permiso puede construir centrales y vender su energía.",
+     "f": [
+      {
+       "doc": "Ley de la Industria Eléctrica (DOF 11/08/2014)",
+       "pag": "art. 4",
+       "extra": ""
+      }
+     ]
+    },
     "texto": "La capacidad del país pasó de 55,090 MW en 2010 a 90,543 MW en 2024 (+64 %). De 2017 a 2021 sumó 18,103 MW. La tabla muestra un salto en 2016 y una baja en 2017; se presenta tal como está publicada.",
     "f": [
      {
@@ -1359,6 +1471,24 @@
      11.2,
      11.0
     ],
+    "obj": {
+     "t": "La ley establecerá «obligaciones de energías limpias y reducción de emisiones contaminantes».",
+     "f": {
+      "doc": "DOF 20/12/2013, Decreto de reforma constitucional en materia de energía",
+      "pag": "8 de 9",
+      "extra": "transitorio 17"
+     }
+    },
+    "ley": {
+     "t": "Certificados de Energías Limpias que deben adquirir suministradores y usuarios calificados.",
+     "f": [
+      {
+       "doc": "Ley de la Industria Eléctrica (DOF 11/08/2014)",
+       "pag": "arts. 121-123",
+       "extra": ""
+      }
+     ]
+    },
     "texto": "El decreto de 2013 ordenó obligaciones de energías limpias. La eólica y la solar pasaron de 1.5 % de la generación en 2013 a 11.0 % en 2024.",
     "f": [
      {
@@ -1376,6 +1506,29 @@
    {
     "n": "Organización del mercado eléctrico",
     "viz": "mercado",
+    "obj": {
+     "t": "«Estricta separación legal» para «fomentar el acceso abierto y la operación eficiente del sector eléctrico».",
+     "f": {
+      "doc": "DOF 20/12/2013, Decreto de reforma constitucional en materia de energía",
+      "pag": "5 de 9",
+      "extra": "transitorio 10, inciso a"
+     }
+    },
+    "ley": {
+     "t": "CENACE como organismo independiente que controla el sistema y opera el mercado.",
+     "f": [
+      {
+       "doc": "DOF 20/12/2013, Decreto de reforma constitucional en materia de energía",
+       "pag": "7-8 de 9",
+       "extra": "transitorio 16, inciso b"
+      },
+      {
+       "doc": "Ley de la Industria Eléctrica (DOF 11/08/2014)",
+       "pag": "art. 107",
+       "extra": ""
+      }
+     ]
+    },
     "roles": [
      {
       "q": "Generadores",
@@ -1423,6 +1576,15 @@
       }
      },
      {
+      "q": "Subastas de largo plazo",
+      "t": "Hubo subastas en 2015, 2016 y 2017; la mayoría de las centrales de 2015 y 2016 ya opera. Se mantuvieron suspendidas en 2024.",
+      "f": {
+       "doc": "CFE, Informe Anual 2024",
+       "pag": 129,
+       "extra": ""
+      }
+     },
+     {
       "q": "Con la ley de 2025",
       "t": "El CENACE conserva el control operativo y la operación del mercado.",
       "f": {
@@ -1454,6 +1616,24 @@
    {
     "n": "Resultados y controversias: tarifas, inversión y confiabilidad",
     "viz": "tarifas",
+    "obj": {
+     "t": "Que el sector privado contribuya al desarrollo «promoviendo la competitividad».",
+     "f": {
+      "doc": "DOF 20/12/2013, Decreto de reforma constitucional en materia de energía",
+      "pag": "1 de 9",
+      "extra": "art. 25"
+     }
+    },
+    "ley": {
+     "t": "Las tarifas finales del Suministro Básico las determina el regulador (hoy la CNE) para que la CFE recupere sus costos.",
+     "f": [
+      {
+       "doc": "SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025)",
+       "pag": 39,
+       "extra": "sección 2.6.2"
+      }
+     ]
+    },
     "precios": [
      {
       "s": "Residencial",
@@ -1474,9 +1654,9 @@
       "v24": 2.14
      }
     ],
-    "defensores": "La reforma atrajo inversión privada en generación: la capacidad eólica y solar pasó de cerca de 1,400 MW en 2013 a más de 15 mil MW en 2024.",
+    "defensores": "El decreto de 2013 planteaba que el sector privado contribuyera al desarrollo «promoviendo la competitividad» y que la ley fijara obligaciones de energías limpias. Como dato observado (no como prueba de causa), la capacidad eólica y solar pasó de cerca de 1,400 MW en 2013 a más de 15 mil MW en 2024.",
     "criticos": "La CFE sostiene que el esquema de autoabastecimiento «se pervirtió», que los productores privados recibieron un «despacho privilegiado» en su detrimento y que se inhibió la inversión en sus centrales, con riesgo para la confiabilidad.",
-    "texto": "Los precios medios de residencial, empresa mediana y gran industria alcanzaron en 2024 su valor más alto en 15 años (en pesos corrientes). Del lado del Suministro Básico, la Tarifa Media Nacional subió 2.9 % anual de 2019 a 2024, menos que la inflación (4.8 %).",
+    "texto": "Según el Plan, los precios medios de residencial, empresa mediana y gran industria alcanzaron en 2024 su valor más alto de los últimos 15 años. En cambio, la Tarifa Media Nacional del Suministro Básico para los sectores industrial, comercial y servicios aumentó en promedio 2.9 % al año de diciembre de 2019 a diciembre de 2024, menos que la inflación (4.8 %).",
     "f": [
      {
       "doc": "SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025)",
@@ -1487,6 +1667,11 @@
       "doc": "SENER, Plan de Desarrollo del Sector Eléctrico 2025-2030 (DOF 17/10/2025)",
       "pag": 19,
       "extra": "Tabla 2.1"
+     },
+     {
+      "doc": "DOF 20/12/2013, Decreto de reforma constitucional en materia de energía",
+      "pag": "1 y 8 de 9",
+      "extra": "art. 25 y transitorio 17"
      },
      {
       "doc": "CFE, Informe Anual 2024",
