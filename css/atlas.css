@@ -833,3 +833,63 @@ body:has(.filtros-globales) section[id] { scroll-margin-top: 150px; }
 .cab-acc { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .segmentado.chico button { min-height: 32px; padding: 4px 12px; font-size: .8rem; }
 .segmentado.chico button[data-uni="pct"] { min-width: 40px; }
+
+/* ---------- Laboratorio solar (landing) ---------- */
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.sello.medido { color: #0B5C73; background: #E3F8FD; }
+.sello.medido::before { border-radius: 2px; }
+.sello.placa { color: #5A3FB0; background: #F1ECFF; }
+.sello.placa::before { border-radius: 2px; transform: rotate(45deg); }
+.sello.confirmar { color: #8A3B00; background: var(--crema); border-style: dashed; }
+.sello.confirmar::before { background: transparent; border: 2px solid currentColor; width: 6px; height: 6px; }
+
+.pos-rejilla { align-items: stretch; }
+.pos-card { background: var(--blanco); border: 1px solid var(--borde); border-radius: var(--radio); box-shadow: var(--sombra); padding: 0; display: flex; flex-direction: column; overflow: hidden; transition: transform .2s, box-shadow .2s, border-color .2s; }
+.pos-card.activa { border-color: var(--azul-brillante); box-shadow: 0 0 0 3px rgba(47,128,237,.22), var(--sombra); }
+.pos-cab { display: flex; gap: 14px; align-items: center; padding: 16px 18px 10px; background: linear-gradient(180deg, var(--azul-hielo), var(--blanco)); }
+.pos-ico { flex: none; width: 64px; height: 52px; border-radius: 14px; background: var(--blanco); border: 1px solid var(--borde); display: grid; place-items: center; }
+.pos-ico svg { width: 52px; height: 42px; }
+.pos-cab h3 { margin: 0; font-size: 1.05rem; }
+.pos-cab p { margin: 2px 0 0; color: var(--gris); font-size: .84rem; line-height: 1.35; }
+.pos-med { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 6px 18px 4px; }
+.pos-m { border: 1px solid var(--borde); border-radius: 14px; padding: 8px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.pos-m .k { font-size: .76rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--gris); }
+.pos-m b { font-family: var(--fuente-titulos); font-size: 1.45rem; color: var(--azul-marino); line-height: 1; font-variant-numeric: tabular-nums; }
+.pos-m b small { font-family: var(--fuente); font-size: .8rem; font-weight: 500; color: var(--gris); margin-left: 2px; }
+.pos-m img { width: 100%; height: 64px; object-fit: cover; border-radius: 8px; border: 1px solid var(--borde); background: var(--azul-hielo); }
+.pos-m .sello { font-size: .68rem; padding: 1px 8px; }
+.pos-calc { margin: 8px 18px 0; padding: 10px 12px; border-radius: 12px; background: var(--crema); font-size: .84rem; color: var(--azul-marino); line-height: 1.45; }
+.pos-calc b { font-variant-numeric: tabular-nums; }
+.pos-pie { margin-top: auto; padding: 14px 18px 18px; }
+.pos-pie .filtro { width: 100%; justify-content: center; font-weight: 600; }
+
+.sol-seg { align-self: flex-start; flex-wrap: wrap; border-radius: 18px; }
+.sol-seg button { min-height: 36px; }
+.res-r { font-family: var(--fuente-titulos); font-weight: 700; color: var(--azul-principal); font-variant-numeric: tabular-nums; text-align: right; min-width: 6.5em; font-size: .95rem; }
+.placa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+.placa-grid label { display: flex; flex-direction: column; gap: 4px; font-size: .82rem; font-weight: 600; color: var(--azul-marino); }
+.placa-grid input { font: inherit; padding: 6px 8px; border: 1px solid var(--borde); border-radius: 10px; min-height: 40px; width: 100%; font-variant-numeric: tabular-nums; }
+.nota-placa { margin: 10px 0 8px; font-size: .84rem; color: var(--gris); }
+.nota-placa.error { color: #8A1C12; font-weight: 600; }
+.solar-fig { margin: 0 0 14px; border-radius: 18px; overflow: hidden; border: 1px solid var(--borde); }
+.solar-fig svg { width: 100%; height: auto; display: block; }
+.solar-kpis { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 10px; }
+.sub-res { margin: 14px 0 0; font-size: .95rem; }
+.solar-sim .panel { min-width: 0; }
+@media (max-width: 900px) { .solar-sim { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .placa-grid, .pos-med { grid-template-columns: 1fr; } .pos-m img { height: 80px; } }
+@media (prefers-reduced-motion: reduce) { .pos-card { transition: none; } }
+
+/* Botón «Simulador de celdas solares» (barra superior y portada) */
+.modulos a.mod-solar { background: var(--degradado-sol); color: var(--azul-marino); font-weight: 700; margin-left: 6px; gap: 7px; box-shadow: 0 2px 8px rgba(245,163,0,.35); }
+.modulos a.mod-solar:hover { background: var(--degradado-sol); filter: brightness(1.05); transform: translateY(-1px); }
+.btn.btn-solar { background: var(--degradado-sol); color: var(--azul-marino); font-weight: 700; display: inline-flex; align-items: center; gap: 8px; border: 0; box-shadow: 0 6px 18px rgba(245,163,0,.4); }
+.btn.btn-solar:hover { filter: brightness(1.06); transform: translateY(-1px); }
+@media (max-width: 560px) {
+  .sol-seg { display: flex; width: 100%; border-radius: 16px; }
+  .sol-seg button { flex: 1 1 0; padding: 6px 4px; font-size: .78rem; white-space: nowrap; }
+  #solar-svg text { font-size: 15px; }
+}
+.placa-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 16px; }
+.chip-p { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--borde); background: var(--azul-hielo); border-radius: 999px; padding: 3px 10px; font-size: .82rem; color: var(--azul-marino); font-variant-numeric: tabular-nums; }
+.chip-p .sello { font-size: .68rem; padding: 0 8px; }

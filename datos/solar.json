@@ -1,0 +1,46 @@
+{
+  "panel": {
+    "marca": "Epcom Power Line",
+    "modelo": "PRO-10012",
+    "origen": "Etiqueta trasera del panel (fotos 1 y 2 del experimento)",
+    "pmax": { "v": 100, "u": "W", "estado": "etiqueta" },
+    "vmp": { "v": 17.5, "u": "V", "estado": "etiqueta" },
+    "imp": { "v": 5.71, "u": "A", "estado": "etiqueta" },
+    "voc": { "v": 21.5, "u": "V", "estado": "confirmar", "nota": "La foto está borrosa; se leyó 21.5 V. Corrígelo si tu etiqueta dice otra cosa." },
+    "isc": { "v": 6.02, "u": "A", "estado": "confirmar", "nota": "La foto está borrosa; se leyó 6.02 A. Corrígelo si tu etiqueta dice otra cosa." },
+    "stc": "Las cifras de la etiqueta son en condiciones estándar (STC): 1000 W/m² y 25 °C de temperatura de celda."
+  },
+  "posiciones": [
+    {
+      "id": "abajo",
+      "titulo": "Boca abajo",
+      "detalle": "Panel volteado sobre el pasto, sin que le pegue la luz directa.",
+      "beta": 180,
+      "voltaje": { "v": 7.13, "u": "V", "foto": 2, "nota": "Lectura borrosa en la foto; se leyó 7.13 V." },
+      "corriente": { "v": 0.005, "u": "A", "foto": 1 }
+    },
+    {
+      "id": "piso",
+      "titulo": "Boca arriba en el piso",
+      "detalle": "Panel acostado sobre el pasto, con la cara de las celdas hacia el cielo.",
+      "beta": 0,
+      "voltaje": { "v": 19.39, "u": "V", "foto": 4 },
+      "corriente": { "v": 0.022, "u": "A", "foto": 3 }
+    },
+    {
+      "id": "optimo",
+      "titulo": "Inclinado, luz perpendicular",
+      "detalle": "Panel levantado a mano para que los rayos le peguen de frente.",
+      "beta": null,
+      "voltaje": { "v": 19.57, "u": "V", "foto": 5 },
+      "corriente": { "v": 0.020, "u": "A", "foto": 6 }
+    }
+  ],
+  "noDisponible": [
+    "Altura del sol durante el experimento",
+    "Ángulo exacto del panel inclinado",
+    "Irradiancia real (W/m²)",
+    "Temperatura de las celdas",
+    "Coeficientes de temperatura del panel"
+  ]
+}
