@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/atlas.css?v=20261111">
+  <link rel="stylesheet" href="css/atlas.css?v=20261112">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -199,6 +199,46 @@
         </div>
       </div>
 
+      <article class="panel foto" id="foto" style="margin-top:20px" aria-labelledby="t-foto">
+        <div class="cab"><div><h3 id="t-foto">¿Cómo se convierte la luz en electricidad?</h3>
+          <p class="desc">Dentro de cada celda ocurre el efecto fotovoltaico, que nace del efecto fotoeléctrico: un fotón (una partícula de luz) con suficiente energía le arranca un electrón a un átomo. Esta animación usa los mismos controles de arriba: si cambias el ángulo, la intensidad o la carga, cambia lo que ves.</p></div></div>
+        <div class="foto-controles">
+          <div>
+            <span class="rot" id="r-luz" style="font-size:.88rem;font-weight:600;color:var(--azul-marino)">Tipo de luz</span>
+            <div class="segmentado sol-seg" role="group" aria-labelledby="r-luz" id="seg-luz">
+              <button type="button" data-luz="sol" aria-pressed="true">Sol (todos los colores)</button>
+              <button type="button" data-luz="azul" aria-pressed="false">Azul · 450 nm</button>
+              <button type="button" data-luz="roja" aria-pressed="false">Roja · 650 nm</button>
+              <button type="button" data-luz="ir" aria-pressed="false">Infrarroja · 1400 nm</button>
+            </div>
+          </div>
+          <button type="button" class="btn-foto" id="foto-play" aria-pressed="true">⏸ Pausar</button>
+        </div>
+        <div class="foto-lienzo"><canvas id="c-foto" role="img" aria-label="Animación de una celda solar: fotones que llegan, electrones liberados que suben a la capa n, huecos que bajan a la capa p, y los electrones que viajan por el cable externo a través de la carga."></canvas></div>
+        <ul class="foto-leyenda" aria-label="Leyenda de la animación">
+          <li><i class="lg lg-ph"></i> Fotón (luz)</li>
+          <li><i class="lg lg-e">−</i> Electrón</li>
+          <li><i class="lg lg-h">+</i> Hueco (falta un electrón)</li>
+          <li><i class="lg lg-q"></i> Calor</li>
+        </ul>
+        <div class="eg">
+          <div class="eg-tit"><strong>¿Le alcanza la energía al fotón?</strong> <span class="sello calculo">Cálculo</span></div>
+          <div class="eg-barra" id="eg-barra"><span class="eg-vis" id="eg-vis"></span><span class="eg-umbral" id="eg-umbral"><b>1.12 eV</b></span><span class="eg-foton" id="eg-foton"></span></div>
+          <div class="eg-escala" id="eg-escala" aria-hidden="true"></div>
+          <p class="desc" id="eg-texto" style="margin:8px 0 0"></p>
+        </div>
+        <p class="foto-resumen" id="foto-resumen"></p>
+        <ol class="foto-pasos">
+          <li><strong>Llegan fotones.</strong> La luz viene en paquetes de energía, E = h·f. El color decide cuánta energía trae cada fotón: el azul más que el rojo, y el infrarrojo menos. La intensidad decide cuántos llegan.</li>
+          <li><strong>Un fotón libera un electrón.</strong> Solo si su energía es mayor o igual a la que pide el material (en el silicio, 1.12 eV). Si trae de más, lo que sobra se vuelve calor. Si trae de menos, lo atraviesa y no pasa nada, aunque haya muchísima luz.</li>
+          <li><strong>La unión p‑n los separa.</strong> Entre la capa n (sobran electrones) y la p (faltan electrones, «huecos») hay un campo eléctrico que empuja los electrones hacia arriba y los huecos hacia abajo. Sin esa unión, el electrón volvería a caer en su hueco y la energía se perdería en calor.</li>
+          <li><strong>El circuito externo.</strong> Los electrones salen por el contacto frontal, pasan por la carga (el aparato que conectes) y regresan por el contacto trasero a llenar huecos. Ese viaje es la corriente. El voltaje es el «empuje» que da el campo de la unión.</li>
+        </ol>
+        <div class="foto-nota"><strong>Ojo con el nombre.</strong> En el efecto fotoeléctrico clásico (el de Einstein) el electrón sale disparado fuera del metal. En una celda solar no sale del material: sube de la banda de valencia a la de conducción dentro del silicio, por eso se llama efecto fotovoltaico (o fotoeléctrico interno). La regla de la energía mínima es la misma.</div>
+        <div class="foto-nota prueba"><strong>Pruébalo.</strong> Elige luz infrarroja y sube la intensidad al máximo: no hay electricidad. Ahora elige luz azul con la intensidad al mínimo: sí hay. El color decide <em>si</em> hay efecto; la intensidad decide <em>cuánto</em>. Y con la carga en «Circuito abierto», los electrones se acumulan en la capa n y no salen: por eso aparece voltaje pero no corriente.</div>
+        <p class="fuente"><span class="sello calculo">Cálculo</span> E = h·f = h·c/λ, con E[eV] = 1239.84 / λ[nm] y f = c/λ. El 1.12 eV es el valor de referencia del silicio; el material exacto de tu panel es <span class="sello nd">Dato no disponible</span>, por eso el silicio se usa como ejemplo. La animación es didáctica: no está a escala ni cuenta cada fotón real.</p>
+      </article>
+
       <article class="panel" style="margin-top:20px" aria-labelledby="t-iv">
         <div class="cab"><div><h3 id="t-iv">Curva corriente-voltaje y potencia</h3>
           <p class="desc">La curva azul muestra qué corriente puede dar el panel a cada voltaje. La curva ámbar es la potencia. El punto amarillo es lo que pasa con tu carga: donde la línea gris de la carga cruza la curva azul.</p></div></div>
@@ -217,6 +257,7 @@
         <ul class="supuestos">
           <li><strong>Temperatura fija en 25 °C.</strong> Un panel caliente al sol da menos voltaje que el modelo. Los coeficientes de temperatura de tu panel son <span class="sello nd">Dato no disponible</span>.</li>
           <li><strong>El voltaje casi no depende de la luz; la corriente sí.</strong> Por eso tus voltajes de 19.39 V y 19.57 V se parecen tanto, aunque la luz fuera distinta.</li>
+          <li><strong>El efecto fotoeléctrico se simplifica.</strong> Una luz de un solo color libera electrones si su energía por fotón alcanza 1.12 eV (referencia del silicio) y, si no, no genera nada. No se modela la respuesta real de cada color ni las pérdidas por reflexión.</li>
           <li><strong>Voc × Isc no es potencia.</strong> El voltaje se mide con el circuito abierto y la corriente con el circuito cerrado; nunca ocurren a la vez. La potencia real sale de un punto de la curva.</li>
           <li><strong>Lo que no medimos:</strong> altura del sol, ángulo exacto del panel inclinado, irradiancia real y temperatura de las celdas. Los datos que faltan se muestran como <span class="sello nd">Dato no disponible</span>.</li>
         </ul>
@@ -258,6 +299,7 @@
 <script>(function(){var n=document.querySelector(".modulos"),a=n&&n.querySelector("[aria-current]");if(n&&a&&n.scrollWidth>n.clientWidth){n.scrollLeft=a.offsetLeft-(n.clientWidth-a.offsetWidth)/2;}})();</script>
 <script>(function(){var b=document.querySelector(".arriba");if(!b)return;function f(){b.classList.toggle("visible",scrollY>innerHeight*0.8);}addEventListener("scroll",f,{passive:true});f();})();</script>
 <script src="js/vendor/chart.umd.min.js"></script>
-<script src="js/solar.js?v=20261111"></script>
+<script src="js/celda-anim.js?v=20261112"></script>
+  <script src="js/solar.js?v=20261112"></script>
 </body>
 </html>

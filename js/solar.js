@@ -16,7 +16,9 @@
   let M = null;            // parámetros del modelo ajustado
   let chart = null;
   let pendiente = false;
-  const S = { beta: 30, h: 60, G: 1000, d: 0, op: 'mpp', rIdx: 50, pos: 'optimo' };
+  const S = { beta: 30, h: 60, G: 1000, d: 0, op: 'mpp', rIdx: 50, pos: 'optimo', luz: 'sol' };
+  const LUCES = { sol: { nm: null }, azul: { nm: 450 }, roja: { nm: 650 }, ir: { nm: 1400 } };
+  const EG = 1.12, HC = 1239.84; /* brecha del silicio (referencia) y h·c en eV·nm */
   const P = { voc: 0, isc: 0, vmp: 0, imp: 0 };
 
   /* ---------- Modelo ---------- */
@@ -61,8 +63,10 @@
     const cosT = Math.sin(rad(S.beta + S.h));
     const directo = Math.max(0, cosT);
     const theta = cosT >= 0 ? deg(Math.acos(Math.min(1, cosT))) : null;
-    const g = (S.G * directo + (S.G * S.d) / 100) / 1000;
-    return { cosT, directo, theta, g };
+    const gInc = (S.G * directo + (S.G * S.d) / 100) / 1000;
+    const nm = LUCES[S.luz].nm;
+    const cf = nm === null || HC / nm >= EG ? 1 : 0; /* ¿cada fotón trae al menos 1.12 eV? */
+    return { cosT, directo, theta, gInc, cf, g: gInc * cf };
   }
 
   /* ---------- Formatos ---------- */
@@ -297,7 +301,7 @@
     }
     $('#o-r').textContent = rTxt;
     $('#k-theta').textContent = geo.theta === null ? '> 90°' : `${f(geo.theta, 0)}°`;
-    $('#k-g').innerHTML = `${f(g * 1000, 0)}<small> W/m²</small>`;
+    $('#k-g').innerHTML = `${f(geo.gInc * 1000, 0)}<small> W/m²</small>`;
     $('#k-voc').innerHTML = `${f(vo, 2)}<small> V</small>`;
     $('#k-isc').innerHTML = `${f(g * M.isc, 2)}<small> A</small>`;
     const pOp = op.v * op.i;
@@ -311,7 +315,8 @@
     bar.style.width = `${(frac * 100).toFixed(0)}%`;
     bar.style.background = frac >= 0.9 ? '#1a7f4e' : frac >= 0.6 ? '#F5A300' : '#b42318';
     let msg;
-    if (g <= 0) msg = 'Sin luz directa ni difusa el modelo no genera nada. Tu panel boca abajo sí marcó ' + f(D.posiciones[0].voltaje.v, 2) + ' V: algo de luz llegó, y el voltaje responde a muy poca luz.';
+    if (geo.cf === 0 && geo.gInc > 0) { const nm = LUCES[S.luz].nm; msg = `Con luz de ${nm} nm cada fotón trae ${f(HC / nm, 2)} eV, menos que los ${EG} eV que pide el silicio: no libera electrones y el panel no genera nada, aunque la luz sea intensa.`; }
+    else if (g <= 0) msg = 'Sin luz directa ni difusa el modelo no genera nada. Tu panel boca abajo sí marcó ' + f(D.posiciones[0].voltaje.v, 2) + ' V: algo de luz llegó, y el voltaje responde a muy poca luz.';
     else if (S.op === 'cc') msg = 'En cortocircuito la corriente es la máxima, pero el voltaje es cero, así que la potencia es cero. Así se mide la corriente con el amperímetro.';
     else if (S.op === 'ca') msg = 'En circuito abierto el voltaje es el máximo, pero la corriente es cero, así que la potencia es cero. Así se mide el voltaje con el voltímetro.';
     else if (S.op === 'mpp') msg = `Es el punto de máxima potencia. Con una carga de ${rTxt} el panel entrega todo lo que puede con esta luz.`;
@@ -319,6 +324,15 @@
     $('#o-aviso').textContent = msg;
     dibuja(geo);
     actualizaGrafica(geo, op);
+    if (window.CeldaAnim) {
+      const volt = op.v, cor = op.i;
+      window.CeldaAnim.update({
+        gInc: geo.gInc, cf: geo.cf, theta: geo.theta, luz: S.luz, nm: LUCES[S.luz].nm, G: S.G,
+        ratioI: P.isc > 0 ? Math.min(1, cor / P.isc) : 0, iOp: g > 0 ? cor : 0, pRatio: nom > 0 ? pOp / nom : 0,
+        rTxt: rTxt.length > 16 ? rTxt.replace(/ \(.*\)/, '') : rTxt,
+        vTxt: `${f(volt, 2)} V`, iTxt: cor >= 0.1 ? `${f(cor, 2)} A` : `${f(cor * 1000, 0)} mA`, pTxt: `${f(pOp, 1)} W`,
+      });
+    }
   }
   function pide() { if (!pendiente) { pendiente = true; requestAnimationFrame(render); } }
 
@@ -370,6 +384,11 @@
     });
     document.querySelectorAll('#seg-pos [data-pos]').forEach((b) => b.addEventListener('click', () => setPos(b.dataset.pos)));
     document.querySelectorAll('#op-rapidos [data-op]').forEach((b) => b.addEventListener('click', () => setOp(b.dataset.op)));
+    document.querySelectorAll('#seg-luz [data-luz]').forEach((b) => b.addEventListener('click', () => {
+      S.luz = b.dataset.luz;
+      document.querySelectorAll('#seg-luz [data-luz]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      pide();
+    }));
     ['#p-voc', '#p-isc', '#p-vmp', '#p-imp'].forEach((id) => $(id).addEventListener('input', leePlaca));
     $('#p-reset').addEventListener('click', ponPlacaInicial);
     marcaActiva(); pide();
